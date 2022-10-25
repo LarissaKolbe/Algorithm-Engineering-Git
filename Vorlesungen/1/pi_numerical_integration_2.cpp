@@ -14,7 +14,8 @@ int main() {
 		int threadNum = omp_get_num_threads();
 		int threadId  = omp_get_thread_num();
 		double sumLocal = 0.0;
-		for (int i = threadId; i < num_steps; i = i+threadNum) {
+		int stepsPerThread = num_steps / threadNum;
+		for (int i = threadId * stepsPerThread; i < (threadId+1) * stepsPerThread; i++) {
 			double x = (i + 0.5) * width; // midpoint
 			sumLocal = sumLocal + (1.0 / (1.0 + x * x)); // add new height of a rectangle
 		}
