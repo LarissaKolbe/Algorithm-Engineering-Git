@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  int seed = 0;
+  long unsigned int seed = 0;
   default_random_engine re{seed};
   uniform_real_distribution<double> zero_to_one{0.0, 1.0};
 
