@@ -1,0 +1,355 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: Projekt
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang/
+# =============================================================================
+# Object build statements for EXECUTABLE target Projekt_exec_clang
+
+
+#############################################
+# Order-only phony target for Projekt_exec_clang
+
+build cmake_object_order_depends_target_Projekt_exec_clang: phony || CMakeFiles/Projekt_exec_clang.dir
+
+build CMakeFiles/Projekt_exec_clang.dir/main.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/main.cpp || cmake_object_order_depends_target_Projekt_exec_clang
+  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/main.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
+  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+
+build CMakeFiles/Projekt_exec_clang.dir/Coordinates.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/Coordinates.cpp || cmake_object_order_depends_target_Projekt_exec_clang
+  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/Coordinates.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
+  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Projekt_exec_clang
+
+
+#############################################
+# Link the executable Projekt_exec_clang
+
+build Projekt_exec_clang: CXX_EXECUTABLE_LINKER__Projekt_exec_clang_Debug CMakeFiles/Projekt_exec_clang.dir/main.cpp.o CMakeFiles/Projekt_exec_clang.dir/Coordinates.cpp.o
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_LIBRARIES = -Wl,-rpath,"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -Wl,-rpath,"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -Wl,-rpath,/usr/local/opt/libomp/lib -Wl,-rpath,/usr/local/Cellar/libomp/15.0.3/lib  -lomp
+  LINK_PATH = -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang"   -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC"   -L/usr/local/opt/libomp/lib   -L/usr/local/Cellar/libomp/15.0.3/lib
+  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = Projekt_exec_clang
+  TARGET_PDB = Projekt_exec_clang.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Projekt_exec_gcc
+
+
+#############################################
+# Order-only phony target for Projekt_exec_gcc
+
+build cmake_object_order_depends_target_Projekt_exec_gcc: phony || CMakeFiles/Projekt_exec_gcc.dir
+
+build CMakeFiles/Projekt_exec_gcc.dir/main.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/main.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
+  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/main.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include
+  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+
+build CMakeFiles/Projekt_exec_gcc.dir/Coordinates.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/Coordinates.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
+  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/Coordinates.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include
+  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Projekt_exec_gcc
+
+
+#############################################
+# Link the executable Projekt_exec_gcc
+
+build Projekt_exec_gcc: CXX_EXECUTABLE_LINKER__Projekt_exec_gcc_Debug CMakeFiles/Projekt_exec_gcc.dir/main.cpp.o CMakeFiles/Projekt_exec_gcc.dir/Coordinates.cpp.o
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_FLAGS = -fopenmp
+  LINK_PATH = -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang"   -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC"   -L/usr/local/opt/libomp/lib
+  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = Projekt_exec_gcc
+  TARGET_PDB = Projekt_exec_gcc.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Projekt_test_exec_clang
+
+
+#############################################
+# Order-only phony target for Projekt_test_exec_clang
+
+build cmake_object_order_depends_target_Projekt_test_exec_clang: phony || catch/catch
+
+build CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_main.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
+  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
+
+build CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
+  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
+
+build CMakeFiles/Projekt_test_exec_clang.dir/Coordinates.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/Coordinates.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
+  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/Coordinates.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Projekt_test_exec_clang
+
+
+#############################################
+# Link the executable Projekt_test_exec_clang
+
+build Projekt_test_exec_clang: CXX_EXECUTABLE_LINKER__Projekt_test_exec_clang_Debug CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/Coordinates.cpp.o || catch/catch
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_FLAGS = -fopenmp
+  LINK_LIBRARIES = -Wl,-rpath,"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -Wl,-rpath,"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -Wl,-rpath,/usr/local/opt/libomp/lib -Wl,-rpath,/usr/local/Cellar/libomp/15.0.3/lib
+  LINK_PATH = -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang"   -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC"   -L/usr/local/opt/libomp/lib   -L/usr/local/Cellar/libomp/15.0.3/lib
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = Projekt_test_exec_clang
+  TARGET_PDB = Projekt_test_exec_clang.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Projekt_test_exec_gcc
+
+
+#############################################
+# Order-only phony target for Projekt_test_exec_gcc
+
+build cmake_object_order_depends_target_Projekt_test_exec_gcc: phony || catch/catch
+
+build CMakeFiles/Projekt_test_exec_gcc.dir/catch_main.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_main.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
+  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/catch_main.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
+
+build CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
+  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
+
+build CMakeFiles/Projekt_test_exec_gcc.dir/Coordinates.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/Coordinates.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
+  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/Coordinates.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
+  INCLUDES = -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Projekt_test_exec_gcc
+
+
+#############################################
+# Link the executable Projekt_test_exec_gcc
+
+build Projekt_test_exec_gcc: CXX_EXECUTABLE_LINKER__Projekt_test_exec_gcc_Debug CMakeFiles/Projekt_test_exec_gcc.dir/catch_main.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/Coordinates.cpp.o || catch/catch
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_FLAGS = -fopenmp
+  LINK_LIBRARIES = -Wl,-rpath,"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang" -Wl,-rpath,"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC" -Wl,-rpath,/usr/local/opt/libomp/lib
+  LINK_PATH = -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/Projekt_exec_clang"   -L"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/PUBLIC"   -L/usr/local/opt/libomp/lib
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = Projekt_test_exec_gcc
+  TARGET_PDB = Projekt_test_exec_gcc.dbg
+
+
+#############################################
+# Utility command for test
+
+build CMakeFiles/test.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/ctest --force-new-ctest-process
+  DESC = Running tests...
+  pool = console
+  restat = 1
+
+build test: phony CMakeFiles/test.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt" -B"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for catch
+
+build catch/catch: phony
+
+
+#############################################
+# Utility command for test
+
+build catch/CMakeFiles/test.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang/catch" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/ctest --force-new-ctest-process
+  DESC = Running tests...
+  pool = console
+  restat = 1
+
+build catch/test: phony catch/CMakeFiles/test.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build catch/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang/catch" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build catch/edit_cache: phony catch/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build catch/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang/catch" && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt" -B"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build catch/rebuild_cache: phony catch/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+build catch: phony catch/catch
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang
+
+build all: phony Projekt_exec_clang Projekt_exec_gcc Projekt_test_exec_clang Projekt_test_exec_gcc catch/all
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-clang/catch
+
+build catch/all: phony catch/catch
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../catch/CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/Catch2/Catch2Config.cmake /usr/local/lib/cmake/Catch2/Catch2ConfigVersion.cmake /usr/local/lib/cmake/Catch2/Catch2Targets-release.cmake /usr/local/lib/cmake/Catch2/Catch2Targets.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build ../CMakeLists.txt ../catch/CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/Catch2/Catch2Config.cmake /usr/local/lib/cmake/Catch2/Catch2ConfigVersion.cmake /usr/local/lib/cmake/Catch2/Catch2Targets-release.cmake /usr/local/lib/cmake/Catch2/Catch2Targets.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all

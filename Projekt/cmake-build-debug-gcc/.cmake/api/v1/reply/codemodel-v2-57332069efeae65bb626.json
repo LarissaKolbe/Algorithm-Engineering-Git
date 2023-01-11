@@ -1,0 +1,129 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.9"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					"build" : "catch",
+					"jsonFile" : "directory-catch-Debug-26666030efa362752ee0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.9"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "catch",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Projekt",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "catch",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Projekt_exec_clang::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Projekt_exec_clang-Debug-c08094bd554959898992.json",
+					"name" : "Projekt_exec_clang",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Projekt_exec_gcc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Projekt_exec_gcc-Debug-9bb10720b0fac409a730.json",
+					"name" : "Projekt_exec_gcc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Projekt_test_exec_clang::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Projekt_test_exec_clang-Debug-aa0e51a6a5705d55acaa.json",
+					"name" : "Projekt_test_exec_clang",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Projekt_test_exec_gcc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Projekt_test_exec_gcc-Debug-1f834beed4949bdee4b6.json",
+					"name" : "Projekt_test_exec_gcc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "catch::@6afbf25e7158157c72a5",
+					"jsonFile" : "target-catch-Debug-9cb990b492cceea1377b.json",
+					"name" : "catch",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-gcc",
+		"source" : "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

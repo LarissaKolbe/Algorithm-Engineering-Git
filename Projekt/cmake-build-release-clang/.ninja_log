@@ -1,0 +1,8 @@
+# ninja log v5
+3	22363	1671572282761782992	CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o	1dc9f5a4c048398c
+3	22364	1671572282755369252	CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o	7f0aba1d247c65f0
+1	21760	1670801325432318064	CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o	28938b90cb9c93bd
+1136	1216	1671572217273284310	Projekt_exec_clang	19a0d119b8f187ba
+1	226	1673289158117531012	build.ninja	69911e58fde42ba7
+2	1136	1671572217182868673	CMakeFiles/Projekt_exec_clang.dir/main.cpp.o	f7510d216ecadc3b
+0	21734	1670801325403867378	CMakeFiles/Projekt_test_exec_gcc.dir/catch_main.cpp.o	ce5547556d54bd73
