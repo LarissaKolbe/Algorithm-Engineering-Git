@@ -1,8 +1,10 @@
 #include <iomanip>
 #include <iostream>
+#include <fstream>
 #include <omp.h>
 #include <algorithm>
 #include <cmath>
+#include <random>
 #include "Coordinates.h"
 
 using namespace std;
@@ -49,19 +51,26 @@ float roundValue(float value, int decimals=2){
 
 /**
  * Prüft die Übereinstimmung der neuen Punkte mit der Zielform
- * @param modifiedDS veränderte Punktesammlung
+ * @param modifiedDS  veränderte Punktesammlung
  * @param targetShape Punktesammlung der Zielform
- * @param size Anzahl an Punkten in modifiedDS
+ * @param size        Anzahl an Punkten in modifiedDS
+ * @param sizeTarget  Anzahl an Punkten in targetShape
  * @return Distanz zwischen modifiedDS und targetShape
  */
-float fit(Coordinates modifiedDS[], Coordinates *targetShape, int size){
-    //TODO: modifiedDS[i] und targetShape[i] müssen nicht übereinstimmen!
+float fit(Coordinates modifiedDS[], Coordinates *targetShape, int sizeDS, int sizeTarget){
     float distance = 0;
-    for(int i=0; i<size; i++){
-        float newDist = sqrt(
-                pow(modifiedDS[i].x - targetShape[i].x, 2) +
-                pow(modifiedDS[i].y - targetShape[i].y, 2));
-        distance = distance + newDist;
+    for(int i=0; i<sizeDS; i++){
+        float distMin = 999999999999;
+        //sets distMin to the smallest distance between modifiedDS[i] and a point from targetShape
+        for(int j=0; j<sizeTarget; j++){
+            float distThis = sqrt(
+                    pow(modifiedDS[i].x - targetShape[j].x, 2) +
+                    pow(modifiedDS[i].y - targetShape[j].y, 2));
+            if (distThis < distMin){
+                distMin = distThis;
+            }
+        }
+        distance = distance + distMin;
     }
     return distance;
 }
@@ -87,37 +96,45 @@ bool isErrorOk(Coordinates *newDS, Coordinates *initialDS, int size) {
     return meanXNew == meanXInit;
 }
 
-Coordinates * moveRandomPoints(Coordinates *dataset, int size) {
-    //TODO: wenn paralelisiert:
-    //srand(omp_get_thread_num())
-    srand((unsigned) time(NULL));
-    /** Maximale Bewegung die ein Punkt machen kann*/
-    //TODO: Idee: fange mit hohem Wert an und gehe runter (vgl Neuronale Netze)
-    float maxMovement = 0.1;
+/**
+ *
+ * @param dataset     Dataset in which points should be moved
+ * @param size        Size of the dataset
+ * @param maxMovement Maximale Bewegung die ein Punkt machen kann
+ * @return
+ */
+Coordinates * moveRandomPoints(Coordinates *dataset, int size, float maxMovement) {
+    //TODO: wenn paralelisiert setze id auf omp_get_thread_num()
+    int id = 1; //omp_get_thread_num();
+    srand((unsigned) time(NULL)+id);
+    int randomIndex = rand() % size; //bestimmt welcher Punkt verschoben wird
 
-    //generiert random Zahlen zwischen 0 und dsSize-1
-    //TODO: kann man auch gleich nur Werte in bestimmter range generieren?
-    int randomIndex = rand() % size;
-
-    //TODO: dafür sorgen, dass evtl auch mehrere Positionen verändert werden können?
-    //TODO: move kann momentan nur positiv sein, muss aber auch negativ gehen!
-    float moveX = ((float) rand()) / (float) RAND_MAX  * maxMovement;
-    float moveY = ((float) rand()) / (float) RAND_MAX  * maxMovement;
-    Coordinates newCoordinates = {
+    //TODO: evtl Koordinaten nur um int's verschieben? (weil ppm-Bild eh nur int's darstellen kann)
+    //bewegt Punkte um Werte zwischen + und - maxMovement
+    float moveX = (((float(rand()) / float(RAND_MAX)) * (maxMovement + maxMovement)) - maxMovement);
+    float moveY = (((float(rand()) / float(RAND_MAX)) * (maxMovement + maxMovement)) - maxMovement);
+    dataset[randomIndex] = {
             dataset[randomIndex].x + moveX,
             dataset[randomIndex].y + moveY,
     };
-    dataset[randomIndex] = newCoordinates;
     return dataset;
 }
 
-Coordinates * perturb(Coordinates dsBefore[], Coordinates *dsNew, Coordinates *targetShape, int size){
+Coordinates * perturb(Coordinates dsBefore[], Coordinates *dsNew, Coordinates *targetShape, int size, int sizeTarget, float temp, float maxMovement){
     while(true){
-        //bewegt random Punkte in dsNeew
-        moveRandomPoints(dsNew, size);
-        //checkt ob dsNew besser ist als dsBefore
-        //TODO: bau das mit Temperatur ein
-        if(fit(dsNew, targetShape, size) < fit(dsBefore, targetShape, size)){
+        //bewegt random Punkte in dsNew
+        moveRandomPoints(dsNew, size, maxMovement);
+        //TODO: wenn paralelisiert setze id auf omp_get_thread_num()
+        //int id = 1; //omp_get_thread_num();
+        //srand((unsigned) time(NULL)+id);
+
+        //akzeptiert dsNew, wenn es näher an der targetShape ist als dsBefore
+        // akzeptiert es auch, wenn die Zufallszahl kleiner als temp ist
+        float fitNew = fit(dsNew, targetShape, size, sizeTarget);
+        float fitBefore = fit(dsBefore, targetShape, size, sizeTarget);
+        float randomNr = (float) rand() / (float) RAND_MAX;
+        if(fitNew < fitBefore
+            || randomNr < temp){
             return dsNew;
         }
     }
@@ -131,17 +148,23 @@ Coordinates * perturb(Coordinates dsBefore[], Coordinates *dsNew, Coordinates *t
  * @param size Größe des Eingabearray
  * @return Ausgabearray der gleichen statistischen Eigenschaften erfüllt
  */
-Coordinates * generateNewPlot(Coordinates *initialDS, Coordinates *currentDS, Coordinates *targetShape, int size) {
+Coordinates * generateNewPlot(Coordinates *initialDS, Coordinates *currentDS, Coordinates *targetShape, int size, int sizeTarget) {
     //TODO: iterations hochschalten!
-    int iterations = 50;
+    int iterations = 1000;
     //Coordinates currentDS[size];
     //copy(initialDS, initialDS+size, currentDS);
     for (int i = 0; i<iterations; i++){
         Coordinates testDS[size];
         //setzt testDS = currentDS
         std::copy(currentDS, currentDS+size, testDS);
+        //"temperature" starts with 0.4 and goes down until 0 with each iteration
+        float maxTemp = 0.4, minTemp = 0.1;
+        float temp = (maxTemp - minTemp) * ((iterations-i)/iterations) + minTemp;
+        //maximal movement a point makes at once. Starts with 5 and goes down until 0.1 with each iteration
+        float movementStart = 5, movementEnd = 0.1;
+        float maxMovement = (movementStart - movementEnd) * ((iterations-i)/iterations) + movementEnd;
         //verändert TestDS
-        perturb(currentDS, testDS, targetShape, size);
+        perturb(currentDS, testDS, targetShape, size, sizeTarget, temp, maxMovement);
         if (isErrorOk(testDS, initialDS, size)){
             //setzt currentDS = testDS
             std::copy(testDS, testDS+size, currentDS);
@@ -154,88 +177,170 @@ Coordinates * generateNewPlot(Coordinates *initialDS, Coordinates *currentDS, Co
  *
  * TODO: evtl in mehrere Funktionen aufteilen, nen Teil in die main packen oder ne eigne Klasse/File wo das alles gemacht wird
  */
-void readFile(char *fileName){
-    //TODO: der Part kann denk ich in die Main
-    FILE *read = fopen(fileName, "rb");
-    if (read == NULL){
-        //TODO: User soll solange Eingabe machen können, bis alles klappt
-        cout << "File could not be found!";
-        return;
-    }
-
-    // read header
-    //TODO: das evtl auch in die Main (wegen dem Fehlerabfangen da...)
-    unsigned char header[15];
-    int test = 0;
-    fread( header , 15,  1, read);
-    if (header[0]!='P' || header[1]!='6'){
-        //TODO: User soll solange Eingabe machen können, bis alles klappt
-        cout << "File has wrong format!";
-        return;
-    }
-
-    //TODO: das könnte in ne eigne Funktion?
-    //extract width and height
-    int width = 0, height = 0, pos = 3;
-    for (;header[pos]!='\n' && header[pos]!=' ';pos++)
-        width = width * 10 + (header[pos] - '0');
-    pos++;
-    for (;header[pos]!='\n' && header[pos]!=' ';pos++)
-        height = height * 10 + (header[pos] - '0');
-
-    //declare a dynamic array of size width x height x 3
-    // reason: there are width x height pixels in the image, and each image has 3 bytes (RGB)
-    unsigned char *image = new unsigned char [width * height * 3];
-    fread( image , width * height * 3,  1, read);
-
+int createArrayFromImage(FILE *file, unsigned char *image, int width, int height, Coordinates *array){
+    fread( image , width * height * 3,  1, file);
     //zählt/sucht alle nahezu schwarzen Punkte
     //TODO: beim input einlesen iwie dafür sorgen, dass jeder Punkt nur wirklich einmal registriert wird! (hat halt meistens noch gräuliche Randpunkte...)
     int index = 0;
-    /**Stores those points that make up the shape*/
-    Coordinates targetShapeTmp[width * height];
     for (int i=0;i<width * height * 3;i=i+3){
         unsigned char red = image[i];
         unsigned char green = image[i+1];
         unsigned char blue = image[i+2];
         if (red < 200 && green < 200 && blue < 200){
-            float currentY = (int)(i / 3 / width);
-            float currentX = (int)(i / 3 - currentY * width);
+            float currentY = (i / 3 / width);
+            float currentX = (i / 3 - currentY * width);
             Coordinates newCoord = {currentX, currentY};
-            targetShapeTmp[index] = newCoord;
+            array[index] = newCoord;
             index++;
         }
     }
-    //creates array of needed length und copies the points in it
-    Coordinates targetShape[index];
-    copy(targetShapeTmp, targetShapeTmp+index, targetShape);
-    //TODO: muss deen array in die Main bekommen (dazu vmtl einiges von hier in die Main verschieben)
+    return index;
+}
+
+/**
+ * Exportiert ppm-File mit schwarzen Pixeln an den in points angegebenen Koordinaten.
+ * CCode von ChatGPT
+ * @param fileName
+ * @param points
+ * @param heightTarget
+ * @param widthTarget
+ */
+void exportImage(string fileName, Coordinates *points, int heightTarget, int widthTarget){
+    std::ofstream outputFile(fileName, std::ios::binary);
+
+    // Write the PPM image header
+    outputFile << "P6" << std::endl;
+    outputFile << widthTarget << " " << heightTarget << std::endl;
+    outputFile << 255 << std::endl;
+
+    // Iterate through each pixel of the image
+    int index = 0;
+    for (int i=0;i<widthTarget * heightTarget * 3;i=i+3){
+        int currentY = (i / 3 / widthTarget);
+        int currentX = (i / 3 - currentY * widthTarget);
+        // Write the red, green, and blue values for the pixel
+        // black, if coordinates match currentDS, else white
+        if(currentX == (int)points[index].x && currentY == (int)points[index].y){
+            outputFile.put(0);
+            outputFile.put(0);
+            outputFile.put(0);
+            index++;
+        } else {
+            outputFile.put(255);
+            outputFile.put(255);
+            outputFile.put(255);
+        }
+    }
+    // Close the image file
+    outputFile.close();
+}
+
+//To extract width & height from header
+int getDimension(unsigned char *header, int &pos){
+    int dim=0;
+    for ( ;header[pos]!='\n' && header[pos]!=' ';pos++)
+        dim = dim * 10 + (header[pos] - '0');
+    return dim;
 }
 
 int main() {
     //nur um zu testen, dass OpenMP funktioniert
-    piCalcTest();
+    //piCalcTest();
+
     //TODO: fileName soll später als Ussereingabe eingelesen werden
-    char *fileName = "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/data"
-                    "/shapes/diagonalStripes_small.ppm";   //read shape
-                    //"/input/dots_small_12.ppm";          //read input
-                    //"/empty_5x4_5.ppm"                   //read empty
+    char *fileNameInit = "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/data"
+                         "/input/dots_small_12.ppm";          //read input
+    char *fileNameTarget = "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/data"
+                        "/shapes/diagonalStripes_small.ppm";   //read shape
+                        //"/empty_5x4_5.ppm"                   //read empty
 
-    readFile(fileName);
+    FILE *initialFile, *targetFile;
 
-    //TODO: Bildeingabe und einlesen der Punkte daraus
-    Coordinates inputDSTmp[] = {{0, 1}, {1, 2}, {2, 3}};
-    Coordinates targetShapeTmp[] = {{1, 2}, {2, 3}, {3, 4}, {4, 5}};
-    int size = sizeof(inputDSTmp) / sizeof(Coordinates);
+    //TODO: ändere die ganzen Texte
+    bool incorrectInput = false;
+    unsigned char headerInit[15];
+    //Wenn etwas mit dem angegebenen File nicht passt, muss der User so lange einen neuen angeben, bis es passt
+    do {
+        printf("Gib die Startdaten an: ");
+        initialFile = fopen(fileNameInit, "rb");
+        if (initialFile == NULL){
+            cout << "File could not be found!";
+            incorrectInput = true;
+            continue;
+        }
+        // read header
+        fread( headerInit , 15,  1, initialFile);
+        if (headerInit[0]!='P' || headerInit[1]!='6'){
+            cout << "File has wrong format!";
+            incorrectInput = true;
+            continue;
+        }
+    } while(incorrectInput);
+    int pos = 3;
+    int widthInit = getDimension(headerInit, pos);
+    pos++;
+    int heightInit = getDimension(headerInit, pos);
 
-    Coordinates currentDS[size];
-    copy(inputDSTmp, inputDSTmp + size, currentDS);
+    //Zielform:
+    incorrectInput = false;
+    unsigned char headerTarget[15];
+    //Wenn etwas mit dem angegebenen File nicht passt, muss der User so lange einen neuen angeben, bis es passt
+    do {
+        printf("Gib die Zielform an: ");
+        targetFile = fopen(fileNameTarget, "rb");
+        if (targetFile == NULL){
+            cout << "File could not be found!";
+            incorrectInput = true;
+            continue;
+        }
+        // read header
+        fread( headerTarget , 15,  1, targetFile);
+        if (headerTarget[0]!='P' || headerTarget[1]!='6'){
+            cout << "File has wrong format!";
+            incorrectInput = true;
+            continue;
+        }
+    } while(incorrectInput);
+    pos = 3;
+    int widthTarget = getDimension(headerTarget, pos);
+    pos++;
+    int heightTarget = getDimension(headerTarget, pos);
 
-    generateNewPlot(inputDSTmp, currentDS, targetShapeTmp, size);
+
+    //declare a dynamic array of size width x height x 3
+    // reason: there are width x height pixels in the image, and each image has 3 bytes (RGB)
+    unsigned char *imageInit = new unsigned char [widthInit * heightInit * 3];
+    unsigned char *imageTarget = new unsigned char [widthTarget * heightTarget * 3];
+    Coordinates inputDSTmp[widthInit * heightInit];
+    Coordinates targetShapeTmp[widthTarget * heightTarget];
+    int sizeInit = createArrayFromImage(initialFile, imageInit, widthInit, heightInit, inputDSTmp);
+    int sizeTarget = createArrayFromImage(targetFile, imageTarget, widthTarget, heightTarget, targetShapeTmp);
+    //creates array of needed length und copies the points in it
+    Coordinates inputDS[sizeInit];
+    copy(inputDSTmp, inputDSTmp+sizeInit, inputDS);
+    Coordinates targetShape[sizeTarget];
+    copy(targetShapeTmp, targetShapeTmp+sizeTarget, targetShape);
+
+    //Punkte zum testen, die nicht aus files kommen:
+    //Coordinates inputDSTmp[] = {{0, 1}, {1, 2}, {2, 3}};
+    //Coordinates targetShapeTmp[] = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {0.5, 2.5}, {0.3, 1.5}};
+    //int size = sizeof(inputDSTmp) / sizeof(Coordinates);
+    //int sizeTarget = sizeof(targetShapeTmp) / sizeof(Coordinates);
+
+    Coordinates currentDS[sizeInit];
+    copy(inputDS, inputDS + sizeInit, currentDS);
+
+    //generateNewPlot(inputDS, currentDS, targetShape, sizeInit, sizeTarget);
 
     //printet Ergebnis
-    for (int i=0; i < size; i++){
+    for (int i=0; i < sizeInit; i++){
         cout << "(" << currentDS[i].x << ", " << currentDS[i].y << "), ";
     }
+
+    // Create the image file
+    string fileNameExport = "/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/data"
+                      "/output/output.ppm";
+    exportImage(fileNameExport, currentDS, heightTarget, widthTarget);
 
     return 0;
 }
