@@ -13,32 +13,41 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#set(CMAKE_CXX_FLAGS "-Xclang -fopenmp")
+set(CMAKE_CXX_FLAGS "-Xclang -fopenmp")
 #mit optimierungen compilen:
-#set(CMAKE_CXX_FLAGS "-O2 -march=native")
+set(CMAKE_CXX_FLAGS "-O2 -march=native -Ofast -ffast-math")
 
 # hiermit muss OpenMP verfügbar sein
-# klappt hiermit aber iwie nicht...
 #find_package(OpenMP REQUIRED)
+# klappt hiermit aber iwie nicht...
 find_package(Catch2 REQUIRED)
 
 # damit er OpenMP (libomp) findet
-include_directories(Projekt_exec_clang PUBLIC /usr/local/opt/libomp/include)
-link_directories(Projekt_exec_clang PUBLIC /usr/local/opt/libomp/lib)
+#include_directories(/usr/local/Cellar/libomp/15.0.3/include)
+#link_directories(/usr/local/Cellar/libomp/15.0.3/lib)
+include_directories(/usr/local/opt/libomp/include)
+link_directories(/usr/local/opt/libomp/lib)
 # aus Terminal dazu:
 #libomp is keg-only, which means it was not symlinked into /usr/local,
 #because it can override GCC headers and result in broken builds.
-#
 #For compilers to find libomp you may need to set:
 #  export LDFLAGS="-L/usr/local/opt/libomp/lib"
 #  export CPPFLAGS="-I/usr/local/opt/libomp/include"
 
+#set(CPPFLAGS "-I/usr/local/opt/llvm/include -fopenmp")
+#set(LDFLAGS "-L/usr/local/opt/llvm/lib")
 
 # für clang compiler
-add_executable(Projekt_exec_clang main.cpp Coordinates.cpp Coordinates.h testData)
+add_executable(Projekt_exec_clang main.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
 target_link_libraries(Projekt_exec_clang PUBLIC -lomp)
 target_include_directories(Projekt_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/include)
 target_link_directories(Projekt_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/lib)
+find_package(OpenMP)
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(Projekt_exec_clang PUBLIC OpenMP::OpenMP_CXX)
+else()
+    target_compile_options(Projekt_exec_clang PUBLIC -Xclang -fopenmp)
+endif()
 # oben schon einmal für alle targets gemacht:
 #target_include_directories(Projekt_exec_clang PUBLIC /usr/local/opt/libomp/include)
 #target_link_directories(Projekt_exec_clang PUBLIC /usr/local/opt/libomp/lib)
@@ -51,7 +60,7 @@ target_link_directories(Projekt_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.
 
 # für gcc compiler
 # gcc unterstützt OpenMP nicht
-add_executable(Projekt_exec_gcc main.cpp Coordinates.cpp Coordinates.h)
+add_executable(Projekt_exec_gcc main.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
 # die Zeile geht evtl nicht:
 target_link_options(Projekt_exec_gcc PUBLIC -fopenmp)
 # verlinkt das importierte target, dass vom FindOpenMP-Module zur Verfügung gestellt wird
@@ -63,7 +72,7 @@ target_link_options(Projekt_exec_gcc PUBLIC -fopenmp)
 # executable für tests
 # clang compiler
 enable_testing()
-add_executable(Projekt_test_exec_clang catch_main.cpp catch_tests.cpp Coordinates.cpp Coordinates.h)
+add_executable(Projekt_test_exec_clang catch_main.cpp catch_tests.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
 target_link_libraries(Projekt_test_exec_clang PUBLIC catch)
 target_include_directories(Projekt_test_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/include)
 target_link_directories(Projekt_test_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/lib)
@@ -74,7 +83,7 @@ add_test(NAME PROJEKT_TEST_CLANG COMMAND Projekt_test_exec_clang)
 
 # gcc compiler
 enable_testing()
-add_executable(Projekt_test_exec_gcc catch_main.cpp catch_tests.cpp Coordinates.cpp Coordinates.h)
+add_executable(Projekt_test_exec_gcc catch_main.cpp catch_tests.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
 target_link_libraries(Projekt_test_exec_gcc PUBLIC catch)
 # die Zeile geht evtl nicht:
 target_link_options(Projekt_test_exec_gcc PUBLIC -fopenmp)

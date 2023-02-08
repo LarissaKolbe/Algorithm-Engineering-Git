@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="Uni-Compiler (6826fcfd-0614-477b-9c78-00d6778f2ab8)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.L70prVtQqs" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-uni-compiler" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-default-remote-host" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-gcc" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-clang" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-gcc" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-relwithdebinfo-clang" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-clang" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
