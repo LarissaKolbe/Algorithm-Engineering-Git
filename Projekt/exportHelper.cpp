@@ -7,10 +7,10 @@
 #include "datatypes.h"
 #include "exportHelper.h"
 #include "helperFunctions.h"
-//#include "aligned_allocator.h"
-//
-//template<class T>
-//using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
+#include "aligned_allocator.h"
+
+template<class T>
+using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 
 using namespace std;
 
@@ -40,7 +40,7 @@ string readExportPath(){
  * @param dataset Inputvektor
  * @return ensprechend veränderter Inputvektor
  */
-vector<Coordinates> cleanDataset(vector<Coordinates> dataset){
+aligned_vector<Coordinates> cleanDataset(aligned_vector<Coordinates> dataset){
     int size = dataset.size();
     //rounds all entries to integer
     // because in the ppm-file every pixel is represented by integer coordinates
@@ -79,7 +79,7 @@ vector<Coordinates> cleanDataset(vector<Coordinates> dataset){
  * @param outputHeight
  * @param outputWidth
  */
-void exportImage(string fileName, vector<Coordinates> data, int maxColor, int outputHeight, int outputWidth){
+void exportImage(string fileName, aligned_vector<Coordinates> data, int maxColor, int outputHeight, int outputWidth){
 
     cout << endl << "Ergebnis: " << endl;
 

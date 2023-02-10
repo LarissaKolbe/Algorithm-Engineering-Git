@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "-Xclang -fopenmp")
 #mit optimierungen compilen:
-set(CMAKE_CXX_FLAGS "-O2 -march=native -Ofast -ffast-math")
+#set(CMAKE_CXX_FLAGS "-O2 -march=native -Ofast -ffast-math")
 
 # hiermit muss OpenMP verfügbar sein
 #find_package(OpenMP REQUIRED)
@@ -38,7 +38,7 @@ link_directories(/usr/local/opt/libomp/lib)
 #set(LDFLAGS "-L/usr/local/opt/llvm/lib")
 
 # für clang compiler
-add_executable(Projekt_exec_clang main.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
+add_executable(Projekt_exec_clang main.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h)
 target_link_libraries(Projekt_exec_clang PUBLIC -lomp)
 target_include_directories(Projekt_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/include)
 target_link_directories(Projekt_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/lib)
@@ -60,7 +60,7 @@ endif()
 
 # für gcc compiler
 # gcc unterstützt OpenMP nicht
-add_executable(Projekt_exec_gcc main.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
+add_executable(Projekt_exec_gcc main.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h)
 # die Zeile geht evtl nicht:
 target_link_options(Projekt_exec_gcc PUBLIC -fopenmp)
 # verlinkt das importierte target, dass vom FindOpenMP-Module zur Verfügung gestellt wird
@@ -72,7 +72,7 @@ target_link_options(Projekt_exec_gcc PUBLIC -fopenmp)
 # executable für tests
 # clang compiler
 enable_testing()
-add_executable(Projekt_test_exec_clang catch_main.cpp catch_tests.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
+add_executable(Projekt_test_exec_clang catch_main.cpp catch_tests.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h)
 target_link_libraries(Projekt_test_exec_clang PUBLIC catch)
 target_include_directories(Projekt_test_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/include)
 target_link_directories(Projekt_test_exec_clang PUBLIC /usr/local/Cellar/libomp/15.0.3/lib)
@@ -83,7 +83,7 @@ add_test(NAME PROJEKT_TEST_CLANG COMMAND Projekt_test_exec_clang)
 
 # gcc compiler
 enable_testing()
-add_executable(Projekt_test_exec_gcc catch_main.cpp catch_tests.cpp helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h)
+add_executable(Projekt_test_exec_gcc catch_main.cpp catch_tests.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h)
 target_link_libraries(Projekt_test_exec_gcc PUBLIC catch)
 # die Zeile geht evtl nicht:
 target_link_options(Projekt_test_exec_gcc PUBLIC -fopenmp)

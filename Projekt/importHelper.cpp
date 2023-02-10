@@ -4,10 +4,6 @@
 #include "datatypes.h"
 #include "importHelper.h"
 #include "helperFunctions.h"
-//#include "aligned_allocator.h"
-//
-//template<class T>
-//using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 
 using namespace std;
 
@@ -74,8 +70,8 @@ string chooseFromTargetShapes(){
             case 5: return "cross";
             case 6: return "linGraphUp";
             case 7: return "linGraphDown";
-            case 8: return "diagonalStripesUp";
-            case 9: return "diagonalStripesDown";
+            case 8: return "diagStripesUp";
+            case 9: return "diagStripesDown";
             case 10: return "vertStripes";
             case 11: return "horiStripes";
             default: cout << endl << "!! Bitte gibt eine der angegebenen Auswahlwöglichkeiten ein. !!" << endl; continue;
@@ -129,7 +125,8 @@ string chooseImageFromDefault(InputType type){
     // setzt Pfad zu Ordner
     switch (type) {
         case initialData: fileName = "../data/input/"; break;
-        case targetShape: fileName = "../data/shapes/"; break;
+        //TODO: hier den Pfad anpassen:
+        case target: fileName = "../data/shapes/new/"; break;
     }
     //läuft solange wie falsche Eingaben gemacht werden
     // bei korrekten Eingaben wird returnt
@@ -137,10 +134,10 @@ string chooseImageFromDefault(InputType type){
         // Wahl des Bildes
         switch (type) {
             case initialData: fileName = fileName.append(chooseFromInputShapes()); break;
-            case targetShape: fileName = fileName.append(chooseFromTargetShapes()); break;
+            case target: fileName = fileName.append(chooseFromTargetShapes()); break;
         }
         // Wahl der Bildgröße
-        fileName = fileName.append(chooseSize());
+//        fileName = fileName.append(chooseSize());
         return fileName.append(".ppm");
     }
 }
@@ -155,7 +152,7 @@ string inputFilePath(InputType type){
             case initialData:
                 cout << "Bitte gib den Pfad zu dem ppm-Bild mit den initialen Daten an:  ";
                 break;
-            case targetShape:
+            case target:
                 cout << "Bitte gib den Pfad zu dem ppm-Bild mit der Zielform an:  ";
                 break;
         }
@@ -163,6 +160,8 @@ string inputFilePath(InputType type){
         if (incorrectInput()) {
             cout << endl << "!! Input error: please type a correct path !!" << endl;
             incorrectFileName = true;
+        } else if (fileName.substr(fileName.length() - 4) != ".ppm"){
+            fileName = fileName.append(".ppm");
         }
     } while(incorrectFileName);
     return fileName;
@@ -222,7 +221,7 @@ FileInformation readTargetData(InputType type){
         case initialData:
             cout << endl << "Möchtest du mit einem vorgefertigten Datensatz starten? [y/n]  ";
             break;
-        case targetShape:
+        case target:
             cout << endl << "Möchtest du eine vorgefertigte Zielform nehmen? [y/n]  ";
             break;
     }

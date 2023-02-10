@@ -1,9 +1,9 @@
 #include <vector>
 #include "datatypes.h"
-//#include "aligned_allocator.h"
-//
-//template<class T>
-//using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
+#include "aligned_allocator.h"
+
+template<class T>
+using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 
 using namespace std;
 
@@ -17,6 +17,14 @@ using namespace std;
  * @return gerundeter Wert
  */
 float roundValue(float value, int decimals);
+
+/**
+ * Berechnet die euklidische Distancz zwischen zweit Punkten
+ * @param p1 Koordinaten von Punkt 1
+ * @param p2 Koordinaten von Punkt 2
+ * @return Distanz zwischen p1 und p2
+ */
+double getDistance(Coordinates p1, Coordinates p2);
 
 /**
  * Vergleicht die y-Koordinaten von a und b.
@@ -39,6 +47,6 @@ bool incorrectInput();
  * @param info Bildinformationen
  * @return Vektor mit Koordinaten
  */
-vector<Coordinates> createVectorFromImage(FileInformation info);
+aligned_vector<Coordinates> createVectorFromImage(FileInformation info);
 
 #endif //PROJEKT_HELPERFUNCTIONS_H

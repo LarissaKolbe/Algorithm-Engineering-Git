@@ -1,5 +1,9 @@
 #include <vector>
 #include "datatypes.h"
+#include "aligned_allocator.h"
+
+template<class T>
+using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 
 using namespace std;
 
@@ -16,6 +20,6 @@ string readExportPath();
  * @param outputHeight
  * @param outputWidth
  */
-void exportImage(string fileName, vector<Coordinates> data, int maxColor, int outputHeight, int outputWidth);
+void exportImage(string fileName, aligned_vector<Coordinates> data, int maxColor, int outputHeight, int outputWidth);
 
 #endif //PROJEKT_FILEHELPER_H

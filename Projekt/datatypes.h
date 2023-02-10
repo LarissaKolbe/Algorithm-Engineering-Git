@@ -2,8 +2,8 @@
 #define PROJEKT_DATATYPES_H
 
 struct Coordinates {
-    double x;
-    double y;
+    float x;
+    float y;
 };
 
 struct FileInformation {
@@ -36,12 +36,12 @@ struct Configurations {
     /** Minimale Temperatur */
     double minTemp = 0.01;
     /** Anzahl an Schritten */
-    int iterations = 100000;
+    int iterations = 400000;
 };
 
 enum InputType {
     initialData,
-    targetShape,
+    target,
 };
 
 #endif //PROJEKT_DATATYPES_H

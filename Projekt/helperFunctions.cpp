@@ -5,10 +5,10 @@
 #include <iostream>
 #include "datatypes.h"
 #include "helperFunctions.h"
-//#include "aligned_allocator.h"
-//
-//template<class T>
-//using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
+#include "aligned_allocator.h"
+
+template<class T>
+using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 
 using namespace std;
 
@@ -23,6 +23,12 @@ float roundValue(float value, int decimals){
     float roundingValue = pow(10, decimals);
     value = round(value * roundingValue) / roundingValue;
     return value;
+}
+
+double getDistance(Coordinates p1, Coordinates p2){
+    double distX = pow(p1.x - p2.x, 2);
+    double distY = pow(p1.y - p2.y, 2);
+    return sqrt(distX + distY);
 }
 
 bool compareByY(const Coordinates &a, const Coordinates &b) {
@@ -50,8 +56,8 @@ bool incorrectInput(){
  * @param info Bildinformationen
  * @return Vektor mit Koordinaten
  */
-vector<Coordinates> createVectorFromImage(FileInformation info){
-    vector<Coordinates> vec = {};
+aligned_vector<Coordinates> createVectorFromImage(FileInformation info){
+    aligned_vector<Coordinates> vec = {};
     //zählt/sucht alle nahezu schwarzen Punkte
     //TODO: beim input einlesen iwie dafür sorgen, dass jeder Punkt nur wirklich einmal registriert wird!
     // (hat halt meistens noch gräuliche Randpunkte, die jetzt auch eingelesen werden...)
@@ -61,8 +67,8 @@ vector<Coordinates> createVectorFromImage(FileInformation info){
         unsigned char green = info.imageData[i+1];
         unsigned char blue = info.imageData[i+2];
         if (red < 150 && green < 150 && blue < 150){
-            double currentY = (i / 3 / info.width);
-            double currentX = (i / 3 - currentY * info.width);
+            float currentY = (i / 3 / info.width);
+            float currentX = (i / 3 - currentY * info.width);
 #pragma omp critical
             vec.push_back({currentX, currentY});
         }

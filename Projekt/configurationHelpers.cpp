@@ -73,7 +73,7 @@ Configurations changeConfigurations(Configurations conf) {
             default:
                 string answer;
                 cout << endl << "Bist du dir sicher, dass du fertig bist? [y/n]:  ";
-                cin >> input;
+                cin >> answer;
                 if (incorrectInput()) {
                     cout << endl << "!! Input error !!" << endl;
                     break;
@@ -84,6 +84,7 @@ Configurations changeConfigurations(Configurations conf) {
     }
 }
 
+//TODO: evtl Configurationen anbhängig von Bildgröße und Punktanzahl machen?
 Configurations setConfigurations(Configurations conf){
     string input;
     cout << endl
