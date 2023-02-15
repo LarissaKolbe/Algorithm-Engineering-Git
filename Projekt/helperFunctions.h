@@ -6,32 +6,32 @@ using namespace std;
 #define PROJEKT_HELPERFUNCTIONS_H
 
 /**
- * Rundet den übergebenen Wert auf die angegebene Menge an Nachkommastellen
+ * Rundet den übergebenen Wert auf die angegebene Anzahl an Nachkommastellen
  * @param value zu rundender Wert
- * @param decimals Menge an Nachkommastellen
+ * @param n Anzahl an Nachkommastellen
  * @return gerundeter Wert
  */
-float roundValue(float value, int decimals);
+float roundToNDecimals(float value, int n);
 
 /**
- * Berechnet die euklidische Distancz zwischen zweit Punkten
- * @param p1 Koordinaten von Punkt 1
- * @param p2 Koordinaten von Punkt 2
- * @return Distanz zwischen p1 und p2
+ * Gibt den größeren der beiden übergebenen Werte zurück
+ * @param a Wert 1
+ * @param b Wert 2
  */
-float getDistance(Coordinates p1, Coordinates p2);
+int getGreaterValue(int a, int b);
 
 /**
  * Vergleicht die y-Koordinaten von a und b.
- * Ist y gleich werden die x-Koordinaten verglichen.
+ * Ist y gleich, werden die x-Koordinaten verglichen.
  * @param a Koordinate (x, y)
  * @param b Koordinate (x, y)
  * @return True, wenn a kleiner als b ist, false sonst
  */
-bool compareByY(const Coordinates &a, const Coordinates &b);
+bool compareByY(const Coordinate &a, const Coordinate &b);
 
 /**
- * Prüft, ob der zuvor vom user eingegebene Wert den richtigen Typ hat.
+ * Prüft, ob der zuvor vom User eingegebene Wert den richtigen Typ hat.
+ * Resettet Input bei Fehler.
  * @return True bei Fehler, false sonst
  */
 bool incorrectInput();

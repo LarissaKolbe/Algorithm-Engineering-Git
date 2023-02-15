@@ -12,17 +12,27 @@
 #define PROJEKT_FITNESSHELPER_H
 
 /**
- * Prüft die Übereinstimmung der neuen Punkte mit der Zielform
- * @param modifiedDS  veränderte Punktesammlung
- * @param targetShape Punktesammlung der Zielform
- * @param size        Anzahl an Punkten in modifiedDS
- * @param sizeTarget  Anzahl an Punkten in targetShape
- * @return boolean ob distance kleiner geworden ist oder nicht
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
  */
-bool isBetterFit_VIUnroll4(Coordinates pointNew, Coordinates pointPrev, aligned_vector<Coordinates> targetShape);
+bool isBetterFit_VIUnroll8(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
-bool isBetterFit_VIUnroll8(Coordinates pointNew, Coordinates pointPrev, Coordinates *__restrict__ targetShape, int size);
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_VIUnroll256(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
-bool isBetterFit_VIUnroll256(Coordinates pointNew, Coordinates pointPrev, Coordinates *__restrict__ targetShape, int size);
+bool isBetterFitControllNative (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+
+bool isBetterFitControllParallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
 #endif //PROJEKT_FITNESSHELPER_H

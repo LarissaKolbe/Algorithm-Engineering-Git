@@ -6,7 +6,7 @@ using namespace std;
 #define PROJEKT_INPUTHELPER_H
 
 /**
- * Das Interface über das der User Dateien hochladen oder
+ * Das Interface, über das der User Dateien hochladen oder
  *  aus den vorgegebenen Dateien wählen kann.
  * @param type Inputbild oder Zielform
  * @return Information über Bildmaße, Pixeldaten und Dateiformat
@@ -20,7 +20,7 @@ FileInformation readImageData(InputType type);
  * @param info Bildinformationen
  * @return Vektor mit Koordinaten
  */
-aligned_vector<Coordinates> createVectorFromImage(const char *imageData, int width, int height);
+aligned_vector<Coordinate> createVectorFromImage(const char *imageData, int width, int height);
 
 
 #endif //PROJEKT_INPUTHELPER_H

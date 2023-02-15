@@ -25,15 +25,15 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 CMAKE_BUILD_TYPE:STRING=Release
 
 //No help, variable specified on the command line.
-CMAKE_CXX_COMPILER:UNINITIALIZED=/usr/local/bin/gcc-12
+CMAKE_CXX_COMPILER:UNINITIALIZED=/usr/local/bin/gcc-9
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/local/bin/gcc-ar-12
+CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/local/bin/gcc-ar-9
 
 //A wrapper around 'ranlib' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/local/bin/gcc-ranlib-12
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/local/bin/gcc-ranlib-9
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -204,7 +204,7 @@ OpenMP_CXX_FLAGS:STRING=-fopenmp
 OpenMP_CXX_LIB_NAMES:STRING=gomp
 
 //Path to the gomp library for OpenMP
-OpenMP_gomp_LIBRARY:FILEPATH=/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib
+OpenMP_gomp_LIBRARY:FILEPATH=/usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib
 
 //Value Computed by CMake
 Projekt_BINARY_DIR:STATIC=/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-release-gcc
@@ -355,7 +355,7 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenMP
 FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][c ][v4.5()]
 //Details about finding OpenMP_CXX
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp][/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib][v4.5()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp][/usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib][v4.5()]
 //Result of TRY_COMPILE
 OpenMP_COMPILE_RESULT_CXX_fopenmp:INTERNAL=TRUE
 //ADVANCED property for variable: OpenMP_CXX_FLAGS

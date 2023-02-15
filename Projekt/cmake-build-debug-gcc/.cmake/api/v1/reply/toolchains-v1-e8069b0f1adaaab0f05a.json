@@ -1,0 +1,63 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/usr/local/Cellar/gcc@9/9.5.0/include/c++/9.5.0",
+						"/usr/local/Cellar/gcc@9/9.5.0/include/c++/9.5.0/x86_64-apple-darwin18",
+						"/usr/local/Cellar/gcc@9/9.5.0/include/c++/9.5.0/backward",
+						"/usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.5.0/include",
+						"/usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.5.0/include-fixed",
+						"/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include",
+						"/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
+					],
+					"linkDirectories" : 
+					[
+						"/usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.5.0",
+						"/usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9",
+						"/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/lib"
+					],
+					"linkFrameworkDirectories" : 
+					[
+						"/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
+					],
+					"linkLibraries" : 
+					[
+						"gcc_ext.10.5",
+						"gcc"
+					]
+				},
+				"path" : "/usr/local/bin/gcc-9",
+				"version" : "9.5.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"m",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

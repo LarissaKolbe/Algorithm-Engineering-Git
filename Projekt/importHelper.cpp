@@ -16,33 +16,32 @@ using namespace std;
 void getInputShapeOverview(InputSize size){
     switch (size) {
         case small:
-            cout << " [6]  linearer Graph - steigend       (100 Elemente)" << endl
-                 << " [7]  linearer Graph - fallend        (100 Elemente)" << endl
-                 << " [8]  diagonale Streifen - steigend   (250 Elemente)" << endl
-                 << " [9]  diagonale Streifen - fallend    (250 Elemente)" << endl
-                 << " [10] vertikale Streifen              (250 Elemente)" << endl
-                 << " [11] horizontale Streifen            (250 Elemente)" << endl
-                 << " [12] Kreis                           (250 Elemente)" << endl
-                 << " [13] Stern                           (250 Elemente)" << endl
-                 << " [14] Würfel                          (250 Elemente)" << endl
-                 << " [15] Kreuz                           (500 Elemente)" << endl
-                 << " [16] Würfel mit Kreuz                (750 Elemente)" << endl;
+            cout << " [6]  linearer Graph - steigend       ( 100 Punkte)" << endl
+                 << " [7]  linearer Graph - fallend        ( 100 Punkte)" << endl
+                 << " [8]  diagonale Streifen - steigend   ( 250 Punkte)" << endl
+                 << " [9]  diagonale Streifen - fallend    ( 250 Punkte)" << endl
+                 << " [10] vertikale Streifen              ( 250 Punkte)" << endl
+                 << " [11] horizontale Streifen            ( 250 Punkte)" << endl
+                 << " [12] Kreis                           ( 250 Punkte)" << endl
+                 << " [13] Stern                           ( 250 Punkte)" << endl
+                 << " [14] Würfel                          ( 250 Punkte)" << endl
+                 << " [15] Kreuz                           ( 500 Punkte)" << endl
+                 << " [16] Würfel mit Kreuz                ( 750 Punkte)" << endl;
             break;
         case big:
-            cout << " [6]  linearer Graph - steigend       ( 500 Elemente)" << endl
-                 << " [7]  linearer Graph - fallend        ( 500 Elemente)" << endl
-                 << " [8]  diagonale Streifen - steigend   ( 750 Elemente)" << endl
-                 << " [9]  diagonale Streifen - fallend    ( 750 Elemente)" << endl
-                 << " [10] vertikale Streifen              ( 500 Elemente)" << endl
-                 << " [11] horizontale Streifen            ( 500 Elemente)" << endl
-                 << " [12] Kreis                           ( 500 Elemente)" << endl
-                 << " [13] Stern                           ( 750 Elemente)" << endl
-                 << " [14  Würfel                          ( 750 Elemente)" << endl
-                 << " [15] Kreuz                           ( 750 Elemente)" << endl
-                 << " [16] Würfel mit Kreuz                (1500 Elemente)" << endl;
+            cout << " [6]  linearer Graph - steigend       ( 500 Punkte)" << endl
+                 << " [7]  linearer Graph - fallend        ( 500 Punkte)" << endl
+                 << " [8]  diagonale Streifen - steigend   ( 750 Punkte)" << endl
+                 << " [9]  diagonale Streifen - fallend    ( 750 Punkte)" << endl
+                 << " [10] vertikale Streifen              ( 500 Punkte)" << endl
+                 << " [11] horizontale Streifen            ( 500 Punkte)" << endl
+                 << " [12] Kreis                           ( 500 Punkte)" << endl
+                 << " [13] Stern                           ( 750 Punkte)" << endl
+                 << " [14] Würfel                          ( 750 Punkte)" << endl
+                 << " [15] Kreuz                           ( 750 Punkte)" << endl
+                 << " [16] Würfel mit Kreuz                (1500 Punkte)" << endl;
             break;
     }
-    return;
 }
 
 /**
@@ -53,33 +52,32 @@ void getInputShapeOverview(InputSize size){
 void getTargetShapeOverview(InputSize size){
     switch (size) {
         case small:
-            cout << " [1]  linearer Graph - steigend       ( 270 Elemente)" << endl
-                 << " [2]  linearer Graph - fallend        ( 270 Elemente)" << endl
-                 << " [3]  diagonale Streifen - steigend   ( 512 Elemente)" << endl
-                 << " [4]  diagonale Streifen - fallend    ( 512 Elemente)" << endl
-                 << " [5]  vertikale Streifen              ( 416 Elemente)" << endl
-                 << " [6]  horizontale Streifen            ( 530 Elemente)" << endl
-                 << " [7]  Kreis                           ( 719 Elemente)" << endl
-                 << " [8]  Stern                           ( 654 Elemente)" << endl
-                 << " [9]  Würfel                          ( 546 Elemente)" << endl
-                 << " [10] Kreuz                           (1181 Elemente)" << endl
-                 << " [11] Würfel mit Kreuz                (3002 Elemente)" << endl;
+            cout << " [1]  linearer Graph - steigend       ( 270 Punkte)" << endl
+                 << " [2]  linearer Graph - fallend        ( 270 Punkte)" << endl
+                 << " [3]  diagonale Streifen - steigend   ( 512 Punkte)" << endl
+                 << " [4]  diagonale Streifen - fallend    ( 512 Punkte)" << endl
+                 << " [5]  vertikale Streifen              ( 416 Punkte)" << endl
+                 << " [6]  horizontale Streifen            ( 530 Punkte)" << endl
+                 << " [7]  Kreis                           ( 719 Punkte)" << endl
+                 << " [8]  Stern                           ( 654 Punkte)" << endl
+                 << " [9]  Würfel                          ( 546 Punkte)" << endl
+                 << " [10] Kreuz                           (1181 Punkte)" << endl
+                 << " [11] Würfel mit Kreuz                (3002 Punkte)" << endl;
             break;
         case big:
-            cout << " [1]  linearer Graph - steigend       ( 681 Elemente)" << endl
-                 << " [2]  linearer Graph - fallend        ( 681 Elemente)" << endl
-                 << " [3]  diagonale Streifen - steigend   (1152 Elemente)" << endl
-                 << " [4]  diagonale Streifen - fallend    (1152 Elemente)" << endl
-                 << " [5]  vertikale Streifen              (1060 Elemente)" << endl
-                 << " [6]  horizontale Streifen            (1749 Elemente)" << endl
-                 << " [7]  Kreis                           (1321 Elemente)" << endl
-                 << " [8]  Stern                           (1797 Elemente)" << endl
-                 << " [9]  Würfel                          (2792 Elemente)" << endl
-                 << " [10] Kreuz                           (1327 Elemente)" << endl
-                 << " [11] Würfel mit Kreuz                (3827 Elemente)" << endl;
+            cout << " [1]  linearer Graph - steigend       ( 681 Punkte)" << endl
+                 << " [2]  linearer Graph - fallend        ( 681 Punkte)" << endl
+                 << " [3]  diagonale Streifen - steigend   (1152 Punkte)" << endl
+                 << " [4]  diagonale Streifen - fallend    (1152 Punkte)" << endl
+                 << " [5]  vertikale Streifen              (1060 Punkte)" << endl
+                 << " [6]  horizontale Streifen            (1749 Punkte)" << endl
+                 << " [7]  Kreis                           (1321 Punkte)" << endl
+                 << " [8]  Stern                           (1797 Punkte)" << endl
+                 << " [9]  Würfel                          (2792 Punkte)" << endl
+                 << " [10] Kreuz                           (1327 Punkte)" << endl
+                 << " [11] Würfel mit Kreuz                (3827 Punkte)" << endl;
             break;
     }
-    return;
 }
 
 /**
@@ -87,17 +85,17 @@ void getTargetShapeOverview(InputSize size){
  * @return Dateiname
  */
 string chooseFromInputShapes(InputSize size){
-    //läuft solange wie falsche Eingaben gemacht werden
-    // bei korrekten Eingaben wird returnt
+    //läuft solange, wie falsche Eingaben gemacht werden
+    // bei korrekten Eingaben geht es weiter
     while(true){
         int answer;
         cout << endl
              << "Es gibt folgende Formen:" << endl
-             << " [1]  Punktewolke                    ( 100 Punkte) " << endl
-             << " [2]  Punktewolke                    ( 250 Punkte) " << endl
-             << " [3]  Punktewolke                    ( 500 Punkte) " << endl
-             << " [4]  Punktewolke                    ( 750 Punkte) " << endl
-             << " [5]  Punktewolke                    (1000 Punkte) " << endl;
+             << " [1]  Punktewolke                     ( 100 Punkte) " << endl
+             << " [2]  Punktewolke                     ( 250 Punkte) " << endl
+             << " [3]  Punktewolke                     ( 500 Punkte) " << endl
+             << " [4]  Punktewolke                     ( 750 Punkte) " << endl
+             << " [5]  Punktewolke                     (1000 Punkte) " << endl;
         getInputShapeOverview(size);
         cout << "Bitte gib die Nummer der Form an, die du verwenden möchtest:  ";
         cin >> answer;
@@ -105,6 +103,7 @@ string chooseFromInputShapes(InputSize size){
             cout << endl << "!! Inputfehler: Bitte schreibe eine Ziffer !!"<< endl;
             continue;
         }
+        //gibt den jeweiligen Dateinamen oder eine Fehlermeldung zurück
         switch(answer){
             case 1: return "dots_100";
             case 2: return "dots_250";
@@ -132,8 +131,8 @@ string chooseFromInputShapes(InputSize size){
  * @return Dateiname
  */
 string chooseFromTargetShapes(InputSize size){
-    //läuft solange wie falsche Eingaben gemacht werden
-    // bei korrekten Eingaben wird returnt
+    //läuft solange, wie falsche Eingaben gemacht werden
+    // bei korrekten Eingaben geht es weiter
     while(true) {
         int answer;
         cout << endl << "Es gibt folgende Formen:" << endl;
@@ -167,15 +166,15 @@ string chooseFromTargetShapes(InputSize size){
  * @return gewählte Größe
  */
 InputSize getSize(){
-    //läuft solange wie falsche Eingaben gemacht werden
-    // bei korrekten Eingaben wird returnt
+    //läuft solange, wie falsche Eingaben gemacht werden
+    // bei korrekten Eingaben geht es weiter
     while(true) {
         int answer;
         cout << endl
              << "Wie groß soll das Bild sein?" << endl
              << " [1]  255 x 283 " << endl
              << " [2]  500 x 500 " << endl;
-        cout << "Bitte gib die Nummer der Form an, die du verwenden möchtest:  ";
+        cout << "Bitte gib die Nummer der Größe an, die du verwenden möchtest:  ";
         cin >> answer;
         if (incorrectInput()) {
             cout << endl << "!! Inputfehler: Bitte schreibe eine Ziffer !!" << endl;
@@ -190,18 +189,18 @@ InputSize getSize(){
 }
 
 /**
- * Baut den Pfad zur vom user gewählten Datei zusammen
+ * Erstellt den Pfad zum vom User gewählten Bild.
  * @param type Inputbild oder Zielform
- * @return Pfad zur ausgewählten Datei
+ * @return Pfad zum ausgewählten Bild
  */
 string chooseImageFromDefault(InputType type){
     string fileName, answer;
-    // setzt Pfad zu Ordner
+    // setzt Pfad zu entscprechendem Ordner
     switch (type) {
         case initialData: fileName = "../data/input/"; break;
         case target: fileName = "../data/shapes/"; break;
     }
-    //Wahl der Bildgröße
+    // Wahl der Bildgröße
     InputSize size = getSize();
     switch (size) {
         case small: fileName = fileName.append("small/"); break;
@@ -223,8 +222,8 @@ string chooseImageFromDefault(InputType type){
  */
 string inputFilePath(InputType type){
     string fileName;
-    //läuft solange wie falsche Eingaben gemacht werden
-    // bei korrekten Eingaben wird returnt
+    //läuft solange, wie falsche Eingaben gemacht werden
+    // bei korrekten Eingaben geht es weiter
     while(true){
         cout << endl << "Hinweis: Um optimale Ergebnisse zu erzielen, sollten die Eingabedatei und die Zielform möglichst greich Groß sein." << endl;
         switch (type) {
@@ -251,14 +250,16 @@ string inputFilePath(InputType type){
  * Liest die Datei mit dem übergebenen Filenamen ein und gibt die enthaltenen Daten zurück.
  * Wenn die Datei nicht gelesen werden kann, wird der User aufgefordert eine neue anzugeben.
  *
+ * @param fileName Dateiname bzw. Pfad
+ * @param type Inputbild oder Zielform
  * @return Information über Bildmaße, Pixeldaten und Dateiformat
  */
 FileInformation importImage(string fileName, InputType type){
     /** Speichert relevante Informationen zum Bild */
     FileInformation info{};
 
-    //läuft solange wie falsche Eingaben gemacht werden
-    // bei korrekten Eingaben wird returnt
+    //läuft solange, wie falsche Eingaben gemacht werden
+    // bei korrekten Eingaben geht es weiter
     while(true){
         // Öffnet das Bild
         ifstream file(fileName, ios::binary);
@@ -266,12 +267,13 @@ FileInformation importImage(string fileName, InputType type){
         // Liest das Dateiformat
         file >> info.fileFormat;
 
-        // Bei Fehler mit der Inputdatei wird der User aufgefordert einen neuen Namen anzugeben
+        // Bei Fehler mit der Inputdatei wird der User aufgefordert eine neue Datei anzugeben
+        //  keine Datei gefunden
         if (info.fileFormat.empty()){
-            cout << endl << "!! Inputfehler: Datei konnte nicht gefundeen werden. Bitte überprüfe, ob der Dateiname und Pfad korrekt ist oder wähle eine andere Datei. !!" << endl;
+            cout << endl << "!! Inputfehler: Datei konnte nicht gefunden werden. Bitte überprüfe, ob der Dateiname und Pfad korrekt ist oder wähle eine andere Datei. !!" << endl;
             fileName = inputFilePath(type);
             continue;
-            // Datei hat falschen Typ
+        //  falsches Datenformat
         } else if (info.fileFormat != "P6" && info.fileFormat != "P3"){
             cout << endl << "!! Inputfehler: Die Datei hat das falsche Format. Bitte wähle ein .ppm-Bild. !!" << endl;
             fileName = inputFilePath(type);
@@ -308,14 +310,15 @@ FileInformation importImage(string fileName, InputType type){
                 info.imageData[i+2] = static_cast<char>(blue);
             }
         }
-        //schließt die Datei
+        //schließt Bilddatei
         file.close();
+
         return info;
     }
 }
 
 /**
- * Das Interface über das der User Dateien hochladen oder
+ * Das Interface, über das der User Dateien hochladen oder
  *  aus den vorgegebenen Dateien wählen kann.
  * @param type Inputbild oder Zielform
  * @return Information über Bildmaße, Pixeldaten und Dateiformat
@@ -335,7 +338,7 @@ FileInformation readImageData(InputType type){
         }
         cin >> answer;
         if (incorrectInput()) {
-            cout << endl << "!! Inputfehler: Bitte entsccheide doch für ja oder nein !!" << endl;
+            cout << endl << "!! Inputfehler: Bitte entscheide dich für ja oder nein !!" << endl;
             continue;
         }
         // wähle vorgefertigtes Bild
@@ -358,8 +361,8 @@ FileInformation readImageData(InputType type){
  * @param info Bildinformationen
  * @return Vektor mit Koordinaten
  */
-aligned_vector<Coordinates> createVectorFromImage(const char *imageData, int width, int height){
-    aligned_vector<Coordinates> vec = {};
+aligned_vector<Coordinate> createVectorFromImage(const char *imageData, int width, int height){
+    aligned_vector<Coordinate> vec = {};
     int imageSize = width * height * 3;
     //geht alle Bildpunkte durch und liest ihre Farbwerte ein
     for (int i=0;i<imageSize;i=i+3){

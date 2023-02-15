@@ -1,14 +1,13 @@
 # ninja log v5
-0	169	1676425010413806365	build.ninja	31752696faed698d
-5	2171	1676235681307012144	CMakeFiles/Projekt_exec_gcc.dir/fitnessHelper.cpp.o	e9f4e5f2bff6b347
-4	1531	1676233775667119775	CMakeFiles/Projekt_exec_clang.dir/configurationHelpers.cpp.o	c6cdcb234d1fbe5
-3	1377	1676235680511779658	CMakeFiles/Projekt_exec_gcc.dir/exportHelper.cpp.o	95ccef23286a6a08
-2	2085	1676234027900099739	CMakeFiles/Projekt_exec_clang.dir/fitnessHelper.cpp.o	b907cff93eef8b8d
-5	1587	1676233775725625561	CMakeFiles/Projekt_exec_clang.dir/importHelper.cpp.o	484228d8e4d1f72b
-3	2623	1676233776763606344	CMakeFiles/Projekt_exec_clang.dir/main.cpp.o	4347013e6a833b81
-2	940	1676233946788877978	CMakeFiles/Projekt_exec_clang.dir/exportHelper.cpp.o	414d1d58a14998b
-5	1399	1676235680533775157	CMakeFiles/Projekt_exec_gcc.dir/importHelper.cpp.o	13e1903489ad6a7a
-3	1020	1676235680154293370	CMakeFiles/Projekt_exec_gcc.dir/helperFunctions.cpp.o	8cb35dca99f83137
-2	702	1676233917654659246	CMakeFiles/Projekt_exec_clang.dir/helperFunctions.cpp.o	f6022c877051b4cc
-2	1285	1676235442698175420	CMakeFiles/Projekt_exec_gcc.dir/configurationHelpers.cpp.o	e462b6b4261b0961
-2	1766	1676235680902182377	CMakeFiles/Projekt_exec_gcc.dir/main.cpp.o	7bbecd376bc09dba
+3	1935	1676499443706682850	CMakeFiles/Projekt_exec.dir/importHelper.cpp.o	63c799c3bc59f8fd
+2	1887	1676499443658784904	CMakeFiles/Projekt_exec.dir/main.cpp.o	9d50b43819af1ad9
+3	1873	1676499443645420501	CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o	cbb4b798d387333a
+3	1584	1676499443355290373	CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o	1453593957469fac
+3	1362	1676499443132707450	CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o	d2ca8cb6138bbd50
+2	1094	1676499442864307526	CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o	a2672b4191c1adb1
+1935	1989	1676499443763044732	Projekt_exec	9559aef79552baa8
+0	169	1676501015087351322	build.ninja	31752696faed698d
+0	169	1676501015087351322	build.ninja	31752696faed698d
+1	2381	1676501017486916667	CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o	cbb4b798d387333a
+1	2394	1676501017496793689	CMakeFiles/Projekt_exec.dir/main.cpp.o	9d50b43819af1ad9
+2394	2481	1676501017585829537	Projekt_exec	9559aef79552baa8

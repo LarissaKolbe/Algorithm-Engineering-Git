@@ -1,17 +1,17 @@
 # ninja log v5
-1	1157	1676424504556612131	CMakeFiles/Projekt_exec.dir/importHelper.cpp.o	6184dd8599d7ae1b
+4	1554	1676480370303775826	CMakeFiles/Projekt_exec.dir/importHelper.cpp.o	eca2ff60363f067b
 1	21760	1670801325432318064	CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o	28938b90cb9c93bd
-1157	1205	1676424504610233928	Projekt_exec	b88b540f14bf5fc1
+980	1033	1676480941498461794	Projekt_exec	a147e53ebfb8b020
 4532	4598	1676241312204373496	Projekt_exec_clang	286019bb19f28c46
-2	1414	1676424387779859679	CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o	e6ef3d55d5f04556
-3	1689	1676424388057773799	CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o	69f161ad97c5c1f4
-2	1451	1676424387820052655	CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o	25db68cf06d38dbf
+3	1119	1676480369866674816	CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o	af831ac577b7c15e
+3	1418	1676480370167396626	CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o	f6b7f2c7b297c145
+3	1201	1676480369947696807	CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o	1ffec6cee01b5bed
 3	2511	1676241310103440707	CMakeFiles/Projekt_exec_clang.dir/helperFunctions.cpp.o	8c64a12303a69f82
-4	1881	1676424388252819993	CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o	4a0d9a54a9d1523d
-7	611	1676425010639769402	build.ninja	69911e58fde42ba7
+3	1589	1676480450341542990	CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o	85cfcadfc422f188
+0	341	1676499441323659561	build.ninja	69911e58fde42ba7
 3	22363	1671572282761782992	CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o	1dc9f5a4c048398c
 3	22364	1671572282755369252	CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o	7f0aba1d247c65f0
-2	1779	1676424388146210459	CMakeFiles/Projekt_exec.dir/main.cpp.o	f9a2abd31660d87d
+1	980	1676480941438853660	CMakeFiles/Projekt_exec.dir/main.cpp.o	ee58a623a7fece69
 4	2679	1676241310279907046	CMakeFiles/Projekt_exec_clang.dir/configurationHelpers.cpp.o	7da8020d75d9be1e
 5	4532	1676241312131547233	CMakeFiles/Projekt_exec_clang.dir/fitnessHelper.cpp.o	39207692931fd070
 4	3835	1676241311429000990	CMakeFiles/Projekt_exec_clang.dir/importHelper.cpp.o	d2a63c70121e2566

@@ -16,7 +16,7 @@ void printConfigurationOverview(Configurations conf){
          << "Konfigurationen: " << endl
          << " [1] Erlaubte Abweichung der statistischen Eigenschaften. " << endl
          << "   - Standard: " << conf.accuracy << endl
-         << " [2] Anzahl an Nachkommastellen der statistischen Eigenschaften, die berechnet werden. " << endl
+         << " [2] Bestimmt, wie viele Nachkommestellen betrachtet werden sollen. " << endl
          << "   - Standard: " << conf.decimals << endl
          << " [3] Anzahl an Iterationen, die das Programm durchläuft. " << endl
          << "   - Standard: " << conf.iterations << endl
@@ -29,19 +29,20 @@ void printConfigurationOverview(Configurations conf){
          //TODO: Erklärung zu temp verbessern
          << " (*) Temperatur startet beim maximalen Wert und wird mit Fortschreiten des Programms kleiner, "
             "bis der minimale Wert erreicht wird. " << endl <<
-         "     Sie wird verwendet, um auch schlechtere Schritte zu akzeptieren und so zu vermeiden, "
+         "     Sie wird verwendet, um auch Punktbewegungen zu akzeptieren, die nicht Zielführend sind und so zu vermeiden, "
          "dass das Programm an einer Stelle stecken bleibt. " << endl;
 }
 
 /**
- * Funktion zum interaktiven ändern der Konfigurationen.
+ * Userinterface zum Einzusehen und Verändern der Konfigurationen.
  * @param conf aktuelle Konfigurationen
  * @return neue Konfigurationen
  */
 Configurations changeConfigurations(Configurations conf) {
+    //Zeigt zu Beginn aktuelle Konfigurationen an
     printConfigurationOverview(conf);
 
-    //lässt den user beliebig viele Konfigurationen ändern
+    //lässt den User beliebig viele Konfigurationen ändern
     while(true) {
         cout << endl << "Bitte gib die Nummer der Konfiguration an, die du ändern möchtest, "
             "oder schreibe eine andere Zahl, um zum Programm zurückzukehren." << endl <<
@@ -53,6 +54,7 @@ Configurations changeConfigurations(Configurations conf) {
             cout << endl << "!! Inputfehler: Bitte schreibe eine Ziffer !!" << endl;
             continue;
         }
+        //Eingabe des neuen Wertes
         double newValue;
         if (input >= 1  && input <= 6) {
             cout << endl << "Bitte gib den neuen Wert an:  ";
@@ -62,15 +64,17 @@ Configurations changeConfigurations(Configurations conf) {
                 continue;
             }
         }
-
         switch (input) {
+            //Zeigt aktuelle Konfigurationen an
             case 0: printConfigurationOverview(conf); break;
+            //verändert entsprechenden Wert
             case 1: conf.accuracy = newValue; break;
             case 2: conf.decimals = (int)newValue; break;
             case 3: conf.iterations = (int)newValue; break;
-            case 4: conf.maxMovement = newValue; break;
+            case 4: conf.maxMovement = (float)newValue; break;
             case 5: conf.maxTemp = newValue; break;
             case 6: conf.minTemp = newValue; break;
+            //returnt neue Konfigurationen und kehrt zurück zum Hauptprogramm
             default:
                 string answer;
                 cout << endl << "Bist du dir sicher, dass du fertig bist? [y/n]:  ";
@@ -85,16 +89,30 @@ Configurations changeConfigurations(Configurations conf) {
     }
 }
 
-//TODO: evtl Configurationen anbhängig von Bildgröße und Punktanzahl machen?
-Configurations setConfigurations(Configurations conf){
+/**
+ * Userinterface zum Einzusehen und Verändern der Konfigurationen.
+ * @return Standard- oder vom User veränderte Konfigurationen
+ */
+Configurations setConfigurations(){
+    Configurations conf{};
     string input;
-    cout << endl
-         << "Hinweis: Durch Änderungen der Konfigurationen kann sich das Ergebnis verschlechtern." << endl
-         << "Möchtest du das Programm mit den Standardkonfigurationen ausführen? [y/n]  ";
-    cin >> input;
-    if (input == "n" || input == "no" || input == "nein"){
-        return changeConfigurations(conf);
-    } else {
-        return conf;
+    //läuft solange, wie falsche Eingaben gemacht werden
+    // bei korrekten Eingaben geht es weiter
+    while(true) {
+        cout << endl
+             << "!! Hinweis: Die optimalen Konfigurationen hängen von der Größe des Bildes und der Daten ab und können bei Bedarf hier angepasst werden !!"
+             << endl
+             << "Möchtest du das Programm mit den Standardkonfigurationen ausführen? [y/n]  ";
+        cin >> input;
+        if(incorrectInput()){
+            cout << endl << "!! Inputfehler: Bitte schreibe eine Ziffer !!" << endl;
+            continue;
+        // User ändert Konfigurationen
+        } else if (input == "n" || input == "no" || input == "nein") {
+            return changeConfigurations(conf);
+        // User behält Standardkonfigurationen bei
+        } else if (input == "y" || input == "yes" || input == "j" || input == "ja") {
+            return conf;
+        }
     }
 }

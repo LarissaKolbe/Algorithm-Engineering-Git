@@ -8,19 +8,37 @@
 using namespace std;
 
 /**
- * Rundet den übergebenen Wert auf die angegebene Anzahl an Nachkommastellen.
+ * Rundet den übergebenen Wert auf n Nachkommastellen.
  * @param value zu rundender Wert
- * @param decimals Anzahl an Nachkommastellen
- * @return gerundeten Wert
+ * @param n     Anzahl an Nachkommastellen
+ * @return auf n Nachkommastellen gerundeter Wert
  */
-float roundValue(float value, int decimals){
-    //TODO: schöner machen
-    auto roundingValue = (float)pow(10, decimals);
-    value = round(value * roundingValue) / roundingValue;
-    return value;
+float roundToNDecimals(float value, int n){
+    auto roundingValue = (float)pow(10, n);
+    return round(value * roundingValue) / roundingValue;
 }
 
-bool compareByY(const Coordinates &a, const Coordinates &b) {
+/**
+ * Gibt den größeren der beiden übergebenen Werte zurück
+ * @param a Wert 1
+ * @param b Wert 2
+ */
+int getGreaterValue(int a, int b){
+    if (a > b){
+        return a;
+    } else {
+        return b;
+    }
+}
+
+/**
+ * Vergleicht die y-Koordinaten von a und b.
+ * Ist y gleich, werden die x-Koordinaten verglichen.
+ * @param a Koordinate (x, y)
+ * @param b Koordinate (x, y)
+ * @return True, wenn a kleiner als b ist, false sonst
+ */
+bool compareByY(const Coordinate &a, const Coordinate &b) {
     if(a.y == b.y){
         return a.x < b.x;
     } else {
@@ -28,6 +46,11 @@ bool compareByY(const Coordinates &a, const Coordinates &b) {
     }
 }
 
+/**
+ * Prüft, ob der zuvor vom User eingegebene Wert den richtigen Typ hat.
+ * Resettet Input bei Fehler.
+ * @return True bei Fehler, false sonst
+ */
 bool incorrectInput(){
     if (cin.fail()) {
         cin.clear();
@@ -37,4 +60,3 @@ bool incorrectInput(){
         return false;
     }
 }
-
