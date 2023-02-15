@@ -1,3 +1,8 @@
+#include <vector>
+#include "aligned_allocator.h"
+
+using namespace std;
+
 #ifndef PROJEKT_DATATYPES_H
 #define PROJEKT_DATATYPES_H
 
@@ -6,22 +11,26 @@ struct Coordinates {
     float y;
 };
 
+template<class T>
+using aligned_vector = vector<T, alligned_allocator<T, 64>>;
+
 struct FileInformation {
     int width;
     int height;
     int maxColor;
+    string fileFormat;
     char *imageData;
 };
 
 struct statisticalProperties {
     //TODO: füg evtl mehr Eigenschaften hinzu? Aber was?
     //TODO: einbauen, dass man sich aussuchen kann welche gleich sein sollen
-    double meanX;
-    double meanY;
-    double varianceX;
-    double varianceY;
-    double stdDeviationX;
-    double stdDeviationY;
+    float meanX;
+    float meanY;
+    float varianceX;
+    float varianceY;
+    float stdDeviationX;
+    float stdDeviationY;
 };
 
 struct Configurations {
@@ -42,6 +51,11 @@ struct Configurations {
 enum InputType {
     initialData,
     target,
+};
+
+enum InputSize {
+    small,
+    big,
 };
 
 #endif //PROJEKT_DATATYPES_H

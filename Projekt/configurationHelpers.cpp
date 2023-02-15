@@ -1,4 +1,5 @@
 
+#include <string>
 #include <iostream>
 #include "datatypes.h"
 #include "helperFunctions.h"
@@ -42,22 +43,22 @@ Configurations changeConfigurations(Configurations conf) {
 
     //lässt den user beliebig viele Konfigurationen ändern
     while(true) {
-        cout << endl << "Please write the number of the input you want to change "
-            "or write any other number to return to the program." << endl <<
-            "You can see the overview once more by entering 0 (zero)." << endl <<
-            "Number:  ";
+        cout << endl << "Bitte gib die Nummer der Konfiguration an, die du ändern möchtest, "
+            "oder schreibe eine andere Zahl, um zum Programm zurückzukehren." << endl <<
+            "Mit 0 (Null) kannst du dir die Überesicht erneut anzeigen lassen." << endl <<
+            "Nummer:  ";
         int input;
         cin >> input;
         if(incorrectInput()){
-            cout << endl << "!! Input error: please type an integer number !!" << endl;
+            cout << endl << "!! Inputfehler: Bitte schreibe eine Ziffer !!" << endl;
             continue;
         }
         double newValue;
         if (input >= 1  && input <= 6) {
-            cout << endl << "Please write the new value:  ";
+            cout << endl << "Bitte gib den neuen Wert an:  ";
             cin >> newValue;
             if (incorrectInput()) {
-                cout << endl << "!! Input error: please type a number !!" << endl;
+                cout << endl << "!! Inputfehler: Bitte schreibe eine Ziffer !!" << endl;
                 continue;
             }
         }
@@ -65,8 +66,8 @@ Configurations changeConfigurations(Configurations conf) {
         switch (input) {
             case 0: printConfigurationOverview(conf); break;
             case 1: conf.accuracy = newValue; break;
-            case 2: conf.decimals = newValue; break;
-            case 3: conf.iterations = newValue; break;
+            case 2: conf.decimals = (int)newValue; break;
+            case 3: conf.iterations = (int)newValue; break;
             case 4: conf.maxMovement = newValue; break;
             case 5: conf.maxTemp = newValue; break;
             case 6: conf.minTemp = newValue; break;
@@ -75,7 +76,7 @@ Configurations changeConfigurations(Configurations conf) {
                 cout << endl << "Bist du dir sicher, dass du fertig bist? [y/n]:  ";
                 cin >> answer;
                 if (incorrectInput()) {
-                    cout << endl << "!! Input error !!" << endl;
+                    cout << endl << "!! Inputfehler !!" << endl;
                     break;
                 } else if(answer == "y" || answer == "yes" || answer == "j" || answer == "ja") {
                     return conf;
@@ -88,8 +89,8 @@ Configurations changeConfigurations(Configurations conf) {
 Configurations setConfigurations(Configurations conf){
     string input;
     cout << endl
-         << "Hinweis: Changing the Configurations can worsen the result!" << endl
-         << "Do you want to run the program using the standard configurations? (Recommended) [y/n]  ";
+         << "Hinweis: Durch Änderungen der Konfigurationen kann sich das Ergebnis verschlechtern." << endl
+         << "Möchtest du das Programm mit den Standardkonfigurationen ausführen? [y/n]  ";
     cin >> input;
     if (input == "n" || input == "no" || input == "nein"){
         return changeConfigurations(conf);

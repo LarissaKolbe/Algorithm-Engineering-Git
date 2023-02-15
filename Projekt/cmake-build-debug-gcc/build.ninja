@@ -38,296 +38,134 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-gcc/
 # =============================================================================
-# Object build statements for EXECUTABLE target Projekt_exec_clang
+# Object build statements for EXECUTABLE target Projekt_exec
 
 
 #############################################
-# Order-only phony target for Projekt_exec_clang
+# Order-only phony target for Projekt_exec
 
-build cmake_object_order_depends_target_Projekt_exec_clang: phony || CMakeFiles/Projekt_exec_clang.dir
+build cmake_object_order_depends_target_Projekt_exec: phony || CMakeFiles/Projekt_exec.dir
 
-build CMakeFiles/Projekt_exec_clang.dir/main.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/main.cpp || cmake_object_order_depends_target_Projekt_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/main.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+build CMakeFiles/Projekt_exec.dir/main.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/main.cpp || cmake_object_order_depends_target_Projekt_exec
+  DEP_FILE = CMakeFiles/Projekt_exec.dir/main.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
-build CMakeFiles/Projekt_exec_clang.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/helperFunctions.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+build CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_exec
+  DEP_FILE = CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
-build CMakeFiles/Projekt_exec_clang.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/configurationHelpers.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+build CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_exec
+  DEP_FILE = CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
-build CMakeFiles/Projekt_exec_clang.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/exportHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+build CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_exec
+  DEP_FILE = CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
-build CMakeFiles/Projekt_exec_clang.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/importHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+build CMakeFiles/Projekt_exec.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_exec
+  DEP_FILE = CMakeFiles/Projekt_exec.dir/importHelper.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
-build CMakeFiles/Projekt_exec_clang.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_exec_clang.dir/fitnessHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_clang.dir
+build CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_exec
+  DEP_FILE = CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Projekt_exec_clang
+# Link build statements for EXECUTABLE target Projekt_exec
 
 
 #############################################
-# Link the executable Projekt_exec_clang
+# Link the executable Projekt_exec
 
-build Projekt_exec_clang: CXX_EXECUTABLE_LINKER__Projekt_exec_clang_Debug CMakeFiles/Projekt_exec_clang.dir/main.cpp.o CMakeFiles/Projekt_exec_clang.dir/helperFunctions.cpp.o CMakeFiles/Projekt_exec_clang.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_exec_clang.dir/exportHelper.cpp.o CMakeFiles/Projekt_exec_clang.dir/importHelper.cpp.o CMakeFiles/Projekt_exec_clang.dir/fitnessHelper.cpp.o | /usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
-  LINK_LIBRARIES = -Wl,-rpath,/usr/local/opt/libomp/lib -Wl,-rpath,/usr/local/Cellar/libomp/15.0.3/lib  -lomp  /usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib
-  LINK_PATH = -L/usr/local/opt/libomp/lib   -L/usr/local/Cellar/libomp/15.0.3/lib
-  OBJECT_DIR = CMakeFiles/Projekt_exec_clang.dir
+build Projekt_exec: CXX_EXECUTABLE_LINKER__Projekt_exec_Debug CMakeFiles/Projekt_exec.dir/main.cpp.o CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o CMakeFiles/Projekt_exec.dir/importHelper.cpp.o CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o | /usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_LIBRARIES = /usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib
+  OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = Projekt_exec_clang
-  TARGET_PDB = Projekt_exec_clang.dbg
+  TARGET_FILE = Projekt_exec
+  TARGET_PDB = Projekt_exec.dbg
 
 # =============================================================================
-# Object build statements for EXECUTABLE target Projekt_exec_gcc
+# Object build statements for EXECUTABLE target Projekt_test_exec
 
 
 #############################################
-# Order-only phony target for Projekt_exec_gcc
+# Order-only phony target for Projekt_test_exec
 
-build cmake_object_order_depends_target_Projekt_exec_gcc: phony || CMakeFiles/Projekt_exec_gcc.dir
+build cmake_object_order_depends_target_Projekt_test_exec: phony || CMakeFiles/Projekt_test_exec.dir
 
-build CMakeFiles/Projekt_exec_gcc.dir/main.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/main.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/main.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+build CMakeFiles/Projekt_test_exec.dir/catch_main.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_main.cpp || cmake_object_order_depends_target_Projekt_test_exec
+  DEP_FILE = CMakeFiles/Projekt_test_exec.dir/catch_main.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
-build CMakeFiles/Projekt_exec_gcc.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/helperFunctions.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+build CMakeFiles/Projekt_test_exec.dir/catch_tests.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests.cpp || cmake_object_order_depends_target_Projekt_test_exec
+  DEP_FILE = CMakeFiles/Projekt_test_exec.dir/catch_tests.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
-build CMakeFiles/Projekt_exec_gcc.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/configurationHelpers.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+build CMakeFiles/Projekt_test_exec.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_test_exec
+  DEP_FILE = CMakeFiles/Projekt_test_exec.dir/helperFunctions.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
-build CMakeFiles/Projekt_exec_gcc.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/exportHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+build CMakeFiles/Projekt_test_exec.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_test_exec
+  DEP_FILE = CMakeFiles/Projekt_test_exec.dir/configurationHelpers.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
-build CMakeFiles/Projekt_exec_gcc.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/importHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+build CMakeFiles/Projekt_test_exec.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
+  DEP_FILE = CMakeFiles/Projekt_test_exec.dir/exportHelper.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
-build CMakeFiles/Projekt_exec_gcc.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_exec_gcc.dir/fitnessHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_exec_gcc.dir
+build CMakeFiles/Projekt_test_exec.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
+  DEP_FILE = CMakeFiles/Projekt_test_exec.dir/importHelper.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
+
+build CMakeFiles/Projekt_test_exec.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
+  DEP_FILE = CMakeFiles/Projekt_test_exec.dir/fitnessHelper.cpp.o.d
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
+  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Projekt_exec_gcc
+# Link build statements for EXECUTABLE target Projekt_test_exec
 
 
 #############################################
-# Link the executable Projekt_exec_gcc
+# Link the executable Projekt_test_exec
 
-build Projekt_exec_gcc: CXX_EXECUTABLE_LINKER__Projekt_exec_gcc_Debug CMakeFiles/Projekt_exec_gcc.dir/main.cpp.o CMakeFiles/Projekt_exec_gcc.dir/helperFunctions.cpp.o CMakeFiles/Projekt_exec_gcc.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_exec_gcc.dir/exportHelper.cpp.o CMakeFiles/Projekt_exec_gcc.dir/importHelper.cpp.o CMakeFiles/Projekt_exec_gcc.dir/fitnessHelper.cpp.o
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
-  LINK_FLAGS = -fopenmp
-  LINK_PATH = -L/usr/local/opt/libomp/lib
-  OBJECT_DIR = CMakeFiles/Projekt_exec_gcc.dir
+build Projekt_test_exec: CXX_EXECUTABLE_LINKER__Projekt_test_exec_Debug CMakeFiles/Projekt_test_exec.dir/catch_main.cpp.o CMakeFiles/Projekt_test_exec.dir/catch_tests.cpp.o CMakeFiles/Projekt_test_exec.dir/helperFunctions.cpp.o CMakeFiles/Projekt_test_exec.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_test_exec.dir/exportHelper.cpp.o CMakeFiles/Projekt_test_exec.dir/importHelper.cpp.o CMakeFiles/Projekt_test_exec.dir/fitnessHelper.cpp.o | /usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib
+  FLAGS = -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_LIBRARIES = -lcatch  /usr/local/Cellar/gcc/12.2.0/lib/gcc/current/libgomp.dylib
+  OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = Projekt_exec_gcc
-  TARGET_PDB = Projekt_exec_gcc.dbg
-
-# =============================================================================
-# Object build statements for EXECUTABLE target Projekt_test_exec_clang
-
-
-#############################################
-# Order-only phony target for Projekt_test_exec_clang
-
-build cmake_object_order_depends_target_Projekt_test_exec_clang: phony || CMakeFiles/Projekt_test_exec_clang.dir
-
-build CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_main.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-
-build CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-
-build CMakeFiles/Projekt_test_exec_clang.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/helperFunctions.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-
-build CMakeFiles/Projekt_test_exec_clang.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/configurationHelpers.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-
-build CMakeFiles/Projekt_test_exec_clang.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/exportHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-
-build CMakeFiles/Projekt_test_exec_clang.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/importHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-
-build CMakeFiles/Projekt_test_exec_clang.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_clang_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec_clang
-  DEP_FILE = CMakeFiles/Projekt_test_exec_clang.dir/fitnessHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include -I/usr/local/Cellar/libomp/15.0.3/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target Projekt_test_exec_clang
-
-
-#############################################
-# Link the executable Projekt_test_exec_clang
-
-build Projekt_test_exec_clang: CXX_EXECUTABLE_LINKER__Projekt_test_exec_clang_Debug CMakeFiles/Projekt_test_exec_clang.dir/catch_main.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/catch_tests.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/helperFunctions.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/exportHelper.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/importHelper.cpp.o CMakeFiles/Projekt_test_exec_clang.dir/fitnessHelper.cpp.o
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
-  LINK_FLAGS = -fopenmp
-  LINK_LIBRARIES = -Wl,-rpath,/usr/local/opt/libomp/lib -Wl,-rpath,/usr/local/Cellar/libomp/15.0.3/lib  -lcatch
-  LINK_PATH = -L/usr/local/opt/libomp/lib   -L/usr/local/Cellar/libomp/15.0.3/lib
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_clang.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = Projekt_test_exec_clang
-  TARGET_PDB = Projekt_test_exec_clang.dbg
-
-# =============================================================================
-# Object build statements for EXECUTABLE target Projekt_test_exec_gcc
-
-
-#############################################
-# Order-only phony target for Projekt_test_exec_gcc
-
-build cmake_object_order_depends_target_Projekt_test_exec_gcc: phony || CMakeFiles/Projekt_test_exec_gcc.dir
-
-build CMakeFiles/Projekt_test_exec_gcc.dir/catch_main.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_main.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/catch_main.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-
-build CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-
-build CMakeFiles/Projekt_test_exec_gcc.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/helperFunctions.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-
-build CMakeFiles/Projekt_test_exec_gcc.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/configurationHelpers.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-
-build CMakeFiles/Projekt_test_exec_gcc.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/exportHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-
-build CMakeFiles/Projekt_test_exec_gcc.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/importHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-
-build CMakeFiles/Projekt_test_exec_gcc.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_gcc_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec_gcc
-  DEP_FILE = CMakeFiles/Projekt_test_exec_gcc.dir/fitnessHelper.cpp.o.d
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=c++14
-  INCLUDES = -I/usr/local/opt/libomp/include
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target Projekt_test_exec_gcc
-
-
-#############################################
-# Link the executable Projekt_test_exec_gcc
-
-build Projekt_test_exec_gcc: CXX_EXECUTABLE_LINKER__Projekt_test_exec_gcc_Debug CMakeFiles/Projekt_test_exec_gcc.dir/catch_main.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/catch_tests.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/helperFunctions.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/exportHelper.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/importHelper.cpp.o CMakeFiles/Projekt_test_exec_gcc.dir/fitnessHelper.cpp.o
-  FLAGS = -Xclang -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
-  LINK_FLAGS = -fopenmp
-  LINK_LIBRARIES = -Wl,-rpath,/usr/local/opt/libomp/lib  -lcatch
-  LINK_PATH = -L/usr/local/opt/libomp/lib
-  OBJECT_DIR = CMakeFiles/Projekt_test_exec_gcc.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = Projekt_test_exec_gcc
-  TARGET_PDB = Projekt_test_exec_gcc.dbg
+  TARGET_FILE = Projekt_test_exec
+  TARGET_PDB = Projekt_test_exec.dbg
 
 
 #############################################
@@ -415,7 +253,7 @@ build catch/rebuild_cache: phony catch/CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-gcc
 
-build all: phony Projekt_exec_clang Projekt_exec_gcc Projekt_test_exec_clang Projekt_test_exec_gcc catch/all
+build all: phony Projekt_exec Projekt_test_exec catch/all
 
 # =============================================================================
 

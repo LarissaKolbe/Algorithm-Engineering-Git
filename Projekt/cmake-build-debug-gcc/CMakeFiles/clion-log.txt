@@ -2,6 +2,3 @@
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-debug-gcc
-
-Problems were encountered while collecting compiler information:
-	gcc-12: error: unrecognized command-line option '-Xclang'

@@ -1,8 +1,5 @@
 
-#include "aligned_allocator.h"
-
-template<class T>
-using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
+#include "datatypes.h"
 
 
 #if defined(_WIN32) // restrict pointers on Windows
@@ -25,5 +22,7 @@ using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 bool isBetterFit_VIUnroll4(Coordinates pointNew, Coordinates pointPrev, aligned_vector<Coordinates> targetShape);
 
 bool isBetterFit_VIUnroll8(Coordinates pointNew, Coordinates pointPrev, Coordinates *__restrict__ targetShape, int size);
+
+bool isBetterFit_VIUnroll256(Coordinates pointNew, Coordinates pointPrev, Coordinates *__restrict__ targetShape, int size);
 
 #endif //PROJEKT_FITNESSHELPER_H

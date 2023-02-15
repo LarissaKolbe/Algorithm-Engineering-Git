@@ -1,5 +1,0 @@
-/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Test/cmake-build-release/CMakeFiles/Test.dir
-/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Test/cmake-build-release/CMakeFiles/edit_cache.dir
-/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Test/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Test/cmake-build-release/catch/CMakeFiles/edit_cache.dir
-/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Test/cmake-build-release/catch/CMakeFiles/rebuild_cache.dir

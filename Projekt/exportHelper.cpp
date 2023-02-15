@@ -1,16 +1,12 @@
-//#pragma clang diagnostic push
-#pragma ide diagnostic ignored "openmp-use-default-none"
+
 #include <cmath>
-#include <vector>
+#include <string>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 #include "datatypes.h"
-#include "exportHelper.h"
 #include "helperFunctions.h"
-#include "aligned_allocator.h"
-
-template<class T>
-using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
+#include "exportHelper.h"
 
 using namespace std;
 
@@ -41,7 +37,7 @@ string readExportPath(){
  * @return ensprechend veränderter Inputvektor
  */
 aligned_vector<Coordinates> cleanDataset(aligned_vector<Coordinates> dataset){
-    int size = dataset.size();
+    int size = (int)dataset.size();
     //rounds all entries to integer
     // because in the ppm-file every pixel is represented by integer coordinates
 #pragma omp parallel for
@@ -55,9 +51,6 @@ aligned_vector<Coordinates> cleanDataset(aligned_vector<Coordinates> dataset){
 
     //deletes duplicate entries
     // if we don't do this, there will be problems while creating the ppm-image
-    //TODO: hier könnte man auch parallel machen, aber dann muss man noch drauf achten, das "size" aktiell zu halten?
-    // und elementreihenfolge etc können sicch ändern also vmtl eher riskant?
-//#pragma omp parallel for
     for (int i=0; i < size; i++){
         //compares current element with next element
         if(i+1<size && dataset[i].x == dataset[i+1].x && dataset[i].y == dataset[i+1].y){
@@ -79,7 +72,7 @@ aligned_vector<Coordinates> cleanDataset(aligned_vector<Coordinates> dataset){
  * @param outputHeight
  * @param outputWidth
  */
-void exportImage(string fileName, aligned_vector<Coordinates> data, int maxColor, int outputHeight, int outputWidth){
+void exportImage(const string &fileName, aligned_vector<Coordinates> data, int maxColor, int outputHeight, int outputWidth){
 
     cout << endl << "Ergebnis: " << endl;
 
@@ -91,7 +84,7 @@ void exportImage(string fileName, aligned_vector<Coordinates> data, int maxColor
 
     //TODO: print rauslöschen
     cout << " Alle Punkte (ges):";
-    int size = data.size();
+    int size = (int)data.size();
     for (int i=0; i < size; i++){
         cout << "(" << data[i].x << ", " << data[i].y << "), ";
     }
@@ -104,14 +97,12 @@ void exportImage(string fileName, aligned_vector<Coordinates> data, int maxColor
 
     // Iterate through each pixel of the image
     int index = 0;
-    //TODO:: könnte man vlt paralellisieren, aber dann kann man probleme mit 'index' kriegen...
-//#pragma omp parallel for
-    for (int i=0;i<outputWidth * outputHeight * 3;i=i+3){
-        int currentY = (i / 3 / outputWidth);
-        int currentX = (i / 3 - currentY * outputWidth);
+    for (int i=0; i<outputWidth * outputHeight * 3; i=i+3){
+        auto currentY = i / 3 / outputWidth;
+        auto currentX = i / 3 - currentY * outputWidth;
         // Write the red, green, and blue values for the pixel
         // black, if coordinates match currentDS, else white
-        if(currentX == data[index].x && currentY == data[index].y){
+        if(index < size && (float)currentX == data[index].x && (float)currentY == data[index].y){
             //TODO: print rauslöschen
             cout << "(" << data[index].x << ", " << data[index].y << "), ";
             outputFile.put(0);
@@ -119,9 +110,9 @@ void exportImage(string fileName, aligned_vector<Coordinates> data, int maxColor
             outputFile.put(0);
             index++;
         } else {
-            outputFile.put(maxColor);
-            outputFile.put(maxColor);
-            outputFile.put(maxColor);
+            outputFile.put((char)maxColor);
+            outputFile.put((char)maxColor);
+            outputFile.put((char)maxColor);
         }
     }
     cout << endl;
@@ -129,7 +120,3 @@ void exportImage(string fileName, aligned_vector<Coordinates> data, int maxColor
     // Close the image file
     outputFile.close();
 }
-
-
-
-#pragma clang diagnostic pop

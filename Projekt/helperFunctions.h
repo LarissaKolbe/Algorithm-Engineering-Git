@@ -1,9 +1,4 @@
-#include <vector>
 #include "datatypes.h"
-#include "aligned_allocator.h"
-
-template<class T>
-using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 
 using namespace std;
 
@@ -24,7 +19,7 @@ float roundValue(float value, int decimals);
  * @param p2 Koordinaten von Punkt 2
  * @return Distanz zwischen p1 und p2
  */
-double getDistance(Coordinates p1, Coordinates p2);
+float getDistance(Coordinates p1, Coordinates p2);
 
 /**
  * Vergleicht die y-Koordinaten von a und b.
@@ -40,13 +35,5 @@ bool compareByY(const Coordinates &a, const Coordinates &b);
  * @return True bei Fehler, false sonst
  */
 bool incorrectInput();
-
-/**
- * Erstellt Vektor anhand der übergebenen Bildinformationen.
- * Der Vektor enthält die Koordinaten aller Punkte, die im Bild schwarz waren.
- * @param info Bildinformationen
- * @return Vektor mit Koordinaten
- */
-aligned_vector<Coordinates> createVectorFromImage(FileInformation info);
 
 #endif //PROJEKT_HELPERFUNCTIONS_H

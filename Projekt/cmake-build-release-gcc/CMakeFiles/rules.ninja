@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__Projekt_exec_clang_Release
+rule CXX_COMPILER__Projekt_exec_Release
   depfile = $DEP_FILE
   deps = gcc
   command = /usr/local/bin/gcc-12 $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule CXX_COMPILER__Projekt_exec_clang_Release
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__Projekt_exec_clang_Release
+rule CXX_EXECUTABLE_LINKER__Projekt_exec_Release
   command = $PRE_LINK && /usr/local/bin/gcc-12 $FLAGS -Wl,-search_paths_first -Wl,-headerpad_max_install_names $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -33,7 +33,7 @@ rule CXX_EXECUTABLE_LINKER__Projekt_exec_clang_Release
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__Projekt_exec_gcc_Release
+rule CXX_COMPILER__Projekt_test_exec_Release
   depfile = $DEP_FILE
   deps = gcc
   command = /usr/local/bin/gcc-12 $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -43,45 +43,7 @@ rule CXX_COMPILER__Projekt_exec_gcc_Release
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__Projekt_exec_gcc_Release
-  command = $PRE_LINK && /usr/local/bin/gcc-12 $FLAGS -Wl,-search_paths_first -Wl,-headerpad_max_install_names $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
-  description = Linking CXX executable $TARGET_FILE
-  restat = $RESTAT
-
-
-#############################################
-# Rule for compiling CXX files.
-
-rule CXX_COMPILER__Projekt_test_exec_clang_Release
-  depfile = $DEP_FILE
-  deps = gcc
-  command = /usr/local/bin/gcc-12 $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
-  description = Building CXX object $out
-
-
-#############################################
-# Rule for linking CXX executable.
-
-rule CXX_EXECUTABLE_LINKER__Projekt_test_exec_clang_Release
-  command = $PRE_LINK && /usr/local/bin/gcc-12 $FLAGS -Wl,-search_paths_first -Wl,-headerpad_max_install_names $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
-  description = Linking CXX executable $TARGET_FILE
-  restat = $RESTAT
-
-
-#############################################
-# Rule for compiling CXX files.
-
-rule CXX_COMPILER__Projekt_test_exec_gcc_Release
-  depfile = $DEP_FILE
-  deps = gcc
-  command = /usr/local/bin/gcc-12 $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
-  description = Building CXX object $out
-
-
-#############################################
-# Rule for linking CXX executable.
-
-rule CXX_EXECUTABLE_LINKER__Projekt_test_exec_gcc_Release
+rule CXX_EXECUTABLE_LINKER__Projekt_test_exec_Release
   command = $PRE_LINK && /usr/local/bin/gcc-12 $FLAGS -Wl,-search_paths_first -Wl,-headerpad_max_install_names $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT

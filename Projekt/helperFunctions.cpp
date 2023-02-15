@@ -1,14 +1,9 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "openmp-use-default-none"
+
 #include <cmath>
-#include <vector>
+#include <limits>
 #include <iostream>
 #include "datatypes.h"
 #include "helperFunctions.h"
-#include "aligned_allocator.h"
-
-template<class T>
-using aligned_vector = std::vector<T, alligned_allocator<T, 64>>;
 
 using namespace std;
 
@@ -20,15 +15,9 @@ using namespace std;
  */
 float roundValue(float value, int decimals){
     //TODO: schöner machen
-    float roundingValue = pow(10, decimals);
+    auto roundingValue = (float)pow(10, decimals);
     value = round(value * roundingValue) / roundingValue;
     return value;
-}
-
-double getDistance(Coordinates p1, Coordinates p2){
-    double distX = pow(p1.x - p2.x, 2);
-    double distY = pow(p1.y - p2.y, 2);
-    return sqrt(distX + distY);
 }
 
 bool compareByY(const Coordinates &a, const Coordinates &b) {
@@ -42,37 +31,10 @@ bool compareByY(const Coordinates &a, const Coordinates &b) {
 bool incorrectInput(){
     if (cin.fail()) {
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return true;
     } else {
         return false;
     }
 }
 
-
-/**
- * Erstellt Vektor anhand der übergebenen Bildinformationen.
- * Der Vektor enthält die Koordinaten aller Punkte, die im Bild schwarz waren.
- * @param info Bildinformationen
- * @return Vektor mit Koordinaten
- */
-aligned_vector<Coordinates> createVectorFromImage(FileInformation info){
-    aligned_vector<Coordinates> vec = {};
-    //zählt/sucht alle nahezu schwarzen Punkte
-    //TODO: beim input einlesen iwie dafür sorgen, dass jeder Punkt nur wirklich einmal registriert wird!
-    // (hat halt meistens noch gräuliche Randpunkte, die jetzt auch eingelesen werden...)
-#pragma omp parallel for
-    for (int i=1;i<info.width * info.height * 3;i=i+3){
-        unsigned char red = info.imageData[i];
-        unsigned char green = info.imageData[i+1];
-        unsigned char blue = info.imageData[i+2];
-        if (red < 150 && green < 150 && blue < 150){
-            float currentY = (i / 3 / info.width);
-            float currentX = (i / 3 - currentY * info.width);
-#pragma omp critical
-            vec.push_back({currentX, currentY});
-        }
-    }
-    return vec;
-}
-#pragma clang diagnostic pop
