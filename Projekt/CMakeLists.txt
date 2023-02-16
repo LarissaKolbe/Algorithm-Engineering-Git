@@ -14,7 +14,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # linkt auf die standard library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lstdc++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lstdc++ ")
+# verlinkt m-Library
+link_libraries(m)
 
 # Compilerflags um CPU voll auszunutzen
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
@@ -27,7 +29,8 @@ endif ()
 #  -fsanitize=address ... gibt nochmal deeeeeeutlich mehr Warnungen
 #  -fsanitize=undefined ... weißt auf undefiniertes Behaviour hin
 # Debuggerflags:
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall -fsanitize=address -fsanitize=undefined ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall -fsanitize=address -fsanitize=undefined ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -qopt-report=5 -qopt-report-phase=vec")
 
 # Optimierungsflags:
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Ofast -ffast-math")
@@ -53,7 +56,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 # hiermit muss OpenMP verfügbar sein
 #find_package(OpenMP REQUIRED)
 # klappt hiermit aber iwie nicht...
-find_package(Catch2 REQUIRED)
+#find_package(Catch2 REQUIRED)
 
 # damit er OpenMP (libomp) findet
 if(APPLE)
@@ -74,4 +77,4 @@ add_executable(Projekt_test_exec catch_main.cpp catch_tests_importHelper.cpp ali
         catch_tests_helperFunctions.cpp catch_tests_configurationHelper.cpp catch_tests_fitnessHelper.cpp)
 target_link_libraries(Projekt_test_exec PUBLIC catch)
 # macht das executable zu nem test
-add_test(NAME PROJEKT_TEST_CLANG COMMAND Projekt_test_exec)
+add_test(NAME PROJEKT_TEST COMMAND Projekt_test_exec)

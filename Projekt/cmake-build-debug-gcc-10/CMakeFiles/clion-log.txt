@@ -1,0 +1,8 @@
+/usr/local/stow/clion-2022.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=/usr/bin/gcc-10 -S /home/le34xoh/Algorithm-Engineering-Git/Projekt -B /home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-gcc-10
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-gcc-10
+
+Problems were encountered while collecting compiler information:
+	gcc-10: error: unrecognized command-line option '-qopt-report=5'
+	gcc-10: error: unrecognized command-line option '-qopt-report-phase=vec'

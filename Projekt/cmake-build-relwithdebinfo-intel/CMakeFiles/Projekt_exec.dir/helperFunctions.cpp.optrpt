@@ -1,0 +1,7 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.8.0 Build 20221119_000000
+
+Compiler options: -std=c++11 -lstdc++ -g -O0 -Wall -fsanitize=address -fsanitize=undefined -qopt-report=5 -qopt-report-phase=vec -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11 -MD -MT CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o -MF CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o.d -o CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o -c

@@ -1,7 +1,8 @@
 
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <immintrin.h>
+#include <xmmintrin.h>
 #include "datatypes.h"
 #include "helperFunctions.h"
 #include "fitnessHelper.h"

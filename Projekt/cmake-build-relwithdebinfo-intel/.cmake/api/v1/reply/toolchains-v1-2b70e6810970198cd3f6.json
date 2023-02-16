@@ -1,0 +1,111 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "Intel",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/opt/intel/oneapi/vpl/2023.0.0/include",
+						"/opt/intel/oneapi/tbb/2021.8.0/include",
+						"/opt/intel/oneapi/mpi/2021.8.0/include",
+						"/opt/intel/oneapi/mkl/2023.0.0/include",
+						"/opt/intel/oneapi/ippcp/2021.6.3/include",
+						"/opt/intel/oneapi/ipp/2021.7.0/include",
+						"/opt/intel/oneapi/dpl/2022.0.0/linux/include",
+						"/opt/intel/oneapi/dpcpp-ct/2023.0.0/include",
+						"/opt/intel/oneapi/dnnl/2023.0.0/cpu_dpcpp_gpu_dpcpp/include",
+						"/opt/intel/oneapi/dev-utilities/2021.8.0/include",
+						"/opt/intel/oneapi/dal/2023.0.0/include",
+						"/opt/intel/oneapi/ccl/2021.8.0/include/cpu_gpu_dpcpp",
+						"/opt/intel/oneapi/clck/2021.7.3/include",
+						"/opt/intel/oneapi/compiler/2023.0.0/linux/compiler/include/intel64",
+						"/opt/intel/oneapi/compiler/2023.0.0/linux/compiler/include/icc",
+						"/opt/intel/oneapi/compiler/2023.0.0/linux/compiler/include",
+						"/usr/include/c++/10",
+						"/usr/include/c++/10/backward",
+						"/usr/local/include",
+						"/usr/lib/gcc/x86_64-linux-gnu/10/include",
+						"/usr/include",
+						"/usr/include/x86_64-linux-gnu",
+						"/usr/include/x86_64-linux-gnu/c++/10"
+					],
+					"linkDirectories" : 
+					[
+						"/opt/intel/oneapi/vpl/2023.0.0/lib",
+						"/opt/intel/oneapi/tbb/2021.8.0/lib/intel64/gcc4.8",
+						"/opt/intel/oneapi/mpi/2021.8.0/libfabric/lib",
+						"/opt/intel/oneapi/mpi/2021.8.0/lib/release",
+						"/opt/intel/oneapi/mpi/2021.8.0/lib",
+						"/opt/intel/oneapi/mkl/2023.0.0/lib/intel64",
+						"/opt/intel/oneapi/ippcp/2021.6.3/lib/intel64",
+						"/opt/intel/oneapi/ipp/2021.7.0/lib/intel64",
+						"/opt/intel/oneapi/dnnl/2023.0.0/cpu_dpcpp_gpu_dpcpp/lib",
+						"/opt/intel/oneapi/dal/2023.0.0/lib/intel64",
+						"/opt/intel/oneapi/compiler/2023.0.0/linux/compiler/lib/intel64_lin",
+						"/opt/intel/oneapi/compiler/2023.0.0/linux/lib",
+						"/opt/intel/oneapi/clck/2021.7.3/lib/intel64",
+						"/opt/intel/oneapi/ccl/2021.8.0/lib/cpu_gpu_dpcpp",
+						"/usr/lib/gcc/x86_64-linux-gnu/10",
+						"/usr/lib/x86_64-linux-gnu",
+						"/usr/lib64",
+						"/usr/lib",
+						"/lib/x86_64-linux-gnu",
+						"/lib64",
+						"/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"imf",
+						"svml",
+						"irng",
+						"stdc++",
+						"m",
+						"ipgo",
+						"decimal",
+						"cilkrts",
+						"stdc++",
+						"gcc",
+						"gcc_s",
+						"irc",
+						"svml",
+						"c",
+						"gcc",
+						"gcc_s",
+						"irc_s",
+						"dl",
+						"c"
+					]
+				},
+				"path" : "/opt/intel/oneapi/compiler/2023.0.0/linux/bin/intel64/icpc",
+				"version" : "2021.8.0.20221119"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"m",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

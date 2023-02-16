@@ -348,6 +348,8 @@ FileInformation readImageData(InputType type){
         // User lädt eigenes Bild hoch
         } else if (answer == "n" || answer == "no" || answer == "nein") {
             fileName = inputFilePath(type);
+        } else {
+            continue;
         }
 
         //lädt Bild hoch und returnt

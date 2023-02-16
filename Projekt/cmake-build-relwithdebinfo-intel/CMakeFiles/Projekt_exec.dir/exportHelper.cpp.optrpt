@@ -1,0 +1,249 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.8.0 Build 20221119_000000
+
+Compiler options: -std=c++11 -lstdc++ -g -O0 -Wall -fsanitize=address -fsanitize=undefined -qopt-report=5 -qopt-report-phase=vec -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11 -MD -MT CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o -MF CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o.d -o CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o -c
+
+Begin optimization report for: readExportPath(std::string *)
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z14readExportPathB5cxx11v:  Assume directive not useful: removing
+
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/basic_string.h(231,2) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(30,13)
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(23,14) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: exportImage(const std::string &, aligned_vector<Coordinate> *, int, int, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between *__cur (60:23) and *__first._M_current (60:23)
+   remark #15346: vector dependence: assumed ANTI dependence between *__first._M_current (60:23) and *__cur (60:23)
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(100,5)
+   remark #26015: Exception can be thrown by the call to std::basic_ostream<char, std::char_traits<char>>::put(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::char_type)   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(113,24) ]
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(113,24) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: cleanDataset(aligned_vector<Coordinate> *, aligned_vector<Coordinate> *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(52,5)
+   remark #15389: vectorization support: reference size->x[i] has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(53,16) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <size->x[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(53,37) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <size->x[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(53,16) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <size->y[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(54,37) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <size->y[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(54,16) ]
+   remark #15305: vectorization support: vector length 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.022
+   remark #15301: SIMD LOOP WAS VECTORIZED
+   remark #15452: unmasked strided loads: 2 
+   remark #15453: unmasked strided stores: 2 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 213 
+   remark #15477: vector cost: 56.750 
+   remark #15478: estimated potential speedup: 3.750 
+   remark #15482: vectorized math library calls: 2 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(52,5)
+<Remainder loop for vectorization>
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1949,7) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+
+   LOOP BEGIN at /usr/include/c++/10/bits/predefined_ops.h(156,40) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+      remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+      LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1904,4) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+         remark #15523: loop was not vectorized: loop control variable __first._M_current was found, but loop iteration count cannot be computed before executing the loop
+      LOOP END
+
+      LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1907,4) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+         remark #15523: loop was not vectorized: loop control variable __last._M_current was found, but loop iteration count cannot be computed before executing the loop
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(354,25) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1667,54) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(421,7) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(228,7) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(139,7) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1866,53) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1826,7) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(58,5)
+      remark #15523: loop was not vectorized: loop control variable __next._M_current was found, but loop iteration count cannot be computed before executing the loop
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(62,5)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::__insertion_sort<std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const Coordinate &, const Coordinate &)>>(std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const Coordinate &, const Coordinate &)>)
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1844,57)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1826,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1855,6)
+      remark #15523: loop was not vectorized: loop control variable __next._M_current was found, but loop iteration count cannot be computed before executing the loop
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::__adjust_heap<std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, std::__iterator_traits<std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, std::__void_t<>>::difference_type, std::remove_reference<Coordinate &>::type, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const Coordinate &, const Coordinate &)>>(std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, std::__iterator_traits<std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, std::__void_t<>>::difference_type, std::__iterator_traits<std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, std::__void_t<>>::difference_type, std::remove_reference<Coordinate &>::type, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const Coordinate &, const Coordinate &)>)
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(228,7)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(139,7) inlined into /usr/include/c++/10/bits/stl_heap.h(247,7)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::__introsort_loop<std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, long, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const Coordinate &, const Coordinate &)>>(std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, std::vector<Coordinate, alligned_allocator<Coordinate, 64UL>>::iterator, long, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const Coordinate &, const Coordinate &)>)
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1949,7)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+
+   LOOP BEGIN at /usr/include/c++/10/bits/predefined_ops.h(156,40) inlined into /usr/include/c++/10/bits/stl_algo.h(1959,56)
+      remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+      LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1904,4) inlined into /usr/include/c++/10/bits/stl_algo.h(1959,56)
+         remark #15523: loop was not vectorized: loop control variable __first._M_current was found, but loop iteration count cannot be computed before executing the loop
+      LOOP END
+
+      LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1907,4) inlined into /usr/include/c++/10/bits/stl_algo.h(1959,56)
+         remark #15523: loop was not vectorized: loop control variable __last._M_current was found, but loop iteration count cannot be computed before executing the loop
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(359,4) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(228,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(139,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_algo.h(1667,54) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(228,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(139,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(421,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(228,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at /usr/include/c++/10/bits/stl_heap.h(139,7) inlined into /usr/include/c++/10/bits/stl_algo.h(1954,8)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+===========================================================================

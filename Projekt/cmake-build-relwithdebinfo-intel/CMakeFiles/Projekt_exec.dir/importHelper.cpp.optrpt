@@ -1,0 +1,386 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.8.0 Build 20221119_000000
+
+Compiler options: -std=c++11 -lstdc++ -g -O0 -Wall -fsanitize=address -fsanitize=undefined -qopt-report=5 -qopt-report-phase=vec -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11 -MD -MT CMakeFiles/Projekt_exec.dir/importHelper.cpp.o -MF CMakeFiles/Projekt_exec.dir/importHelper.cpp.o.d -o CMakeFiles/Projekt_exec.dir/importHelper.cpp.o -c
+
+Begin optimization report for: getSize()
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(180,77)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+===========================================================================
+
+Begin optimization report for: inputFilePath(std::string *, InputType)
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z13inputFilePathB5cxx119InputType:  Assume directive not useful: removing
+
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(239,85)
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(228,14) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: readImageData(FileInformation *, InputType)
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(711:6)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:14)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:6)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(713:6)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(711:6)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:14)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:6)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(713:6)::_Z13readImageData9InputType:  Assume directive not useful: removing
+
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(341,90)
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(336,22) ]
+LOOP END
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(239,85) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(350,24)
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(228,14) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: importImage(FileInformation *, std::string *, InputType)
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(711:6)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:14)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:6)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(713:6)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(711:6)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:14)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(712:6)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(713:6)::_Z11importImageNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE9InputType:  Assume directive not useful: removing
+
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(305,13)
+   remark #26015: Exception can be thrown by the call to std::basic_istream<char, std::char_traits<char>>::operator>>(std::basic_istream<char, std::char_traits<char>> *, int &)   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(307,22) ]
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(307,22) ]
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/basic_ios.h(282,22) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(280,13)
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /usr/include/c++/10/istream(608,15) ]
+
+   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(239,85) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(274,24)
+      remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(228,14) ]
+   LOOP END
+
+   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(239,85) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(279,24)
+      remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(228,14) ]
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(289,28)
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /usr/include/c++/10/bits/locale_facets.h(876,8) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: createVectorFromImage(aligned_vector<Coordinate> *, const char *, int, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(378,17)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between *__cur (60:23) and *__first._M_current (60:23)
+   remark #15346: vector dependence: assumed ANTI dependence between *__first._M_current (60:23) and *__cur (60:23)
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(378,17)
+<Remainder>
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(370,5)
+   remark #15532: loop was not vectorized: compile time constraints prevent loop optimization. Consider using -O3.
+LOOP END
+===========================================================================
+
+Begin optimization report for: chooseFromInputShapes(std::string *, InputSize)
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(103,76)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+===========================================================================
+
+Begin optimization report for: chooseFromTargetShapes(std::string *, InputSize)
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(143,77)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+===========================================================================
+
+Begin optimization report for: chooseImageFromDefault(std::string *, InputType)
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1353:32)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1354:28)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1356:20)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1357:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1358:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1359:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1360:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1347:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:15)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1348:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+/usr/include/c++/10/bits/basic_string.h(1349:7)::_Z22chooseImageFromDefaultB5cxx119InputType:  Assume directive not useful: removing
+
+
+    Report from: Vector optimizations [vec]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(180,77) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(204,22)
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/importHelper.cpp(173,14) ]
+LOOP END
+===========================================================================
