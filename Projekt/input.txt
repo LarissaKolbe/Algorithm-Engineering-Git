@@ -1,0 +1,6 @@
+n
+./data/input/big/dots_1000.ppm
+n
+./data/shapes/big/xCube.ppm
+--
+y

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <immintrin.h>
 #include <xmmintrin.h>
+#include <emmintrin.h>
 #include "datatypes.h"
 #include "helperFunctions.h"
 #include "fitnessHelper.h"

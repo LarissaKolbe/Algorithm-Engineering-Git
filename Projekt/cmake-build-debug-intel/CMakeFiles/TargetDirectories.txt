@@ -1,8 +1,0 @@
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/CMakeFiles/Projekt_exec.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/CMakeFiles/Projekt_test_exec.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/CMakeFiles/test.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/CMakeFiles/edit_cache.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/CMakeFiles/rebuild_cache.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/catch/CMakeFiles/test.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/catch/CMakeFiles/edit_cache.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel/catch/CMakeFiles/rebuild_cache.dir

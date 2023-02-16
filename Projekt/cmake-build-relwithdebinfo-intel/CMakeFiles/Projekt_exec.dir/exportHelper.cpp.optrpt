@@ -4,7 +4,7 @@ See "https://software.intel.com/en-us/intel-advisor-xe" for details.
 
 Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.8.0 Build 20221119_000000
 
-Compiler options: -std=c++11 -lstdc++ -g -O0 -Wall -fsanitize=address -fsanitize=undefined -qopt-report=5 -qopt-report-phase=vec -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11 -MD -MT CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o -MF CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o.d -o CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o -c
+Compiler options: -std=c++11 -lstdc++ -march=native -mavx -msse2 -g -O0 -Wall -fsanitize=address -fsanitize=undefined -qopt-report=5 -qopt-report-phase=vec -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11 -MD -MT CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o -MF CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o.d -o CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o -c
 
 Begin optimization report for: readExportPath(std::string *)
 
@@ -53,13 +53,50 @@ Begin optimization report for: exportImage(const std::string &, aligned_vector<C
 
 
 LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
-   remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed FLOW dependence between *__cur (60:23) and *__first._M_current (60:23)
-   remark #15346: vector dependence: assumed ANTI dependence between *__first._M_current (60:23) and *__cur (60:23)
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
-<Remainder>
+<Multiversioned v1>
+   remark #15388: vectorization support: reference *__cur has aligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/aligned_allocator.h(60,23) ]
+   remark #15389: vectorization support: reference *__first._M_current has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/aligned_allocator.h(60,23) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 4
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.269
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15455: masked aligned unit stride stores: 1 
+   remark #15456: masked unaligned unit stride loads: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 12 
+   remark #15477: vector cost: 3.250 
+   remark #15478: estimated potential speedup: 3.290 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15389: vectorization support: reference *__cur has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/aligned_allocator.h(60,23) ]
+   remark #15389: vectorization support: reference *__first._M_current has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/aligned_allocator.h(60,23) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 4
+   remark #15309: vectorization support: normalized vectorization overhead 1.133
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
+<Multiversioned v2>
+   remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/10/bits/stl_uninitialized.h(310,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(84,25)
+<Remainder, Multiversioned v2>
 LOOP END
 
 LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(100,5)
@@ -76,19 +113,19 @@ Begin optimization report for: cleanDataset(aligned_vector<Coordinate> *, aligne
 LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(52,5)
    remark #15389: vectorization support: reference size->x[i] has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(53,16) ]
    remark #15381: vectorization support: unaligned access used inside loop body
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <size->x[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(53,37) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <size->x[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(53,37) ]
    remark #15329: vectorization support: non-unit strided store was emulated for the variable <size->x[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(53,16) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <size->y[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(54,37) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <size->y[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(54,37) ]
    remark #15329: vectorization support: non-unit strided store was emulated for the variable <size->y[i]>, stride is 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/exportHelper.cpp(54,16) ]
-   remark #15305: vectorization support: vector length 4
-   remark #15309: vectorization support: normalized vectorization overhead 0.022
+   remark #15305: vectorization support: vector length 8
+   remark #15309: vectorization support: normalized vectorization overhead 0.025
    remark #15301: SIMD LOOP WAS VECTORIZED
    remark #15452: unmasked strided loads: 2 
    remark #15453: unmasked strided stores: 2 
    remark #15475: --- begin vector cost summary ---
    remark #15476: scalar cost: 213 
-   remark #15477: vector cost: 56.750 
-   remark #15478: estimated potential speedup: 3.750 
+   remark #15477: vector cost: 24.870 
+   remark #15478: estimated potential speedup: 7.770 
    remark #15482: vectorized math library calls: 2 
    remark #15488: --- end vector cost summary ---
 LOOP END

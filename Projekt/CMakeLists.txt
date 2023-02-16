@@ -19,10 +19,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lstdc++ ")
 link_libraries(m)
 
 # Compilerflags um CPU voll auszunutzen
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -msse2")
+else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -msse2")
 endif ()
 
 #weitere:
@@ -30,7 +31,7 @@ endif ()
 #  -fsanitize=undefined ... weißt auf undefiniertes Behaviour hin
 # Debuggerflags:
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall -fsanitize=address -fsanitize=undefined ")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -qopt-report=5 -qopt-report-phase=vec")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -qopt-report=5 -qopt-report-phase=vec")
 
 # Optimierungsflags:
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Ofast -ffast-math")

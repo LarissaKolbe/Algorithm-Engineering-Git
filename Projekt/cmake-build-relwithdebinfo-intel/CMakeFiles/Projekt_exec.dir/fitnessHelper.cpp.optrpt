@@ -4,19 +4,19 @@ See "https://software.intel.com/en-us/intel-advisor-xe" for details.
 
 Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.8.0 Build 20221119_000000
 
-Compiler options: -std=c++11 -lstdc++ -g -O0 -Wall -fsanitize=address -fsanitize=undefined -qopt-report=5 -qopt-report-phase=vec -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11 -MD -MT CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o -MF CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o.d -o CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o -c
+Compiler options: -std=c++11 -lstdc++ -march=native -mavx -msse2 -g -O0 -Wall -fsanitize=address -fsanitize=undefined -qopt-report=5 -qopt-report-phase=vec -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11 -MD -MT CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o -MF CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o.d -o CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o -c
 
 Begin optimization report for: getMinValues(__m128 *)
 
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(54,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(55,5)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(58,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(59,5)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
@@ -27,18 +27,18 @@ Begin optimization report for: getMinimalValues(__m256)
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(73,5)
-   remark #15389: vectorization support: reference result[i] has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,5)
+   remark #15389: vectorization support: reference result[i] has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
    remark #15381: vectorization support: unaligned access used inside loop body
    remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
    remark #15305: vectorization support: vector length 4
-   remark #15309: vectorization support: normalized vectorization overhead 1.722
-   remark #15355: vectorization support: min_a is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(72,17) ]
+   remark #15309: vectorization support: normalized vectorization overhead 3.167
+   remark #15355: vectorization support: min_a is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(73,17) ]
    remark #15450: unmasked unaligned unit stride loads: 1 
    remark #15475: --- begin vector cost summary ---
    remark #15476: scalar cost: 8 
-   remark #15477: vector cost: 4.500 
-   remark #15478: estimated potential speedup: 0.760 
+   remark #15477: vector cost: 1.500 
+   remark #15478: estimated potential speedup: 1.140 
    remark #15488: --- end vector cost summary ---
 LOOP END
 ===========================================================================
@@ -48,58 +48,58 @@ Begin optimization report for: isBetterFit_VIUnroll8(Coordinate, Coordinate, Coo
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(109,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(110,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(117,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(118,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(122,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(123,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(127,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(128,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(137,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(138,9)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed ANTI dependence between norm_alias_2F32 (138:32) and __il0_ext_0 (138:32)
+   remark #15346: vector dependence: assumed ANTI dependence between norm_alias_2F32 (139:32) and __il0_ext_0 (139:32)
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(144,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(145,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(54,5) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(149,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(55,5) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(150,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(58,5) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(149,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(59,5) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(150,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(153,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(154,9)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed FLOW dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (154:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (154:29)
-   remark #15346: vector dependence: assumed ANTI dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (154:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (154:29)
+   remark #15346: vector dependence: assumed FLOW dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (155:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (155:29)
+   remark #15346: vector dependence: assumed ANTI dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (155:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (155:29)
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(159,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(160,5)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed FLOW dependence between calcTmp (168:19) and calcTmp[k] (171:29)
-   remark #15346: vector dependence: assumed ANTI dependence between calcTmp[k] (171:29) and calcTmp (168:19)
+   remark #15346: vector dependence: assumed FLOW dependence between calcTmp (169:19) and calcTmp[k] (172:29)
+   remark #15346: vector dependence: assumed ANTI dependence between calcTmp[k] (172:29) and calcTmp (169:19)
 
-   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(170,9)
+   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(171,9)
    LOOP END
 LOOP END
 
@@ -107,7 +107,7 @@ LOOP END
 Non-optimizable loops:
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(102,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(103,5)
    remark #15532: loop was not vectorized: compile time constraints prevent loop optimization. Consider using -O3.
 LOOP END
 ===========================================================================
@@ -117,84 +117,84 @@ Begin optimization report for: isBetterFit_VIUnroll256(Coordinate, Coordinate, C
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(212,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(213,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(222,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(223,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(227,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(228,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(232,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(233,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(242,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(243,9)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed ANTI dependence between norm_alias_2F32 (243:32) and __il0_ext_8 (243:32)
+   remark #15346: vector dependence: assumed ANTI dependence between norm_alias_2F32 (244:32) and __il0_ext_8 (244:32)
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(255,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(256,9)
    remark #15313: simd loop was not vectorized: unsupported data type
    remark #15552: loop was not vectorized with "simd"
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(72,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(264,28)
-   remark #15388: vectorization support: reference minValues[k] has aligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(264,13) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(71,22) ]
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(73,19) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(265,28)
+   remark #15388: vectorization support: reference minValues[k] has aligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(265,13) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(72,22) ]
    remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[0]>, stride is 32
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
-   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
+   remark #15328: vectorization support: non-unit strided load was emulated for the variable <result[i]>, stride is 32   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(75,28) ]
    remark #15305: vectorization support: vector length 4
    remark #15427: loop was completely unrolled
-   remark #15309: vectorization support: normalized vectorization overhead 0.131
+   remark #15309: vectorization support: normalized vectorization overhead 0.213
    remark #26011: vectorization support: data layout of a private variable result was not optimized, left AoS
-   remark #15519: A part of code was serialized due to operation unsupported for vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(264,45) ]
+   remark #15519: A part of code was serialized due to operation unsupported for vectorization   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(265,45) ]
    remark #15301: SIMD LOOP WAS VECTORIZED
    remark #15449: unmasked aligned unit stride stores: 1 
    remark #15452: unmasked strided loads: 16 
    remark #15475: --- begin vector cost summary ---
    remark #15476: scalar cost: 93 
-   remark #15477: vector cost: 68.750 
-   remark #15478: estimated potential speedup: 1.190 
+   remark #15477: vector cost: 42.250 
+   remark #15478: estimated potential speedup: 1.810 
    remark #15488: --- end vector cost summary ---
 
-   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(73,5) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(264,28)
+   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(74,5) inlined into /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(265,28)
    LOOP END
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(269,9)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(270,9)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed FLOW dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (270:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (270:29)
-   remark #15346: vector dependence: assumed ANTI dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (270:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (270:29)
+   remark #15346: vector dependence: assumed FLOW dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (271:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (271:29)
+   remark #15346: vector dependence: assumed ANTI dependence between minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (271:29) and minimalDistances.__b_St12_Vector_baseIfSaIfEE.__b_St12_Vector_ba (271:29)
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(276,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(277,5)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed FLOW dependence between calcTmp (285:19) and calcTmp[k] (288:29)
-   remark #15346: vector dependence: assumed ANTI dependence between calcTmp[k] (288:29) and calcTmp (285:19)
+   remark #15346: vector dependence: assumed FLOW dependence between calcTmp (286:19) and calcTmp[k] (289:29)
+   remark #15346: vector dependence: assumed ANTI dependence between calcTmp[k] (289:29) and calcTmp (286:19)
 
-   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(287,9)
+   LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(288,9)
    LOOP END
 LOOP END
 
@@ -202,7 +202,7 @@ LOOP END
 Non-optimizable loops:
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(205,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(206,5)
    remark #15532: loop was not vectorized: compile time constraints prevent loop optimization. Consider using -O3.
 LOOP END
 ===========================================================================
@@ -212,35 +212,36 @@ Begin optimization report for: isBetterFitControllNative(Coordinate, Coordinate,
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(301,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(302,5)
 <Peeled loop for vectorization>
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(301,5)
-   remark #15388: vectorization support: reference targetShape[j] has aligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(303,40) ]
-   remark #15388: vectorization support: reference targetShape[j] has aligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(302,38) ]
-   remark #15305: vectorization support: vector length 4
-   remark #15309: vectorization support: normalized vectorization overhead 0.457
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(302,5)
+   remark #15389: vectorization support: reference targetShape[j] has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(304,40) ]
+   remark #15389: vectorization support: reference targetShape[j] has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(303,38) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 8
+   remark #15309: vectorization support: normalized vectorization overhead 0.427
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
-   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(299,23) ]
+   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(300,23) ]
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
-   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(298,22) ]
-   remark #15355: vectorization support: minDistPrev is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(299,23) ]
-   remark #15355: vectorization support: minDistNew is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(298,22) ]
+   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(299,22) ]
+   remark #15355: vectorization support: minDistPrev is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(300,23) ]
+   remark #15355: vectorization support: minDistNew is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(299,22) ]
    remark #15300: LOOP WAS VECTORIZED
    remark #15442: entire loop may be executed in remainder
-   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15450: unmasked unaligned unit stride loads: 1 
    remark #15475: --- begin vector cost summary ---
-   remark #15476: scalar cost: 156 
-   remark #15477: vector cost: 52.500 
-   remark #15478: estimated potential speedup: 2.870 
+   remark #15476: scalar cost: 140 
+   remark #15477: vector cost: 22.250 
+   remark #15478: estimated potential speedup: 5.810 
    remark #15487: type converts: 8 
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(301,5)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(302,5)
 <Remainder loop for vectorization>
 LOOP END
 ===========================================================================
@@ -250,35 +251,36 @@ Begin optimization report for: isBetterFitControllParallel(Coordinate, Coordinat
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(313,1)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(314,1)
 <Peeled loop for vectorization>
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(313,1)
-   remark #15388: vectorization support: reference at (315:38) has aligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(315,38) ]
-   remark #15388: vectorization support: reference at (316:40) has aligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(316,40) ]
-   remark #15305: vectorization support: vector length 4
-   remark #15309: vectorization support: normalized vectorization overhead 0.457
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(314,1)
+   remark #15389: vectorization support: reference at (316:38) has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(316,38) ]
+   remark #15389: vectorization support: reference at (317:40) has unaligned access   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(317,40) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 8
+   remark #15309: vectorization support: normalized vectorization overhead 0.427
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
-   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(315,26) ]
+   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(316,26) ]
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
    remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ /usr/include/c++/10/cmath(418,14) ]
-   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(316,27) ]
-   remark #15355: vectorization support: at (315:26) is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(315,26) ]
-   remark #15355: vectorization support: at (316:27) is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(316,27) ]
+   remark #15418: vectorization support: number of FP down converts: double precision to single precision 2   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(317,27) ]
+   remark #15355: vectorization support: at (316:26) is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(316,26) ]
+   remark #15355: vectorization support: at (317:27) is float type reduction   [ /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(317,27) ]
    remark #15300: LOOP WAS VECTORIZED
    remark #15442: entire loop may be executed in remainder
-   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15450: unmasked unaligned unit stride loads: 1 
    remark #15475: --- begin vector cost summary ---
-   remark #15476: scalar cost: 161 
-   remark #15477: vector cost: 52.500 
-   remark #15478: estimated potential speedup: 2.960 
+   remark #15476: scalar cost: 143 
+   remark #15477: vector cost: 22.250 
+   remark #15478: estimated potential speedup: 5.930 
    remark #15487: type converts: 8 
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(313,1)
+LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(314,1)
 <Remainder loop for vectorization>
 LOOP END
 ===========================================================================

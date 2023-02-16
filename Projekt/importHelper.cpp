@@ -349,6 +349,7 @@ FileInformation readImageData(InputType type){
         } else if (answer == "n" || answer == "no" || answer == "nein") {
             fileName = inputFilePath(type);
         } else {
+            cout << endl << "!! Inputfehler: Bitte entscheide dich für ja oder nein !!" << endl;
             continue;
         }
 

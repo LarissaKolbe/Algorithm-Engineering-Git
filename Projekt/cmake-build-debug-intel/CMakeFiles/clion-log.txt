@@ -1,4 +1,0 @@
-/usr/local/stow/clion-2022.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/le34xoh/Algorithm-Engineering-Git/Projekt -B /home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel
--- Configuring done
--- Generating done
--- Build files have been written to: /home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug-intel

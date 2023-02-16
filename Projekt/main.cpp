@@ -11,6 +11,7 @@
 #include "importHelper.h"
 #include "fitnessHelper.h"
 #include "configurationHelpers.h"
+#include "PerfEvent.hpp"
 
 using namespace std;
 
@@ -31,34 +32,59 @@ int callFit = 0, parDiff=0, simdDiff=0, vi8Diff=0, vi256Diff=0;
 
 bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coordinate> targetShape) {
     auto start = omp_get_wtime();
-    bool native = isBetterFitControllNative(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+    BenchmarkParameters paramsFit;
+
+    {
+        paramsFit.setParam("_name", "Nat"); // set parameter
+        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
+        bool native = isBetterFitControllNative(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+    }
     timeNat += omp_get_wtime() - start;
 
     start = omp_get_wtime();
-    bool parallel = isBetterFitControllParallel(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+    {
+        paramsFit.setParam("_name", "Par"); // set parameter
+        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
+        bool parallel = isBetterFitControllParallel(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
+    }
     timePar += omp_get_wtime() - start;
 
     start = omp_get_wtime();
-    bool viUnroll8 = isBetterFit_VIUnroll8(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+    {
+        paramsFit.setParam("_name", "VI8"); // set parameter
+        int size = (int) targetShape.size();
+        size = (size - 8) / 8;
+        size = size + (size % 8);
+        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
+        bool viUnroll8 = isBetterFit_VIUnroll8(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
+    }
     timeVIUnroll8 += omp_get_wtime() - start;
 
+    bool viUnroll256;
     start = omp_get_wtime();
-    bool viUnroll256 = isBetterFit_VIUnroll256(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+    {
+        paramsFit.setParam("_name", "256"); // set parameter
+        int size = (int) targetShape.size();
+        size = (size - 16) / 16;
+        size = size + (size % 16);
+        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
+        viUnroll256 = isBetterFit_VIUnroll256(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
+    }
     timeVIUnroll256 += omp_get_wtime() - start;
 
     //TODO: die einzelnen Funktionen haben manchmal versch Ergebnisse!
     // Liegt am unroll, dass funktioniert nicht wie es soll.
     // Dadurch kommen teils NaN Werte in die Arrays, woduch andere Werte bei Operationen mit denne rausgelöscht werden
-    if(native != parallel || native != viUnroll256 || native != viUnroll8){
-        cout << "!!!!! ERROR - FITNESS UNTERSCHIEDLICH !!!!!" << endl;
-    }
-    if (native != parallel){
-        parDiff++;
-    } if (native != viUnroll8){
-        vi8Diff++;
-    } if (native != viUnroll256){
-        vi256Diff++;
-    }
+//    if(native != parallel || native != viUnroll256 || native != viUnroll8){
+//        cout << "!!!!! ERROR - FITNESS UNTERSCHIEDLICH !!!!!" << endl;
+//    }
+//    if (native != parallel){
+//        parDiff++;
+//    } if (native != viUnroll8){
+//        vi8Diff++;
+//    } if (native != viUnroll256){
+//        vi256Diff++;
+//    }
     callFit++;
     return viUnroll256;
 }
@@ -81,6 +107,10 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
         meanY += dataset[i].y;
     }
 
+    //rundet die Werte auf decimals viele Nachkommastellen
+    meanX = roundToNDecimals(meanX / (float) size, decimals);
+    meanY = roundToNDecimals(meanY / (float) size, decimals);
+
     //Berechnet die Varianz der einzelnen Koordinatenwerte
 #pragma omp simd aligned(dataset : 64) reduction(+: varianceX, varianceY)
     for(int i=0; i<size; i++){
@@ -94,9 +124,6 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
     stdDeviationX = roundToNDecimals(sqrt(varianceX), decimals);
     stdDeviationY = roundToNDecimals(sqrt(varianceY), decimals);
 
-    //rundet die Werte auf decimals viele Nachkommastellen
-    meanX = roundToNDecimals(meanX / (float) size, decimals);
-    meanY = roundToNDecimals(meanY / (float) size, decimals);
     varianceX = roundToNDecimals(varianceX, decimals);
     varianceY = roundToNDecimals(varianceY, decimals);
 
@@ -116,7 +143,13 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
  */
 bool isErrorOk(Coordinate *__restrict__ currentDS, const statisticalProperties& initialProps, const int size, const double accuracy, const int decimals) {
     //berechnet statistischen Eigenschaften des veränderten Datensatzes
-    statisticalProperties currentProps = calculateStatisticalProperties(currentDS, size, decimals);
+    statisticalProperties currentProps;
+    BenchmarkParameters paramsStat;
+    {
+        paramsStat.setParam("_name", "calcStats"); // set parameter
+        PerfEventBlock e(size, paramsStat, true); // start counter
+        currentProps = calculateStatisticalProperties(currentDS, size, decimals);
+    }
 
     //vergleicht die Eigenschaften des ursprünglichen und des veränderten Datensatzes
     return abs(currentProps.meanX - initialProps.meanX) <= accuracy
@@ -131,19 +164,23 @@ bool isErrorOk(Coordinate *__restrict__ currentDS, const statisticalProperties& 
  * @param pointToMove Punkt, der bewegt werden soll
  * @param maxX        Maximal erlaubte x-Koordinate
  * @param maxY        Maximal erlaubte y-Koordinate
- * @param distMove    Zufallsverteilung für Punktbewegung
- * @param gen         Zufallszahlengenerator
+ * @param maxMovement Maximale Entfernung, um die sich ein Punkt bewegen kann
+ * @param gen         Zufallszahlenseed
  * @return Koordinaten des bewegten Punktes
  */
-Coordinate moveRandomPoint(const Coordinate pointToMove, const int maxX, const int maxY, uniform_real_distribution<float> distMove, mt19937 gen) {
+Coordinate moveRandomPoint(const Coordinate pointToMove, const int maxX, const int maxY, float maxMovement, mt19937 gen) {
+    //initialisiert Zufallszahlengenerator für Bewegung
+    uniform_real_distribution<float> distMove(-maxMovement,maxMovement);
+
     Coordinate newCoordinate;
+    // Bewegt den Punkt um zufällige Werte
+    // akzeptiert Bewegung nur, wenn sie nach runden noch innerhalb der Bildgrenzen ist
+    //  andernfalls wird er erneut verschoben
     do {
         newCoordinate = {
                 pointToMove.x + distMove(gen),
                 pointToMove.y + distMove(gen),
         };
-    // akzeptiert Bewegung nur, wenn sie nach runden noch innerhalb der Bildgrenzen ist
-    //  andernfalls wird neu berechnet
     } while(round(newCoordinate.x) >= maxX || round(newCoordinate.y) >= maxY
             || newCoordinate.x < 0 || newCoordinate.y < 0);
     return newCoordinate;
@@ -157,20 +194,19 @@ Coordinate moveRandomPoint(const Coordinate pointToMove, const int maxX, const i
  * @param maxX Maximal erlaubte x-Koordinate
  * @param maxY Maximal erlaubte y-Koordinate
  * @param temp aktuelle temperature
- * @param distMove Zufallsverteilung für Punktbewegung
- * @param gen Zufallszahlengenerator
+ * @param maxMovement Maximale Entfernung, um die sich ein Punkt bewegen kann
+ * @param gen Zufallszahlenseed
  * @return neue Koordinaten des bewegten Punktes
  */
-Coordinate perturb(Coordinate pointToMove, const aligned_vector<Coordinate>& targetShape, const int maxX, const int maxY, double temp, uniform_real_distribution<float> distMove, mt19937 gen){
+Coordinate perturb(Coordinate pointToMove, const aligned_vector<Coordinate>& targetShape, const int maxX, const int maxY, double temp, float maxMovement, mt19937 gen){
     //initialisiert Zufallszahlengenerator zwischen 0 und 1
     uniform_real_distribution<double> distTemp(0, 1);
 
-    //TODO: dadurch, dass sicch jetzt nur immer ein Punkt bewegt, bewegt sich insg zu wenig und das Bild verändert sich kaum!!
     //bewegt den übergebenen Punkt bis if-Bedingung erfüllt wird
     while(true){
         //bewegt Punkt
         auto startMRP = omp_get_wtime();
-        Coordinate modifiedPoint = moveRandomPoint(pointToMove, maxX, maxY, distMove, gen);
+        Coordinate modifiedPoint = moveRandomPoint(pointToMove, maxX, maxY, maxMovement, gen);
         timeMRP += omp_get_wtime() - startMRP;
         callMRP++;
 
@@ -181,6 +217,8 @@ Coordinate perturb(Coordinate pointToMove, const aligned_vector<Coordinate>& tar
         }
     }
 }
+
+int errorOk = 0;
 
 /**
  * Bewegt die Punkte des Inputdatensatz in Richtung der Zielform.
@@ -197,22 +235,20 @@ Coordinate perturb(Coordinate pointToMove, const aligned_vector<Coordinate>& tar
 aligned_vector<Coordinate> generateNewPlot(aligned_vector<Coordinate> currentDS, const aligned_vector<Coordinate>& targetShape, statisticalProperties initialProperties, Configurations conf, const int maxX, const int maxY) {
     //speichert Konfigurationen in Konstanten, um nicht immer das ganze Objekt laden zu müssen
     const double maxTemp = conf.maxTemp, minTemp = conf.minTemp, accuracy = conf.accuracy;
-    const int iterations = conf.iterations, decimals = conf.decimals, dataSize = currentDS.size();
+    const int iterations = conf.iterations, decimals = conf.decimals, dataSize = (int)currentDS.size();
+    const float maxMovement = conf.maxMovement;
 
     //initialisiert Zufallszahlengenerator
     random_device rd;
     mt19937 gen(rd());
-
     //initialisiert Zufallszahlengenerator um zufälligen Punkt im Inputdatensatz auszuwählen
     uniform_real_distribution<> distIndex(0, dataSize);
-    //initialisiert Zufallszahlengenerator zwischen + und - "maxMovement"
-    uniform_real_distribution<float> distMove(-conf.maxMovement,conf.maxMovement);
 
     for (int i = 0; i<iterations; i++){
         aligned_vector<Coordinate> testDS(currentDS);
 
         //TODO: am Ende wieder rausnehmen
-        if(i % 10000 == 0) {
+        if(i % 50000 == 0) {
             auto start = omp_get_wtime();
             cout << endl << "Iteration: " << i  << endl;
             string fileNameTest = "../data/output/output" + to_string(i) + ".ppm";
@@ -225,18 +261,23 @@ aligned_vector<Coordinate> generateNewPlot(aligned_vector<Coordinate> currentDS,
         // beginnt mit maxTemp und nähert sich mit jeder Iteration minTemp
         const double temp = (maxTemp - minTemp) * ((double)(iterations-i)/(double)iterations) + minTemp;
 
-        //bestimmt zufällig Punkt zum verschieben
-        const int indexToMove = (int)distIndex(gen);
-
-        //bewegt den übergebenen Punkt in Richtung der Zielform
         auto startPerturb = omp_get_wtime();
-        testDS[indexToMove] = perturb(testDS[indexToMove], targetShape, maxX, maxY, temp, distMove, gen);
+
+        int randomIndex = (int)distIndex(gen);
+        BenchmarkParameters paramsPerturb;
+        {
+            paramsPerturb.setParam("_name", "Perturb"); // set parameter
+            PerfEventBlock e(1, paramsPerturb, true); // start counter
+        //bewegt den übergebenen Punkt in Richtung der Zielform
+            testDS[randomIndex] = perturb(testDS[randomIndex], targetShape, maxX, maxY, temp, maxMovement, gen);
+        }
         timePertub += omp_get_wtime() - startPerturb;
         callPertub++;
 
         //prüft, ob statistische Eigenschaften noch mit den anfänglichen übereinstimmen
         if (isErrorOk(testDS.data(), initialProperties, dataSize, accuracy, decimals)){
             currentDS = testDS;
+            errorOk++;
         }
     }
     return currentDS;
@@ -281,10 +322,27 @@ int main() {
     const int outputHeight = getGreaterValue(inputInfo.height, targetInfo.height);
 
     //Berechnet die statistischen Eigenschaften der Eingabedaten
-    statisticalProperties initialProperties = calculateStatisticalProperties(inputVector.data(), inputVector.size(), conf.decimals);
+    statisticalProperties initialProperties = calculateStatisticalProperties(inputVector.data(), (int)inputVector.size(), conf.decimals);
 
     //Bewegt Inputdaten in Richtung der Zielform, ohne dabei die statistischen Eigenschaften zu verändern
-    aligned_vector<Coordinate> result = generateNewPlot(inputVector, targetShape, initialProperties, conf, outputWidth, outputHeight);
+    aligned_vector<Coordinate> result; // = generateNewPlot(inputVector, targetShape, initialProperties, conf, outputWidth, outputHeight);
+
+    BenchmarkParameters params;
+    {
+        params.setParam("_name", "GenNewPlot"); // set parameter
+        int size = conf.iterations;
+        PerfEventBlock e(size, params, true); // start counter
+        result = generateNewPlot(inputVector, targetShape, initialProperties, conf, outputWidth, outputHeight);
+    }
+
+    cout << endl << "Init:   ";
+    for(int i=0; i<inputVector.size();i++){
+        cout << "(" << inputVector[i].x << ", " << inputVector[i].y <<"), ";
+    }
+    cout << endl << "Result: ";
+    for(int i=0; i<result.size();i++){
+        cout << "(" << result[i].x << ", " << result[i].y <<"), ";
+    }
 
     //Exportiert das Ergebnisbild
     auto startExp = omp_get_wtime();
@@ -315,7 +373,8 @@ int main() {
     cout << "--   Dist/run:     " << timeVIUnroll8 / callFit<< " sek ;  " << (timeVIUnroll8 / callFit) / 60 << "min" << endl;
     cout << "-- VI_Unr256 Ges:  " << timeVIUnroll256 << " sek ;  " << timeVIUnroll256 / 60 << "min" << endl;
     cout << "--   Dist/run:     " << timeVIUnroll256 / callFit<< " sek ;  " << (timeVIUnroll256 / callFit) / 60 << "min" << endl;
-    cout << "-- Runs:   " << callFit << endl;
+    cout << "-- Runs:   " << callFit << endl << endl;
+    cout << "-- errorOk:   " << errorOk << endl;
 
     cout << "Errors: " << endl
         << "  Par: " << parDiff << "; VI8: " << vi8Diff << "; 256: " << vi256Diff << endl;
