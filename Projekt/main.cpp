@@ -72,6 +72,14 @@ bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coord
     }
     timeVIUnroll256 += omp_get_wtime() - start;
 
+    start = omp_get_wtime();
+    bool viUnroll8For = isBetterFit_VIUnroll8For(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+    timeVIUnroll8 += omp_get_wtime() - start;
+
+    start = omp_get_wtime();
+    bool viUnroll256For = isBetterFit_VIUnroll256For(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+    timeVIUnroll256 += omp_get_wtime() - start;
+
     //TODO: die einzelnen Funktionen haben manchmal versch Ergebnisse!
     // Liegt am unroll, dass funktioniert nicht wie es soll.
     // Dadurch kommen teils NaN Werte in die Arrays, woduch andere Werte bei Operationen mit denne rausgelöscht werden

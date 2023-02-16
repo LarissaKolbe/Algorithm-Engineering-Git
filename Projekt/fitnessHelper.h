@@ -35,4 +35,8 @@ bool isBetterFitControllNative (Coordinate p1, Coordinate p2, Coordinate *__rest
 
 bool isBetterFitControllParallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
+bool isBetterFit_VIUnroll8For(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+
+bool isBetterFit_VIUnroll256For(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+
 #endif //PROJEKT_FITNESSHELPER_H
