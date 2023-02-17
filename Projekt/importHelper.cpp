@@ -16,6 +16,8 @@ using namespace std;
 void getInputShapeOverview(InputSize size){
     switch (size) {
         case small:
+            break;
+        case middle:
             cout << " [6]  linearer Graph - steigend       ( 100 Punkte)" << endl
                  << " [7]  linearer Graph - fallend        ( 100 Punkte)" << endl
                  << " [8]  diagonale Streifen - steigend   ( 250 Punkte)" << endl
@@ -52,30 +54,46 @@ void getInputShapeOverview(InputSize size){
 void getTargetShapeOverview(InputSize size){
     switch (size) {
         case small:
-            cout << " [1]  linearer Graph - steigend       ( 270 Punkte)" << endl
-                 << " [2]  linearer Graph - fallend        ( 270 Punkte)" << endl
-                 << " [3]  diagonale Streifen - steigend   ( 512 Punkte)" << endl
-                 << " [4]  diagonale Streifen - fallend    ( 512 Punkte)" << endl
-                 << " [5]  vertikale Streifen              ( 416 Punkte)" << endl
-                 << " [6]  horizontale Streifen            ( 530 Punkte)" << endl
-                 << " [7]  Kreis                           ( 719 Punkte)" << endl
-                 << " [8]  Stern                           ( 654 Punkte)" << endl
-                 << " [9]  Würfel                          ( 546 Punkte)" << endl
-                 << " [10] Kreuz                           (1181 Punkte)" << endl
-                 << " [11] Würfel mit Kreuz                (3002 Punkte)" << endl;
+            cout << " [1]  linearer Graph - steigend       (  105 Punkte)" << endl
+                 << " [2]  linearer Graph - fallend        (  105 Punkte)" << endl
+                 << " [3]  diagonale Streifen - steigend   (  216 Punkte)" << endl
+                 << " [4]  diagonale Streifen - fallend    (  216 Punkte)" << endl
+                 << " [5]  vertikale Streifen              (  209 Punkte)" << endl
+                 << " [6]  horizontale Streifen            (  269 Punkte)" << endl
+                 << " [7]  Kreis                           (  236 Punkte)" << endl
+                 << " [8]  Stern                           (  278 Punkte)" << endl
+                 << " [9]  Würfel                          (  554 Punkte)" << endl
+                 << " [10] Kreuz                           (  228 Punkte)" << endl
+                 << " [11] Würfel mit Kreuz                (  752 Punkte)" << endl
+                 << " [12] Hasen                           (  842 Punkte)" << endl;
+            break;
+        case middle:
+            cout << " [1]  linearer Graph - steigend       (  270 Punkte)" << endl
+                 << " [2]  linearer Graph - fallend        (  270 Punkte)" << endl
+                 << " [3]  diagonale Streifen - steigend   (  512 Punkte)" << endl
+                 << " [4]  diagonale Streifen - fallend    (  512 Punkte)" << endl
+                 << " [5]  vertikale Streifen              (  416 Punkte)" << endl
+                 << " [6]  horizontale Streifen            (  530 Punkte)" << endl
+                 << " [7]  Kreis                           (  719 Punkte)" << endl
+                 << " [8]  Stern                           (  654 Punkte)" << endl
+                 << " [9]  Würfel                          (  546 Punkte)" << endl
+                 << " [10] Kreuz                           ( 1181 Punkte)" << endl
+                 << " [11] Würfel mit Kreuz                ( 3002 Punkte)" << endl
+                 << " [12] Hasen                           ( 1987 Punkte)" << endl;
             break;
         case big:
-            cout << " [1]  linearer Graph - steigend       ( 681 Punkte)" << endl
-                 << " [2]  linearer Graph - fallend        ( 681 Punkte)" << endl
-                 << " [3]  diagonale Streifen - steigend   (1152 Punkte)" << endl
-                 << " [4]  diagonale Streifen - fallend    (1152 Punkte)" << endl
-                 << " [5]  vertikale Streifen              (1060 Punkte)" << endl
-                 << " [6]  horizontale Streifen            (1749 Punkte)" << endl
-                 << " [7]  Kreis                           (1321 Punkte)" << endl
-                 << " [8]  Stern                           (1797 Punkte)" << endl
-                 << " [9]  Würfel                          (2792 Punkte)" << endl
-                 << " [10] Kreuz                           (1327 Punkte)" << endl
-                 << " [11] Würfel mit Kreuz                (3827 Punkte)" << endl;
+            cout << " [1]  linearer Graph - steigend       (  681 Punkte)" << endl
+                 << " [2]  linearer Graph - fallend        (  681 Punkte)" << endl
+                 << " [3]  diagonale Streifen - steigend   ( 1152 Punkte)" << endl
+                 << " [4]  diagonale Streifen - fallend    ( 1152 Punkte)" << endl
+                 << " [5]  vertikale Streifen              ( 1060 Punkte)" << endl
+                 << " [6]  horizontale Streifen            ( 1749 Punkte)" << endl
+                 << " [7]  Kreis                           ( 1321 Punkte)" << endl
+                 << " [8]  Stern                           ( 1797 Punkte)" << endl
+                 << " [9]  Würfel                          ( 2792 Punkte)" << endl
+                 << " [10] Kreuz                           ( 1327 Punkte)" << endl
+                 << " [11] Würfel mit Kreuz                ( 3827 Punkte)" << endl
+                 << " [12] Hasen                           (10275 Punkte)" << endl;
             break;
     }
 }
@@ -156,6 +174,7 @@ string chooseFromTargetShapes(InputSize size){
             case 9: return "cube";
             case 10: return "cross";
             case 11: return "xCube";
+            case 12: return "bunnies";
             default: cout << endl << "!! Inputfehler: Bitte gibt eine der angegebenen Auswahlwöglichkeiten ein. !!" << endl; continue;
         }
     }
@@ -172,8 +191,9 @@ InputSize getSize(){
         int answer;
         cout << endl
              << "Wie groß soll das Bild sein?" << endl
-             << " [1]  255 x 283 " << endl
-             << " [2]  500 x 500 " << endl;
+             << " [1]  100 x 100 " << endl
+             << " [2]  255 x 283 " << endl
+             << " [3]  500 x 500 " << endl;
         cout << "Bitte gib die Nummer der Größe an, die du verwenden möchtest:  ";
         cin >> answer;
         if (incorrectInput()) {
@@ -182,7 +202,8 @@ InputSize getSize(){
         }
         switch(answer){
             case 1: return small;
-            case 2: return big;
+            case 2: return middle;
+            case 3: return big;
             default: cout << endl << "!! Inputfehler: Bitte gibt eine der angegebenen Auswahlwöglichkeiten ein. !!" << endl; continue;
         }
     }
@@ -204,6 +225,7 @@ string chooseImageFromDefault(InputType type){
     InputSize size = getSize();
     switch (size) {
         case small: fileName = fileName.append("small/"); break;
+        case middle: fileName = fileName.append("middle/"); break;
         case big: fileName = fileName.append("big/"); break;
     }
     // Wahl des Bildes

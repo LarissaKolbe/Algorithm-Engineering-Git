@@ -87,6 +87,7 @@ enum InputType {
  */
 enum InputSize {
     small,
+    middle,
     big,
 };
 

@@ -26,7 +26,6 @@ void printConfigurationOverview(Configurations conf){
          << "   - Standard: " << conf.maxTemp << endl
          << " [6] Minimale Temperatur (*). " << endl
          << "   - Standard: " << conf.minTemp << endl
-         //TODO: Erklärung zu temp verbessern
          << " (*) Temperatur startet beim maximalen Wert und wird mit Fortschreiten des Programms kleiner, "
             "bis der minimale Wert erreicht wird. " << endl <<
          "     Sie wird verwendet, um auch Punktbewegungen zu akzeptieren, die nicht Zielführend sind und so zu vermeiden, "

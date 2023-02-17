@@ -48,42 +48,42 @@ build cmake_object_order_depends_target_Projekt_exec: phony || CMakeFiles/Projek
 
 build CMakeFiles/Projekt_exec.dir/main.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/main.cpp || cmake_object_order_depends_target_Projekt_exec
   DEP_FILE = CMakeFiles/Projekt_exec.dir/main.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include
   OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
 build CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_exec
   DEP_FILE = CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include
   OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
 build CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_exec
   DEP_FILE = CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include
   OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
 build CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_exec
   DEP_FILE = CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include
   OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
 build CMakeFiles/Projekt_exec.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_exec
   DEP_FILE = CMakeFiles/Projekt_exec.dir/importHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include
   OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
 
 build CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_exec
   DEP_FILE = CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include
   OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_exec.dir
@@ -97,8 +97,8 @@ build CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_exe
 # Link the executable Projekt_exec
 
 build Projekt_exec: CXX_EXECUTABLE_LINKER__Projekt_exec_Debug CMakeFiles/Projekt_exec.dir/main.cpp.o CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o CMakeFiles/Projekt_exec.dir/importHelper.cpp.o CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o | /usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
-  LINK_LIBRARIES = -Wl,-rpath,/usr/local/opt/libomp/lib  -lomp  /usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_LIBRARIES = -Wl,-rpath,/usr/local/opt/libomp/lib  -lm  -lomp  /usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib
   LINK_PATH = -L/usr/local/opt/libomp/lib
   OBJECT_DIR = CMakeFiles/Projekt_exec.dir
   POST_BUILD = :
@@ -117,70 +117,70 @@ build cmake_object_order_depends_target_Projekt_test_exec: phony || CMakeFiles/P
 
 build CMakeFiles/Projekt_test_exec.dir/catch_main.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_main.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/catch_main.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/catch_tests_importHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests_importHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/catch_tests_importHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/helperFunctions.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/helperFunctions.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/helperFunctions.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/configurationHelpers.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/configurationHelpers.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/configurationHelpers.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/exportHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/exportHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/exportHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/importHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/importHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/importHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/fitnessHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/fitnessHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/catch_tests_helperFunctions.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests_helperFunctions.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/catch_tests_helperFunctions.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/catch_tests_configurationHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests_configurationHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/catch_tests_configurationHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
 
 build CMakeFiles/Projekt_test_exec.dir/catch_tests_fitnessHelper.cpp.o: CXX_COMPILER__Projekt_test_exec_Debug /Users/larissa/Desktop/Uni/Master/1.Sem_WS22$:23/Algorithm$ Engineering/Algorithm-Engineering-Git/Projekt/catch_tests_fitnessHelper.cpp || cmake_object_order_depends_target_Projekt_test_exec
   DEP_FILE = CMakeFiles/Projekt_test_exec.dir/catch_tests_fitnessHelper.cpp.o.d
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fopenmp -std=c++11
   INCLUDES = -I/usr/local/opt/libomp/include -I"/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/catch/include"
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_test_exec.dir
@@ -194,8 +194,8 @@ build CMakeFiles/Projekt_test_exec.dir/catch_tests_fitnessHelper.cpp.o: CXX_COMP
 # Link the executable Projekt_test_exec
 
 build Projekt_test_exec: CXX_EXECUTABLE_LINKER__Projekt_test_exec_Debug CMakeFiles/Projekt_test_exec.dir/catch_main.cpp.o CMakeFiles/Projekt_test_exec.dir/catch_tests_importHelper.cpp.o CMakeFiles/Projekt_test_exec.dir/helperFunctions.cpp.o CMakeFiles/Projekt_test_exec.dir/configurationHelpers.cpp.o CMakeFiles/Projekt_test_exec.dir/exportHelper.cpp.o CMakeFiles/Projekt_test_exec.dir/importHelper.cpp.o CMakeFiles/Projekt_test_exec.dir/fitnessHelper.cpp.o CMakeFiles/Projekt_test_exec.dir/catch_tests_helperFunctions.cpp.o CMakeFiles/Projekt_test_exec.dir/catch_tests_configurationHelper.cpp.o CMakeFiles/Projekt_test_exec.dir/catch_tests_fitnessHelper.cpp.o | /usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib
-  FLAGS = -std=c++11 -lstdc++ -march=native -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
-  LINK_LIBRARIES = -Wl,-rpath,/usr/local/opt/libomp/lib  -lomp  /usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib
+  FLAGS = -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+  LINK_LIBRARIES = -Wl,-rpath,/usr/local/opt/libomp/lib  -lm  -lomp  /usr/local/Cellar/gcc@9/9.5.0/lib/gcc/9/libgomp.dylib
   LINK_PATH = -L/usr/local/opt/libomp/lib
   OBJECT_DIR = CMakeFiles/Projekt_test_exec.dir
   POST_BUILD = :
@@ -305,14 +305,14 @@ build catch/all: phony
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../catch/CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindOpenMP.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/Catch2/Catch2Config.cmake /usr/local/lib/cmake/Catch2/Catch2ConfigVersion.cmake /usr/local/lib/cmake/Catch2/Catch2Targets-release.cmake /usr/local/lib/cmake/Catch2/Catch2Targets.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../catch/CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindOpenMP.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../catch/CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindOpenMP.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/Catch2/Catch2Config.cmake /usr/local/lib/cmake/Catch2/Catch2ConfigVersion.cmake /usr/local/lib/cmake/Catch2/Catch2Targets-release.cmake /usr/local/lib/cmake/Catch2/Catch2Targets.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../catch/CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindOpenMP.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
 
 
 #############################################

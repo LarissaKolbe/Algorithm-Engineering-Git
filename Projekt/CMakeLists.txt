@@ -18,23 +18,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lstdc++ ")
 # verlinkt m-Library
 link_libraries(m)
 
-# Compilerflags um CPU voll auszunutzen
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -msse2")
-else ()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -msse2")
-endif ()
+# Compilerflags um CPU voll auszunutzen und Vector Intrinsics zu nutzen
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native -mavx -msse2")
 
 #weitere:
 #  -fsanitize=address ... gibt nochmal deeeeeeutlich mehr Warnungen
 #  -fsanitize=undefined ... weißt auf undefiniertes Behaviour hin
 # Debuggerflags:
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall -fsanitize=address -fsanitize=undefined ")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall -fsanitize=address -fsanitize=undefined ")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -qopt-report=5 -qopt-report-phase=vec")
 
 # Optimierungsflags:
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Ofast -ffast-math")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Ofast -ffast-math")
 
 find_package(OpenMP)
 if(OpenMP_CXX_FOUND)
