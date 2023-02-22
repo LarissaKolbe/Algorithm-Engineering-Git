@@ -207,7 +207,7 @@ LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(
 LOOP END
 ===========================================================================
 
-Begin optimization report for: isBetterFitControllNative(Coordinate, Coordinate, Coordinate *, int)
+Begin optimization report for: isBetterFit_Native(Coordinate, Coordinate, Coordinate *, int)
 
     Report from: Vector optimizations [vec]
 
@@ -246,7 +246,7 @@ LOOP BEGIN at /home/le34xoh/Algorithm-Engineering-Git/Projekt/fitnessHelper.cpp(
 LOOP END
 ===========================================================================
 
-Begin optimization report for: isBetterFitControllParallel(Coordinate, Coordinate, Coordinate *, int)
+Begin optimization report for: isBetterFit_Parallel(Coordinate, Coordinate, Coordinate *, int)
 
     Report from: Vector optimizations [vec]
 

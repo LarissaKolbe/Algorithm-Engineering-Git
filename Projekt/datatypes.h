@@ -43,10 +43,6 @@ struct statisticalProperties {
     float meanX;
     /** Durchschnitt der y-Werte */
     float meanY;
-    /** Varianz der x-Werte */
-    float varianceX;
-    /** Varianz der y-Werte */
-    float varianceY;
     /** Standardabweichung der x-Werte */
     float stdDeviationX;
     /** Standardabweichung der y-Werte */

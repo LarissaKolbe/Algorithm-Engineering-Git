@@ -9,8 +9,10 @@ TEST_CASE("is better fit - no better fit", "[correctness]"){
     aligned_vector<Coordinate> target = {{3.2,4},{5.34,6.19},{7.13,2.965},{5.6,2.7}};
 
     //check all implementations of this function
-    REQUIRE(isBetterFitControllNative(p1,p2,target.data(),target.size()) == false);
-    REQUIRE(isBetterFitControllParallel(p1,p2,target.data(),target.size()) == false);
+    REQUIRE(isBetterFit_Native(p1, p2, target.data(), target.size()) == false);
+    REQUIRE(isBetterFit_Parallel(p1, p2, target.data(), target.size()) == false);
     REQUIRE(isBetterFit_VIUnroll256(p1,p2,target.data(),target.size()) == false);
     REQUIRE(isBetterFit_VIUnroll8(p1,p2,target.data(),target.size()) == false);
+    REQUIRE(isBetterFit_VIUnroll256For(p1,p2,target.data(),target.size()) == false);
+    REQUIRE(isBetterFit_VIUnroll8For(p1,p2,target.data(),target.size()) == false);
 }

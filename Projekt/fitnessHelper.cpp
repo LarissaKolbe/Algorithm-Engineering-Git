@@ -294,7 +294,7 @@ bool isBetterFit_VIUnroll256(Coordinate p1, Coordinate p2, Coordinate *__restric
 }
 
 
-bool isBetterFitControllNative (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
+bool isBetterFit_Native (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
     float minDistNew = getDistance(p1, targetShape[0]);
     float minDistPrev = getDistance(p2, targetShape[0]);
 
@@ -306,7 +306,7 @@ bool isBetterFitControllNative (Coordinate p1, Coordinate p2, Coordinate *__rest
 }
 
 
-bool isBetterFitControllParallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
+bool isBetterFit_Parallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
     float minDistNew = getDistance(p1, targetShape[0]);
     float minDistPrev = getDistance(p2, targetShape[0]);
 

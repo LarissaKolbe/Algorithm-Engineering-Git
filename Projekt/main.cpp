@@ -38,7 +38,7 @@ bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coord
 ////    {
 ////        paramsFit.setParam("_name", "Nat"); // set parameter
 ////        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
-        fit = isBetterFitControllNative(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
+        fit = isBetterFit_Native(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
 ////    }
     timeNat += omp_get_wtime() - start;
 //
@@ -46,7 +46,7 @@ bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coord
 ////    {
 ////        paramsFit.setParam("_name", "Par"); // set parameter
 ////        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
-//        fit = isBetterFitControllParallel(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
+//        fit = isBetterFit_Parallel(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
 ////    }
 //    timePar += omp_get_wtime() - start;
 //
@@ -113,7 +113,7 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
         meanY += dataset[i].y;
     }
 
-    //rundet die Werte auf decimals viele Nachkommastellen
+    //rundet die Durchschnittswerte auf decimals viele Nachkommastellen
     meanX = roundToNDecimals(meanX / (float) size, decimals);
     meanY = roundToNDecimals(meanY / (float) size, decimals);
 
@@ -126,16 +126,14 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
     varianceX = varianceX / (float)(size-1);
     varianceY = varianceY / (float)(size-1);
 
-    //Berechnet die Standardabweichung anhand der Varianz und rundet sie
+    //Berechnet die Standardabweichung anhand der Varianz und
+    // rundet sie auf decimals viele Nachkommastellen
     stdDeviationX = roundToNDecimals(sqrt(varianceX), decimals);
     stdDeviationY = roundToNDecimals(sqrt(varianceY), decimals);
 
-    varianceX = roundToNDecimals(varianceX, decimals);
-    varianceY = roundToNDecimals(varianceY, decimals);
-
     timeCalc += omp_get_wtime() - start;
     callCalc++;
-    return {meanX, meanY, varianceX, varianceY, stdDeviationX, stdDeviationY};
+    return {meanX, meanY, stdDeviationX, stdDeviationY};
 }
 
 /**
@@ -343,7 +341,7 @@ int main() {
 
     //Erstellt Koordinatenvektoren anhand der Bilddaten
     // Die Vektoren enthalten die Koordinaten aller schwarzen Punkte im Bild
-    aligned_vector<Coordinate> inputVector = createVectorFromImage(inputInfo.imageData, inputInfo.width, inputInfo.height);
+    aligned_vector<Coordinate> initialDS   = createVectorFromImage(inputInfo.imageData, inputInfo.width, inputInfo.height);
     aligned_vector<Coordinate> targetShape = createVectorFromImage(targetInfo.imageData, targetInfo.width, targetInfo.height);
 
     //Gibt den nicht mehr benötigten Speicher vom Heap frei
@@ -355,7 +353,7 @@ int main() {
     const int outputHeight = getGreaterValue(inputInfo.height, targetInfo.height);
 
     //Berechnet die statistischen Eigenschaften der Eingabedaten
-    statisticalProperties initialProperties = calculateStatisticalProperties(inputVector.data(), (int)inputVector.size(), conf.decimals);
+    statisticalProperties initialProperties = calculateStatisticalProperties(initialDS.data(), (int)initialDS.size(), conf.decimals);
 
     cout << endl
         << "Die graphischen Eigenschaften des Datensatzes sind: " << endl
@@ -365,14 +363,14 @@ int main() {
         << "  Standardabweichung der x-Werte: " << initialProperties.stdDeviationY << endl;
 
     //Bewegt Inputdaten in Richtung der Zielform, ohne dabei die statistischen Eigenschaften zu verändern
-    aligned_vector<Coordinate> result; // = generateNewPlot(inputVector, targetShape, initialProperties, conf, outputWidth, outputHeight);
+    aligned_vector<Coordinate> result; // = generateNewPlot(initialDS, targetShape, initialProperties, conf, outputWidth, outputHeight);
 
 //    BenchmarkParameters params;
 //    {
 //        params.setParam("_name", "GenNewPlot"); // set parameter
 //        int size = conf.iterations;
 //        PerfEventBlock e(size, params, true); // start counter
-        result = generateNewPlot(inputVector, targetShape, initialProperties, conf, outputWidth, outputHeight);
+        result = generateNewPlot(initialDS, targetShape, initialProperties, conf, outputWidth, outputHeight);
 //    }
 
     //Exportiert das Ergebnisbild

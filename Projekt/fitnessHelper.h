@@ -31,9 +31,9 @@ bool isBetterFit_VIUnroll8(Coordinate p1, Coordinate p2, Coordinate *__restrict_
  */
 bool isBetterFit_VIUnroll256(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
-bool isBetterFitControllNative (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_Native (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
-bool isBetterFitControllParallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_Parallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
 bool isBetterFit_VIUnroll8For(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
 
