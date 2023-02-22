@@ -1,0 +1,64 @@
+Using CPUID GenuineIntel-6-5E-3
+DEBUGINFOD_URLS=
+Compression enabled, disabling build id collection at the end of the session.
+nr_cblocks: 0
+affinity: SYS
+mmap flush: 1
+comp level: 1
+mmap size 528384B
+Control descriptor is not initialized
+couldn't open /proc/1/task/1/maps
+couldn't open /proc/308/task/308/maps
+couldn't open /proc/371/task/371/maps
+couldn't open /proc/415/task/415/maps
+couldn't open /proc/583/task/583/maps
+couldn't open /proc/591/task/591/maps
+couldn't open /proc/619/task/619/maps
+couldn't open /proc/622/task/622/maps
+couldn't open /proc/632/task/632/maps
+couldn't open /proc/634/task/634/maps
+couldn't open /proc/635/task/635/maps
+couldn't open /proc/636/task/636/maps
+couldn't open /proc/638/task/638/maps
+couldn't open /proc/640/task/640/maps
+couldn't open /proc/647/task/647/maps
+couldn't open /proc/712/task/712/maps
+couldn't open /proc/717/task/717/maps
+couldn't open /proc/719/task/719/maps
+couldn't open /proc/724/task/724/maps
+couldn't open /proc/729/task/729/maps
+couldn't open /proc/758/task/758/maps
+couldn't open /proc/780/task/780/maps
+couldn't open /proc/792/task/792/maps
+couldn't open /proc/809/task/809/maps
+couldn't open /proc/815/task/815/maps
+couldn't open /proc/816/task/816/maps
+couldn't open /proc/1147/task/1147/maps
+couldn't open /proc/1151/task/1151/maps
+couldn't open /proc/1162/task/1162/maps
+couldn't open /proc/1200/task/1200/maps
+couldn't open /proc/1207/task/1207/maps
+couldn't open /proc/1208/task/1208/maps
+couldn't open /proc/1269/task/1269/maps
+couldn't open /proc/1270/task/1270/maps
+couldn't open /proc/1524/task/1524/maps
+couldn't open /proc/1589/task/1589/maps
+couldn't open /proc/1798/task/1798/maps
+couldn't open /proc/1868/task/1868/maps
+couldn't open /proc/1913/task/1913/maps
+couldn't open /proc/6214/task/6214/maps
+couldn't open /proc/220986/task/220986/maps
+couldn't open /proc/221001/task/221001/maps
+couldn't open /proc/221021/task/221021/maps
+couldn't open /proc/221080/task/221080/maps
+couldn't open /proc/221237/task/221237/maps
+couldn't open /proc/221244/task/221244/maps
+couldn't open /proc/223304/task/223304/maps
+couldn't open /proc/248192/task/248192/maps
+couldn't open /proc/299947/task/299947/maps
+
+300464:perf-sync:ready:TSC=320875219488808
+[ perf record: Woken up 1 times to write data ]
+failed to write feature HYBRID_TOPOLOGY
+failed to write feature HYBRID_CPU_PMU_CAPS
+[ perf record: Captured and wrote 1,536 MB /tmp/amplxe-tmp-le34xoh/amplxe-res-300457-320874053794009/data.0/temp.dryrun.perf, compressed (original 0,010 MB, ratio is 4,958) ]

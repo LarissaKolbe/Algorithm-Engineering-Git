@@ -32,7 +32,7 @@ int callFit = 0, parDiff=0, vi8Diff=0, vi256Diff=0;
 
 bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coordinate> targetShape) {
     bool fit;
-    auto start = omp_get_wtime();
+//    auto start = omp_get_wtime();
 ////    BenchmarkParameters paramsFit;
 ////
 ////    {
@@ -40,7 +40,7 @@ bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coord
 ////        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
         fit = isBetterFit_Native(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
 ////    }
-    timeNat += omp_get_wtime() - start;
+//    timeNat += omp_get_wtime() - start;
 //
 //    auto start = omp_get_wtime();
 ////    {
@@ -91,7 +91,7 @@ bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coord
 ////    } if (native != viUnroll256){
 ////        vi256Diff++;
 ////    }
-    callFit++;
+//    callFit++;
     return fit;
 }
 
@@ -103,7 +103,7 @@ bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coord
  * @return statistische Eigenschaften des übergebenen Datensatzes
  */
 statisticalProperties calculateStatisticalProperties(const Coordinate *__restrict__ dataset, const int size, const int decimals){
-    auto start = omp_get_wtime();
+//    auto start = omp_get_wtime();
     float meanX = 0.0, meanY = 0.0, varianceX = 0.0, varianceY = 0.0, stdDeviationX, stdDeviationY;
 
     //Berechnet die Durchschnittswerte der einzelnen Koordinaten
@@ -131,8 +131,8 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
     stdDeviationX = roundToNDecimals(sqrt(varianceX), decimals);
     stdDeviationY = roundToNDecimals(sqrt(varianceY), decimals);
 
-    timeCalc += omp_get_wtime() - start;
-    callCalc++;
+//    timeCalc += omp_get_wtime() - start;
+//    callCalc++;
     return {meanX, meanY, stdDeviationX, stdDeviationY};
 }
 
@@ -147,12 +147,12 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
  */
 bool isErrorOk(Coordinate *__restrict__ currentDS, const statisticalProperties& initialProps, const int size, const double accuracy, const int decimals) {
     //berechnet statistischen Eigenschaften des veränderten Datensatzes
-    statisticalProperties currentProps;
+//    statisticalProperties currentProps;
 //    BenchmarkParameters paramsStat;
 //    {
 //        paramsStat.setParam("_name", "calcStats"); // set parameter
 //        PerfEventBlock e(size, paramsStat, true); // start counter
-        currentProps = calculateStatisticalProperties(currentDS, size, decimals);
+    statisticalProperties currentProps = currentProps = calculateStatisticalProperties(currentDS, size, decimals);
 //    }
 
     //vergleicht die Eigenschaften des ursprünglichen und des veränderten Datensatzes
@@ -209,10 +209,10 @@ Coordinate perturb(Coordinate pointToMove, const aligned_vector<Coordinate>& tar
     //bewegt den übergebenen Punkt bis if-Bedingung erfüllt wird
     while(true){
         //bewegt Punkt
-        auto startMRP = omp_get_wtime();
+//        auto startMRP = omp_get_wtime();
         Coordinate modifiedPoint = moveRandomPoint(pointToMove, maxX, maxY, maxMovement, gen);
-        timeMRP += omp_get_wtime() - startMRP;
-        callMRP++;
+//        timeMRP += omp_get_wtime() - startMRP;
+//        callMRP++;
 
         //akzeptiert bewegten Punkt, wenn er näher an der Zielform ist als vorher oder
         // wenn die Zufallszahl kleiner als temp ist
@@ -248,18 +248,19 @@ aligned_vector<Coordinate> generateNewPlot(aligned_vector<Coordinate> currentDS,
     //initialisiert Zufallszahlengenerator um zufälligen Punkt im Inputdatensatz auszuwählen
     uniform_real_distribution<> distIndex(0, dataSize);
 
+#pragma omp parallel for schedule(dynamic, 8)
     for (int i = 0; i<iterations; i++){
-        auto startIteration = omp_get_wtime();
+//        auto startIteration = omp_get_wtime();
         aligned_vector<Coordinate> testDS(currentDS);
 
         //TODO: am Ende wieder rausnehmen
         if(i % 25000 == 0) {
-            auto start = omp_get_wtime();
+//            auto start = omp_get_wtime();
             cout << endl << "Iteration: " << i  << endl;
             string fileNameTest = "../data/output/output" + to_string(i) + ".ppm";
             exportImage(fileNameTest, currentDS, 255, maxY, maxX);
-            timeExport += omp_get_wtime() - start;
-            callExp++;
+//            timeExport += omp_get_wtime() - start;
+//            callExp++;
         }
 
         //berechnet aktuelle "temperature"
@@ -278,42 +279,16 @@ aligned_vector<Coordinate> generateNewPlot(aligned_vector<Coordinate> currentDS,
 
         //prüft, ob statistische Eigenschaften noch mit den anfänglichen übereinstimmen
         if (isErrorOk(testDS.data(), initialProperties, dataSize, accuracy, decimals)){
+#pragma omp critical
+            {
             currentDS = testDS;
             errorOk++;
+            }
         }
-        timeIteration += omp_get_wtime() - startIteration;
+//        timeIteration += omp_get_wtime() - startIteration;
     }
     return currentDS;
 }
-
-aligned_vector<Coordinate> cleanDatasetTmp(aligned_vector<Coordinate> dataset){
-    int size = (int)dataset.size();
-    //rounds all entries to integer
-    // because in the ppm-file every pixel is represented by integer coordinates
-#pragma omp parallel for
-    for (int i=0; i < size; i++){
-        dataset[i].x = round(dataset[i].x);
-        dataset[i].y = round(dataset[i].y);
-    }
-
-    //sortiert dataset nach y-Koordinaten
-    sort(dataset.begin(), dataset.end(), compareByY);
-
-    //deletes duplicate entries
-    // if we don't do this, there will be problems while creating the ppm-image
-    for (int i=0; i < size; i++){
-        //compares current element with next element
-        if(i+1<size && dataset[i].x == dataset[i+1].x && dataset[i].y == dataset[i+1].y){
-            cout << "Erased double Point: (" << dataset[i+1].x << ", " << dataset[i+1].y << ")" << endl;
-            //erases element if it is same as next
-            dataset.erase(dataset.begin() + i);
-            size -= 1;
-            i--;
-        }
-    }
-    return dataset;
-}
-
 
 int main() {
     //TODO: nur zum testen ob openMP ordentlich läuft...
@@ -374,10 +349,10 @@ int main() {
 //    }
 
     //Exportiert das Ergebnisbild
-    auto startExp = omp_get_wtime();
+//    auto startExp = omp_get_wtime();
     exportImage(fileNameExport, result, inputInfo.maxColor, outputHeight, outputWidth);
-    timeExport += omp_get_wtime() - startExp;
-    callExp++;
+//    timeExport += omp_get_wtime() - startExp;
+//    callExp++;
 
     //TODO: Am Ende rausnehmen
     double runtime = omp_get_wtime() - startProgram;

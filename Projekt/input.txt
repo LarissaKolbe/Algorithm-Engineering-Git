@@ -1,6 +1,6 @@
 n
-./data/input/big/dots_1000.ppm
+./data/input/big/dots_500.ppm
 n
-./data/shapes/big/xCube.ppm
+./data/shapes/big/circle.ppm
 --
 y

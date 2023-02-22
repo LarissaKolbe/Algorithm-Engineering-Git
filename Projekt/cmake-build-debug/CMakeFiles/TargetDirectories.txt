@@ -1,8 +1,0 @@
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/CMakeFiles/test.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/CMakeFiles/Projekt_exec.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/CMakeFiles/Projekt_test_exec.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/catch/CMakeFiles/rebuild_cache.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/catch/CMakeFiles/edit_cache.dir
-/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-debug/catch/CMakeFiles/test.dir

@@ -202,4 +202,5 @@ CMakeFiles/Projekt_exec.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h /usr/include/c++/10/sstream \
+ /usr/include/c++/10/bits/sstream.tcc

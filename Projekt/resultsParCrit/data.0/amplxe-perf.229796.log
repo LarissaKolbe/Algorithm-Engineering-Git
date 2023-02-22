@@ -1,0 +1,10 @@
+Using CPUID GenuineIntel-6-5E-3
+Control descriptor is not initialized
+Warning:
+UNC_IMC_DRAM_DATA_READS event is not supported by the kernel.
+Warning:
+UNC_IMC_DRAM_DATA_WRITES event is not supported by the kernel.
+
+229797:perf-sync:ready:TSC=300178649353760
+failed to read counter UNC_IMC_DRAM_DATA_READS
+failed to read counter UNC_IMC_DRAM_DATA_WRITES

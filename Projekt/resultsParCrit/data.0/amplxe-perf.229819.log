@@ -1,0 +1,9 @@
+Using CPUID GenuineIntel-6-5E-3
+Warning:
+UNC_IMC_DRAM_DATA_READS event is not supported by the kernel.
+Warning:
+UNC_IMC_DRAM_DATA_WRITES event is not supported by the kernel.
+
+229822:perf-sync:ready:TSC=300188677133790
+failed to read counter UNC_IMC_DRAM_DATA_READS
+failed to read counter UNC_IMC_DRAM_DATA_WRITES

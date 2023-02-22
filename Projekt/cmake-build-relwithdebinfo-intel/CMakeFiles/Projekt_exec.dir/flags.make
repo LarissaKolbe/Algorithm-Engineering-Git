@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = 
 
-CXX_FLAGS =  -std=c++11 -lstdc++  -march=native -mavx -msse2 -g -O0 -Wall -fsanitize=address -fsanitize=undefined  -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11
+CXX_FLAGS =  -std=c++11 -lstdc++  -march=native -mavx -msse2 -O3 -Ofast -ffast-math -fopenmp -O2 -g -DNDEBUG -qopenmp -std=c++11
 

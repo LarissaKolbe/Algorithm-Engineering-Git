@@ -1,0 +1,29 @@
+# AMPLXE_PERF_STAT
+# hostname : ppc807
+# os release : 6.0.0-0.deb11.6-amd64
+# arch : x86_64
+# cpuid : GenuineIntel,6,94,3
+# cpudesc : Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
+# total memory : 12087808 kB
+# nrcpus online : 4
+# nrcpus avail : 4
+# sibling cores : 0-3
+# sibling threads : 0
+# sibling threads : 1
+# sibling threads : 2
+# sibling threads : 3
+# process id : 303246
+;;7218411948;0
+;;7104409928;1
+;;13090358522;2
+;;53344791;3
+;;53313888;4
+;;52810126;5
+;;6560329;6
+;;1454922421;7
+;;38268338;8
+;;0;9
+;;579820298;10
+;;31918656;11
+;;13766124300;12
+;;15162124736;13

@@ -390,6 +390,7 @@ aligned_vector<Coordinate> createVectorFromImage(const char *imageData, int widt
     aligned_vector<Coordinate> vec = {};
     int imageSize = width * height * 3;
     //geht alle Bildpunkte durch und liest ihre Farbwerte ein
+//#pragma omp parallel for
     for (int i=0;i<imageSize;i=i+3){
         unsigned char red   = imageData[i];
         unsigned char green = imageData[i+1];

@@ -1,0 +1,8 @@
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/CMakeFiles/rebuild_cache.dir
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/CMakeFiles/test.dir
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/CMakeFiles/Projekt_exec.dir
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/CMakeFiles/Projekt_test_exec.dir
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/CMakeFiles/edit_cache.dir
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/catch/CMakeFiles/rebuild_cache.dir
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/catch/CMakeFiles/edit_cache.dir
+/home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10/catch/CMakeFiles/test.dir
