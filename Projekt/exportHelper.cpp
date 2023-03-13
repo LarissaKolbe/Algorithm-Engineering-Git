@@ -78,14 +78,14 @@ aligned_vector<Coordinate> cleanDataset(aligned_vector<Coordinate> dataset){
  * @param height   Höhe des Bildes
  * @param width    Breite des Bildes
  */
-void exportImage(const string &fileName, aligned_vector<Coordinate> data, int maxColor, int height, int width){
+void exportImage(const string fileName, aligned_vector<Coordinate> data, const int maxColor, const int height, const int width){
 
     //bereinigt die Daten
     data = cleanDataset(data);
 
     //Bestimmt die Anzahl an Punkten und die Bildgröße
-    int dataSize = (int)data.size();
-    int imageSize = width * height * 3;
+    const int dataSize = (int)data.size();
+    const int imageSize = width * height * 3;
 
     //initialisiert Outputdatei
     ofstream outputFile(fileName, ios::binary);
@@ -98,8 +98,8 @@ void exportImage(const string &fileName, aligned_vector<Coordinate> data, int ma
     int index = 0;
     // Iteriert durch jeden Pixel des Bildes und weißt ihm entweder die Farbe weiß oder schwarz zu
     for (int i=0; i < imageSize; i= i + 3){
-        auto currentY = i / 3 / width;
-        auto currentX = i / 3 - currentY * width;
+        const auto currentY = i / 3 / width;
+        const auto currentX = i / 3 - currentY * width;
         // Färbt Pixel schwarz, wenn er Koordinaten in data entspricht
         // Weil data nicht durchsucht, sondern Schritt für Schritt durchgegangen wird,
         //  müssen die Daten vorher sortiert und bereinigt werden

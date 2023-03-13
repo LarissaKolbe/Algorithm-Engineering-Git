@@ -21,6 +21,6 @@ string readExportPath();
  * @param height   Höhe des Bildes
  * @param width    Breite des Bildes
  */
-void exportImage(const string &fileName, aligned_vector<Coordinate> data, int maxColor, int height, int width);
+void exportImage(const string fileName, aligned_vector<Coordinate> data, const int maxColor, const int height, const int width);
 
 #endif //PROJEKT_FILEHELPER_H

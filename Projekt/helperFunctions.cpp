@@ -13,8 +13,8 @@ using namespace std;
  * @param n     Anzahl an Nachkommastellen
  * @return auf n Nachkommastellen gerundeter Wert
  */
-float roundToNDecimals(float value, int n){
-    auto roundingValue = (float)pow(10, n);
+float roundToNDecimals(const float value, const int n){
+    const auto roundingValue = (float)pow(10, n);
     return round(value * roundingValue) / roundingValue;
 }
 
@@ -23,7 +23,7 @@ float roundToNDecimals(float value, int n){
  * @param a Wert 1
  * @param b Wert 2
  */
-int getGreaterValue(int a, int b){
+int getGreaterValue(const int a, const int b){
     if (a > b){
         return a;
     } else {

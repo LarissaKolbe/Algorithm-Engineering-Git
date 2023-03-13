@@ -37,7 +37,7 @@ using namespace std;
  * @param p2 Koordinaten von Punkt 2
  * @return Distanz zwischen p1 und p2
  */
-float getDistance(Coordinate p1, Coordinate p2){
+float getDistance(const Coordinate p1, const Coordinate p2){
     auto distX = (float)pow(p1.x - p2.x, 2);
     auto distY = (float)pow(p1.y - p2.y, 2);
     return sqrt(distX + distY);
@@ -86,7 +86,7 @@ float getMinimalValues(__m256 v) {
  * @param size Größe von `targetShape`
  * @return true wenn minimale Distanz von p1 < p2, false sonst
  */
-bool isBetterFit_VIUnroll8(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
+bool isBetterFit_VI128(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je speichert.
      * Erst x und y von kommt p1, dann von p2. */
     __m128 dataVec = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
@@ -185,7 +185,7 @@ bool isBetterFit_VIUnroll8(Coordinate p1, Coordinate p2, Coordinate *__restrict_
  * @param size Größe von `targetShape`
  * @return true wenn minimale Distanz von p1 < p2, false sonst
  */
-bool isBetterFit_VIUnroll256(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
+bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
      * Index 0 bis 4 sind p1, 5 bis 8 p2. */
     __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);
@@ -294,31 +294,31 @@ bool isBetterFit_VIUnroll256(Coordinate p1, Coordinate p2, Coordinate *__restric
 }
 
 
-bool isBetterFit_Native (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
-    float minDistNew = getDistance(p1, targetShape[0]);
-    float minDistPrev = getDistance(p2, targetShape[0]);
+bool isBetterFit_Native(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    float minDistP1 = getDistance(p1, targetShape[0]);
+    float minDistP2 = getDistance(p2, targetShape[0]);
 
     for (int j = 1; j < size; j++) {
-        minDistNew = min(minDistNew, getDistance(p1, targetShape[j]));
-        minDistPrev = min(minDistPrev, getDistance(p2, targetShape[j]));
+        minDistP1 = min(minDistP1, getDistance(p1, targetShape[j]));
+        minDistP2 = min(minDistP2, getDistance(p2, targetShape[j]));
     }
-    return minDistNew < minDistPrev;
+    return minDistP1 < minDistP2;
 }
 
 
-bool isBetterFit_Parallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
-    float minDistNew = getDistance(p1, targetShape[0]);
-    float minDistPrev = getDistance(p2, targetShape[0]);
+bool isBetterFit_Parallel(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    float minDistP1 = getDistance(p1, targetShape[0]);
+    float minDistP2 = getDistance(p2, targetShape[0]);
 
-#pragma omp parallel for reduction(min: minDistNew, minDistPrev)
+#pragma omp parallel for reduction(min: minDistP1, minDistP2)
     for (int j = 1; j < size; j++) {
-        minDistNew = min(minDistNew, getDistance(p1, targetShape[j]));
-        minDistPrev = min(minDistPrev, getDistance(p2, targetShape[j]));
+        minDistP1 = min(minDistP1, getDistance(p1, targetShape[j]));
+        minDistP2 = min(minDistP2, getDistance(p2, targetShape[j]));
     }
-    return minDistNew < minDistPrev;
+    return minDistP1 < minDistP2;
 }
 
-bool isBetterFit_VIUnroll8For(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
+bool isBetterFit_VI128_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je speichert.
      * Erst x und y von kommt p1, dann von p2. */
     __m128 dataVec = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
@@ -416,7 +416,7 @@ bool isBetterFit_VIUnroll8For(Coordinate p1, Coordinate p2, Coordinate *__restri
     return minimalDistances[0] < minimalDistances[1];
 }
 
-bool isBetterFit_VIUnroll256For(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size){
+bool isBetterFit_VI256_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
      * Index 0 bis 4 sind p1, 5 bis 8 p2. */
     __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);

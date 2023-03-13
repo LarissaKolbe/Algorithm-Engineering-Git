@@ -1,0 +1,8 @@
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/CMakeFiles/Projekt_exec.dir
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/CMakeFiles/Projekt_test_exec.dir
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/CMakeFiles/test.dir
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/CMakeFiles/edit_cache.dir
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/CMakeFiles/rebuild_cache.dir
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/catch/CMakeFiles/test.dir
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/catch/CMakeFiles/edit_cache.dir
+/Users/larissa/Desktop/Uni/Master/1.Sem_WS22:23/Algorithm Engineering/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-clang/catch/CMakeFiles/rebuild_cache.dir

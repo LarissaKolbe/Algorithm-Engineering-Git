@@ -11,14 +11,14 @@ using namespace std;
  * @param n Anzahl an Nachkommastellen
  * @return gerundeter Wert
  */
-float roundToNDecimals(float value, int n);
+float roundToNDecimals(const float value, const int n);
 
 /**
  * Gibt den größeren der beiden übergebenen Werte zurück
  * @param a Wert 1
  * @param b Wert 2
  */
-int getGreaterValue(int a, int b);
+int getGreaterValue(const int a, const int b);
 
 /**
  * Vergleicht die y-Koordinaten von a und b.

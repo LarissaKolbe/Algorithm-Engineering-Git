@@ -30,68 +30,46 @@ double timeNat=0.0, timePar = 0.0, timeVIUnroll8 = 0.0, timeVIUnroll256 = 0.0, t
 int callFit = 0, parDiff=0, vi8Diff=0, vi256Diff=0;
 
 
-bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coordinate> targetShape) {
+bool isBetterFit(const Coordinate pointNew, const Coordinate pointPrev, const Coordinate*__restrict__ targetShape, const int targetSize) {
     bool fit;
-//    auto start = omp_get_wtime();
-////    BenchmarkParameters paramsFit;
-////
-////    {
-////        paramsFit.setParam("_name", "Nat"); // set parameter
-////        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
-        fit = isBetterFit_Native(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
-////    }
-//    timeNat += omp_get_wtime() - start;
-//
-//    auto start = omp_get_wtime();
-////    {
-////        paramsFit.setParam("_name", "Par"); // set parameter
-////        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
-//        fit = isBetterFit_Parallel(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
-////    }
-//    timePar += omp_get_wtime() - start;
-//
-//    auto start = omp_get_wtime();
-////    {
-////        paramsFit.setParam("_name", "VI8"); // set parameter
-////        int size = (int) targetShape.size();
-////        size = (size - 8) / 8;
-////        size = size + (size % 8);
-////        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
-//        fit = isBetterFit_VIUnroll8(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
-////    }
-//    timeVIUnroll8 += omp_get_wtime() - start;
-//
-//    bool viUnroll256;
-//    auto start = omp_get_wtime();
-////    {
-////        paramsFit.setParam("_name", "256"); // set parameter
-////        int size = (int) targetShape.size();
-////        size = (size - 16) / 16;
-////        size = size + (size % 16);
-////        PerfEventBlock e((int) targetShape.size(), paramsFit, true); // start counter
-//       fit = isBetterFit_VIUnroll256(pointNew, pointPrev, targetShape.data(), (int) targetShape.size());
-////    }
-//    timeVIUnroll256 += omp_get_wtime() - start;
-//
-//    auto start = omp_get_wtime();
-//    fit = isBetterFit_VIUnroll8For(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
-//    timeVIUnroll8For += omp_get_wtime() - start;
-//
-//    auto start = omp_get_wtime();
-//    fit = isBetterFit_VIUnroll256For(pointNew, pointPrev, targetShape.data(), (int)targetShape.size());
-//    timeVIUnroll256For += omp_get_wtime() - start;
-//
-////    if(native != parallel || native != viUnroll256 || native != viUnroll8){
-////        cout << "!!!!! ERROR - FITNESS UNTERSCHIEDLICH !!!!!" << endl;
-////    }
-////    if (native != parallel){
-////        parDiff++;
-////    } if (native != viUnroll8){
-////        vi8Diff++;
-////    } if (native != viUnroll256){
-////        vi256Diff++;
-////    }
-//    callFit++;
+    auto startFit = omp_get_wtime();
+//    BenchmarkParameters paramsFit;
+//    {
+//        paramsFit.setParam("_name", "Nat"); // set parameter
+//        PerfEventBlock e((int) targetShape.size(), paramsFit, true);
+    fit = isBetterFit_Native(pointNew, pointPrev, targetShape, targetSize);
+//    }
+//    {
+//        paramsFit.setParam("_name", "Par"); // set parameter
+//        PerfEventBlock e((int) targetShape.size(), paramsFit, true);
+//    fit = isBetterFit_Parallel(pointNew, pointPrev, targetShape, targetSize);
+//    }
+//    {
+//        paramsFit.setParam("_name", "VI8"); // set parameter
+//        int size = (int) targetShape.size();
+//        size = (size - 8) / 8;
+//        size = size + (size % 8);
+//        PerfEventBlock e((int) targetShape.size(), paramsFit, true);
+//    fit = isBetterFit_VI128(pointNew, pointPrev, targetShape, targetSize);
+//    }
+//    {
+//        paramsFit.setParam("_name", "256"); // set parameter
+//        int size = (int) targetShape.size();
+//        size = (size - 16) / 16;
+//        size = size + (size % 16);
+//        PerfEventBlock e((int) targetShape.size(), paramsFit, true);
+//    fit = isBetterFit_VI256(pointNew, pointPrev, targetShape, targetSize);
+//    }
+//    fit = isBetterFit_VI128_Par(pointNew, pointPrev, targetShape, targetSize);
+
+//    fit = isBetterFit_VI256_Par(pointNew, pointPrev, targetShape, targetSize);
+
+    double time = omp_get_wtime() - startFit;
+#pragma omp critical
+    {
+        timeNat += time;
+        callFit++;
+    }
     return fit;
 }
 
@@ -103,8 +81,8 @@ bool isBetterFit(Coordinate pointNew, Coordinate pointPrev, aligned_vector<Coord
  * @return statistische Eigenschaften des übergebenen Datensatzes
  */
 statisticalProperties calculateStatisticalProperties(const Coordinate *__restrict__ dataset, const int size, const int decimals){
-//    auto start = omp_get_wtime();
-    float meanX = 0.0, meanY = 0.0, varianceX = 0.0, varianceY = 0.0, stdDeviationX, stdDeviationY;
+    auto startCalc = omp_get_wtime();
+    float meanX = 0.0, meanY = 0.0, stdDeviationX = 0.0, stdDeviationY = 0.0;
 
     //Berechnet die Durchschnittswerte der einzelnen Koordinaten
 #pragma omp simd aligned(dataset : 64) reduction(+: meanX, meanY)
@@ -113,26 +91,29 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
         meanY += dataset[i].y;
     }
 
-    //rundet die Durchschnittswerte auf decimals viele Nachkommastellen
+    //Rundet die Durchschnittswerte auf decimals viele Nachkommastellen
     meanX = roundToNDecimals(meanX / (float) size, decimals);
     meanY = roundToNDecimals(meanY / (float) size, decimals);
 
-    //Berechnet die Varianz der einzelnen Koordinatenwerte
-#pragma omp simd aligned(dataset : 64) reduction(+: varianceX, varianceY)
+    //Berechnet die Standardabweichung der einzelnen Koordinatenwerte
+#pragma omp simd aligned(dataset : 64) reduction(+: stdDeviationX, stdDeviationY)
     for(int i=0; i<size; i++){
-        varianceX += (float)pow(dataset[i].x - meanX, 2);
-        varianceY += (float)pow(dataset[i].y - meanY, 2);
+        stdDeviationX += (float)pow(dataset[i].x - meanX, 2);
+        stdDeviationY += (float)pow(dataset[i].y - meanY, 2);
     }
-    varianceX = varianceX / (float)(size-1);
-    varianceY = varianceY / (float)(size-1);
+    stdDeviationX = sqrt(stdDeviationX / (float)(size-1));
+    stdDeviationY = sqrt(stdDeviationY / (float)(size-1));
 
-    //Berechnet die Standardabweichung anhand der Varianz und
-    // rundet sie auf decimals viele Nachkommastellen
-    stdDeviationX = roundToNDecimals(sqrt(varianceX), decimals);
-    stdDeviationY = roundToNDecimals(sqrt(varianceY), decimals);
+    //Rundet die Standardabweichung auf decimals viele Nachkommastellen
+    stdDeviationX = roundToNDecimals(stdDeviationX, decimals);
+    stdDeviationY = roundToNDecimals(stdDeviationY, decimals);
 
-//    timeCalc += omp_get_wtime() - start;
-//    callCalc++;
+    double time = omp_get_wtime() - startCalc;
+#pragma omp critical
+    {
+        timeCalc += time;
+        callCalc++;
+    }
     return {meanX, meanY, stdDeviationX, stdDeviationY};
 }
 
@@ -145,14 +126,14 @@ statisticalProperties calculateStatisticalProperties(const Coordinate *__restric
  * @param decimals Bestimmt, wie viele Nachkommestellen betrachtet werden sollen
  * @return True, wenn die statistischen Eigenschaften übereinstimmen, false sonst
  */
-bool isErrorOk(Coordinate *__restrict__ currentDS, const statisticalProperties& initialProps, const int size, const double accuracy, const int decimals) {
+bool isErrorOk(const Coordinate *__restrict__ currentDS, const statisticalProperties& initialProps, const int size, const double accuracy, const int decimals) {
     //berechnet statistischen Eigenschaften des veränderten Datensatzes
 //    statisticalProperties currentProps;
 //    BenchmarkParameters paramsStat;
 //    {
-//        paramsStat.setParam("_name", "calcStats"); // set parameter
-//        PerfEventBlock e(size, paramsStat, true); // start counter
-    statisticalProperties currentProps = currentProps = calculateStatisticalProperties(currentDS, size, decimals);
+//        paramsStat.setParam("_name", "calcStats");
+//        PerfEventBlock e(size, paramsStat, true);
+    const statisticalProperties currentProps = calculateStatisticalProperties(currentDS, size, decimals);
 //    }
 
     //vergleicht die Eigenschaften des ursprünglichen und des veränderten Datensatzes
@@ -172,7 +153,7 @@ bool isErrorOk(Coordinate *__restrict__ currentDS, const statisticalProperties& 
  * @param gen         Zufallszahlenseed
  * @return Koordinaten des bewegten Punktes
  */
-Coordinate moveRandomPoint(const Coordinate pointToMove, const int maxX, const int maxY, float maxMovement, mt19937 gen) {
+Coordinate moveRandomPoint(const Coordinate pointToMove, const int maxX, const int maxY, const float maxMovement, mt19937 gen) {
     //initialisiert Zufallszahlengenerator für Bewegung
     uniform_real_distribution<float> distMove(-maxMovement,maxMovement);
 
@@ -202,21 +183,26 @@ Coordinate moveRandomPoint(const Coordinate pointToMove, const int maxX, const i
  * @param gen Zufallszahlenseed
  * @return neue Koordinaten des bewegten Punktes
  */
-Coordinate perturb(Coordinate pointToMove, const aligned_vector<Coordinate>& targetShape, const int maxX, const int maxY, double temp, float maxMovement, mt19937 gen){
+Coordinate perturb(const Coordinate pointToMove, const Coordinate*__restrict__ targetShape, const int targetSize, const int maxX, const int maxY, const double temp, const float maxMovement, mt19937 gen){
     //initialisiert Zufallszahlengenerator zwischen 0 und 1
     uniform_real_distribution<double> distTemp(0, 1);
 
     //bewegt den übergebenen Punkt bis if-Bedingung erfüllt wird
     while(true){
         //bewegt Punkt
-//        auto startMRP = omp_get_wtime();
-        Coordinate modifiedPoint = moveRandomPoint(pointToMove, maxX, maxY, maxMovement, gen);
-//        timeMRP += omp_get_wtime() - startMRP;
-//        callMRP++;
+        auto startMRP = omp_get_wtime();
+        const Coordinate modifiedPoint = moveRandomPoint(pointToMove, maxX, maxY, maxMovement, gen);
+
+        double time = omp_get_wtime() - startMRP;
+#pragma omp critical
+        {
+            timeMRP += time;
+            callMRP++;
+        }
 
         //akzeptiert bewegten Punkt, wenn er näher an der Zielform ist als vorher oder
         // wenn die Zufallszahl kleiner als temp ist
-        if(isBetterFit(modifiedPoint, pointToMove, targetShape) || distTemp(gen) < temp){
+        if(isBetterFit(modifiedPoint, pointToMove, targetShape, targetSize) || distTemp(gen) < temp){
             return modifiedPoint;
         }
     }
@@ -236,10 +222,10 @@ int errorOk = 0;
  * @return Datensatz, der der Zielform nahe ist, aber die gleichen statistischen
  *   Eigenschaften wie der Inputdatensatz hat
  */
-aligned_vector<Coordinate> generateNewPlot(aligned_vector<Coordinate> currentDS, const aligned_vector<Coordinate>& targetShape, statisticalProperties initialProperties, Configurations conf, const int maxX, const int maxY) {
+aligned_vector<Coordinate> generateNewPlot(aligned_vector<Coordinate> currentDS, const aligned_vector<Coordinate> targetShape, const statisticalProperties initialProperties, const Configurations conf, const int maxX, const int maxY) {
     //speichert Konfigurationen in Konstanten, um nicht immer das ganze Objekt laden zu müssen
     const double maxTemp = conf.maxTemp, minTemp = conf.minTemp, accuracy = conf.accuracy;
-    const int iterations = conf.iterations, decimals = conf.decimals, dataSize = (int)currentDS.size();
+    const int iterations = conf.iterations, decimals = conf.decimals, dataSize = (int)currentDS.size(), targetSize = (int)targetShape.size();
     const float maxMovement = conf.maxMovement;
 
     //initialisiert Zufallszahlengenerator
@@ -249,44 +235,58 @@ aligned_vector<Coordinate> generateNewPlot(aligned_vector<Coordinate> currentDS,
     uniform_real_distribution<> distIndex(0, dataSize);
 
 #pragma omp parallel for schedule(dynamic, 8)
-    for (int i = 0; i<iterations; i++){
-//        auto startIteration = omp_get_wtime();
-        aligned_vector<Coordinate> testDS(currentDS);
+    for (int i = 0; i < iterations; i++) {
+        auto startIteration = omp_get_wtime();
 
         //TODO: am Ende wieder rausnehmen
-        if(i % 25000 == 0) {
-//            auto start = omp_get_wtime();
-            cout << endl << "Iteration: " << i  << endl;
-            string fileNameTest = "../data/output/output" + to_string(i) + ".ppm";
-            exportImage(fileNameTest, currentDS, 255, maxY, maxX);
-//            timeExport += omp_get_wtime() - start;
-//            callExp++;
-        }
+//        if (i % 25000 == 0) {
+////            auto start = omp_get_wtime();
+//            cout << endl << "Iteration: " << i << endl;
+//            string fileNameTest = "../data/output/output" + to_string(i) + ".ppm";
+//            exportImage(fileNameTest, currentDS, 255, maxY, maxX);
+////            timeExport += omp_get_wtime() - start;
+////            callExp++;
+//        }
 
         //berechnet aktuelle "temperature"
         // beginnt mit maxTemp und nähert sich mit jeder Iteration minTemp
-        const double temp = (maxTemp - minTemp) * ((double)(iterations-i)/(double)iterations) + minTemp;
+        const double temp = (maxTemp - minTemp) * ((double) (iterations - i) / (double) iterations) + minTemp;
 
-
-        int randomIndex = (int)distIndex(gen);
+        const int randomIndex = (int) distIndex(gen);
 //        BenchmarkParameters paramsPerturb;
 //        {
-//            paramsPerturb.setParam("_name", "Perturb"); // set parameter
-//            PerfEventBlock e(1, paramsPerturb, true); // start counter
+//            paramsPerturb.setParam("_name", "Perturb");
+//            PerfEventBlock e(1, paramsPerturb, true);
         //bewegt den übergebenen Punkt in Richtung der Zielform
-            testDS[randomIndex] = perturb(testDS[randomIndex], targetShape, maxX, maxY, temp, maxMovement, gen);
+        const Coordinate movedPoint = perturb(currentDS[randomIndex], targetShape.data(), targetSize, maxX, maxY, temp, maxMovement, gen);
 //        }
 
+//#pragma omp critical
+//        {
+        //TODO: hier kommt es öfter mal zu nem lost update
+        // man könnte es vermeiden, wenn man die ciritical section ab hier schon machen würde,
+        //  aber dann würde es auch deeeutlich langsamer werden
+        aligned_vector<Coordinate> testDS(currentDS);
+        testDS[randomIndex] = movedPoint;
         //prüft, ob statistische Eigenschaften noch mit den anfänglichen übereinstimmen
-        if (isErrorOk(testDS.data(), initialProperties, dataSize, accuracy, decimals)){
+        if (isErrorOk(testDS.data(), initialProperties, dataSize, accuracy, decimals)) {
 #pragma omp critical
             {
-            currentDS = testDS;
-            errorOk++;
+                currentDS = testDS;
+                //TODO: wenn ich hier stattdessen das hier macchen würde:
+                //   currentDS[randomIndex] = testDS[randomIndex];
+                // dann würde nach wenigen Malen selbst isErrorOk(currentDS) false zurückliefern,
+                //  weil das testDS für die if-Bedinigung hier drüber bei jedem Thread unterschiedlich aktuell ist
+                errorOk++;
             }
         }
-//        timeIteration += omp_get_wtime() - startIteration;
+        double time = omp_get_wtime() - startIteration;
+#pragma omp critical
+        {
+            timeIteration += time;
+        }
     }
+
     return currentDS;
 }
 
@@ -302,22 +302,22 @@ int main() {
 
     //Userinterface zum Wählen der Input- und Zieldatei.
     // User hat die Wahl selbst Bilder hochzuladen oder eins der bereitgestellten Bilder zu verwenden
-    FileInformation inputInfo = readImageData(initialData);
-    FileInformation targetInfo = readImageData(target);
+    const FileInformation inputInfo = readImageData(initialData);
+    const FileInformation targetInfo = readImageData(target);
 
     //Userinterface zum Wählen des Outputpfades
-    string fileNameExport = readExportPath();
+    const string fileNameExport = readExportPath();
 
     //Userinterface zum Einzusehen und Verändern der Konfigurationen
-    Configurations conf = setConfigurations();
+    const Configurations conf = setConfigurations();
 
     //TODO: zum zeitmessen; kommt ganz am Ende raus
     auto startProgram = omp_get_wtime();
 
     //Erstellt Koordinatenvektoren anhand der Bilddaten
     // Die Vektoren enthalten die Koordinaten aller schwarzen Punkte im Bild
-    aligned_vector<Coordinate> initialDS   = createVectorFromImage(inputInfo.imageData, inputInfo.width, inputInfo.height);
-    aligned_vector<Coordinate> targetShape = createVectorFromImage(targetInfo.imageData, targetInfo.width, targetInfo.height);
+    const aligned_vector<Coordinate> initialDS   = createVectorFromImage(inputInfo.imageData, inputInfo.width, inputInfo.height);
+    const aligned_vector<Coordinate> targetShape = createVectorFromImage(targetInfo.imageData, targetInfo.width, targetInfo.height);
 
     //Gibt den nicht mehr benötigten Speicher vom Heap frei
     delete[] inputInfo.imageData, delete[] targetInfo.imageData;
@@ -328,7 +328,7 @@ int main() {
     const int outputHeight = getGreaterValue(inputInfo.height, targetInfo.height);
 
     //Berechnet die statistischen Eigenschaften der Eingabedaten
-    statisticalProperties initialProperties = calculateStatisticalProperties(initialDS.data(), (int)initialDS.size(), conf.decimals);
+    const statisticalProperties initialProperties = calculateStatisticalProperties(initialDS.data(), (int)initialDS.size(), conf.decimals);
 
     cout << endl
         << "Die graphischen Eigenschaften des Datensatzes sind: " << endl
@@ -359,31 +359,33 @@ int main() {
 
     cout << endl << "Dauern:" << endl
          << "-- Ges:           " << runtime << " sek ;  " << runtime / 60 << "min" << endl;
-    cout << "-- MRP Ges:       " << timeMRP << " sek ;  " << timeMRP / 60 << "min" << endl;
-    cout << "--   MRP/run:     " << timeMRP / callMRP<< " sek ;  " << (timeMRP / callMRP) / 60 << "min" << endl;
-    cout << "-- Export Ges:    " << timeExport << " sek ;  " << timeExport / 60 << "min" << endl;
-    cout << "--   Export/run:  " << timeExport / callExp<< " sek ;  " << (timeExport / callExp) / 60 << "min" << endl;
-    cout << "-- Calc Ges:      " << timeCalc << " sek ;  " << timeCalc / 60 << "min" << endl;
-    cout << "--   Calc/run:    " << timeCalc / callCalc<< " sek ;  " << (timeCalc / callCalc) / 60 << "min" << endl;
-    cout << "-- Iteration Ges:   " << timeIteration << " sek ;  " << timeIteration / 60 << "min" << endl;
+//    cout << "-- Iteration Ges:   " << timeIteration << " sek ;  " << timeIteration / 60 << "min" << endl;
     cout << "--   Iteration/run: " << timeIteration / conf.iterations << " sek ;  " << (timeIteration / conf.iterations) / 60 << "min" << endl;
-    cout << endl;
-    cout << "-- Native Ges:     " << timeNat << " sek ;  " << timeNat / 60 << "min" << endl;
-    cout << "--   Dist/run:     " << timeNat / callFit<< " sek ;  " << (timeNat / callFit) / 60 << "min" << endl;
-    cout << "-- Parallel Ges:   " << timePar << " sek ;  " << timePar / 60 << "min" << endl;
-    cout << "--   Dist/run:     " << timePar / callFit<< " sek ;  " << (timePar / callFit) / 60 << "min" << endl;
-    cout << "-- VI_Unroll8 Ges: " << timeVIUnroll8 << " sek ;  " << timeVIUnroll8 / 60 << "min" << endl;
-    cout << "--   Dist/run:     " << timeVIUnroll8 / callFit<< " sek ;  " << (timeVIUnroll8 / callFit) / 60 << "min" << endl;
-    cout << "-- VI_Unr256 Ges:  " << timeVIUnroll256 << " sek ;  " << timeVIUnroll256 / 60 << "min" << endl;
-    cout << "--   Dist/run:     " << timeVIUnroll256 / callFit<< " sek ;  " << (timeVIUnroll256 / callFit) / 60 << "min" << endl;
-    cout << "-- VI8For Ges:     " << timeVIUnroll8For << " sek ;  " << timeVIUnroll8For / 60 << "min" << endl;
-    cout << "--   Dist/run:     " << timeVIUnroll8For / callFit<< " sek ;  " << (timeVIUnroll8For / callFit) / 60 << "min" << endl;
-    cout << "-- VI256For Ges:   " << timeVIUnroll256For << " sek ;  " << timeVIUnroll256For / 60 << "min" << endl;
-    cout << "--   Dist/run:     " << timeVIUnroll256For / callFit<< " sek ;  " << (timeVIUnroll256For / callFit) / 60 << "min" << endl;
+//    cout << "-- Calc Ges:        " << timeCalc << " sek ;  " << timeCalc / 60 << "min" << endl;
+    cout << "--   Calc/run:      " << timeCalc / callCalc<< " sek ;  " << (timeCalc / callCalc) / 60 << "min" << endl;
+//    cout << "-- MRP Ges:         " << timeMRP << " sek ;  " << timeMRP / 60 << "min" << endl;
+    cout << "--   MRP/run:       " << timeMRP / callMRP<< " sek ;  " << (timeMRP / callMRP) / 60 << "min" << endl;
+//    cout << "-- Fit Ges:         " << timeNat << " sek ;  " << timeNat / 60 << "min" << endl;
+    cout << "--   Fit/run:      " << timeNat / callFit<< " sek ;  " << (timeNat / callFit) / 60 << "min" << endl;
+//    cout << "-- Export Ges:    " << timeExport << " sek ;  " << timeExport / 60 << "min" << endl;
+//    cout << "--   Export/run:  " << timeExport / callExp<< " sek ;  " << (timeExport / callExp) / 60 << "min" << endl;
+//    cout << endl;
+//    cout << "-- Native Ges:     " << timeNat << " sek ;  " << timeNat / 60 << "min" << endl;
+//    cout << "--   Dist/run:     " << timeNat / callFit<< " sek ;  " << (timeNat / callFit) / 60 << "min" << endl;
+//    cout << "-- Parallel Ges:   " << timePar << " sek ;  " << timePar / 60 << "min" << endl;
+//    cout << "--   Dist/run:     " << timePar / callFit<< " sek ;  " << (timePar / callFit) / 60 << "min" << endl;
+//    cout << "-- VI_Unroll8 Ges: " << timeVIUnroll8 << " sek ;  " << timeVIUnroll8 / 60 << "min" << endl;
+//    cout << "--   Dist/run:     " << timeVIUnroll8 / callFit<< " sek ;  " << (timeVIUnroll8 / callFit) / 60 << "min" << endl;
+//    cout << "-- VI_Unr256 Ges:  " << timeVIUnroll256 << " sek ;  " << timeVIUnroll256 / 60 << "min" << endl;
+//    cout << "--   Dist/run:     " << timeVIUnroll256 / callFit<< " sek ;  " << (timeVIUnroll256 / callFit) / 60 << "min" << endl;
+//    cout << "-- VI8For Ges:     " << timeVIUnroll8For << " sek ;  " << timeVIUnroll8For / 60 << "min" << endl;
+//    cout << "--   Dist/run:     " << timeVIUnroll8For / callFit<< " sek ;  " << (timeVIUnroll8For / callFit) / 60 << "min" << endl;
+//    cout << "-- VI256For Ges:   " << timeVIUnroll256For << " sek ;  " << timeVIUnroll256For / 60 << "min" << endl;
+//    cout << "--   Dist/run:     " << timeVIUnroll256For / callFit<< " sek ;  " << (timeVIUnroll256For / callFit) / 60 << "min" << endl;
     cout << "-- Runs:   " << callFit << endl << endl;
     cout << "-- errorOk:   " << errorOk << endl;
-
-    cout << "Errors: " << endl
-        << "  Par: " << parDiff << "; VI8: " << vi8Diff << "; 256: " << vi256Diff << endl;
+//
+//    cout << "Errors: " << endl
+//        << "  Par: " << parDiff << "; VI8: " << vi8Diff << "; 256: " << vi256Diff << endl;
     return 0;
 }

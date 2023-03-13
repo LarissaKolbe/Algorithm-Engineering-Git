@@ -19,7 +19,7 @@
  * @param size Größe von `targetShape`
  * @return true wenn minimale Distanz von p1 < p2, false sonst
  */
-bool isBetterFit_VIUnroll8(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_VI128(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
 /**
  * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
@@ -29,14 +29,14 @@ bool isBetterFit_VIUnroll8(Coordinate p1, Coordinate p2, Coordinate *__restrict_
  * @param size Größe von `targetShape`
  * @return true wenn minimale Distanz von p1 < p2, false sonst
  */
-bool isBetterFit_VIUnroll256(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
-bool isBetterFit_Native (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_Native (const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
-bool isBetterFit_Parallel (Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_Parallel (const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
-bool isBetterFit_VIUnroll8For(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_VI128_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
-bool isBetterFit_VIUnroll256For(Coordinate p1, Coordinate p2, Coordinate *__restrict__ targetShape, int size);
+bool isBetterFit_VI256_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
 #endif //PROJEKT_FITNESSHELPER_H
