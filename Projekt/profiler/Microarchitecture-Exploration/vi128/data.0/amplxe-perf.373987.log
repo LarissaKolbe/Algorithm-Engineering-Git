@@ -1,0 +1,81 @@
+threads_spec: cpu
+Using CPUID GenuineIntel-6-5E-3
+DEBUGINFOD_URLS=
+Compression enabled, disabling build id collection at the end of the session.
+nr_threads: 4
+thread_masks[0]: 0x55bc8ce782e0: maps mask[4]: 0
+thread_masks[0]: 0x55bc8ce782f0: affinity mask[4]: 0
+thread_masks[1]: 0x55bc8ce78300: maps mask[4]: 1
+thread_masks[1]: 0x55bc8ce78310: affinity mask[4]: 1
+thread_masks[2]: 0x55bc8ce78320: maps mask[4]: 2
+thread_masks[2]: 0x55bc8ce78330: affinity mask[4]: 2
+thread_masks[3]: 0x55bc8ce78340: maps mask[4]: 3
+thread_masks[3]: 0x55bc8ce78350: affinity mask[4]: 3
+nr_cblocks: 0
+affinity: SYS
+mmap flush: 1
+comp level: 1
+mmap size 528384B
+couldn't open /proc/1/task/1/maps
+couldn't open /proc/307/task/307/maps
+couldn't open /proc/350/task/350/maps
+couldn't open /proc/430/task/430/maps
+couldn't open /proc/589/task/589/maps
+couldn't open /proc/596/task/596/maps
+couldn't open /proc/621/task/621/maps
+couldn't open /proc/625/task/625/maps
+couldn't open /proc/641/task/641/maps
+couldn't open /proc/642/task/642/maps
+couldn't open /proc/643/task/643/maps
+couldn't open /proc/645/task/645/maps
+couldn't open /proc/646/task/646/maps
+couldn't open /proc/647/task/647/maps
+couldn't open /proc/714/task/714/maps
+couldn't open /proc/715/task/715/maps
+couldn't open /proc/719/task/719/maps
+couldn't open /proc/722/task/722/maps
+couldn't open /proc/724/task/724/maps
+couldn't open /proc/757/task/757/maps
+couldn't open /proc/794/task/794/maps
+couldn't open /proc/807/task/807/maps
+couldn't open /proc/816/task/816/maps
+couldn't open /proc/818/task/818/maps
+couldn't open /proc/820/task/820/maps
+couldn't open /proc/1113/task/1113/maps
+couldn't open /proc/1118/task/1118/maps
+couldn't open /proc/1124/task/1124/maps
+couldn't open /proc/1136/task/1136/maps
+couldn't open /proc/1178/task/1178/maps
+couldn't open /proc/1186/task/1186/maps
+couldn't open /proc/1190/task/1190/maps
+couldn't open /proc/1191/task/1191/maps
+couldn't open /proc/1362/task/1362/maps
+couldn't open /proc/1567/task/1567/maps
+couldn't open /proc/1770/task/1770/maps
+couldn't open /proc/2408/task/2408/maps
+couldn't open /proc/2460/task/2460/maps
+couldn't open /proc/5800/task/5800/maps
+couldn't open /proc/357726/task/357726/maps
+couldn't open /proc/366282/task/366282/maps
+couldn't open /proc/366299/task/366299/maps
+couldn't open /proc/366319/task/366319/maps
+couldn't open /proc/366379/task/366379/maps
+couldn't open /proc/366514/task/366514/maps
+couldn't open /proc/366566/task/366566/maps
+couldn't open /proc/368778/task/368778/maps
+couldn't open /proc/373684/task/373684/maps
+couldn't open /proc/373859/task/373859/maps
+threads[373989]: started on cpu1
+threads[373990]: started on cpu2
+threads[373991]: started on cpu3
+threads[373987]: started on cpu0
+
+373988:perf-sync:ready:TSC=491956909613871
+[ perf record: Woken up 25 times to write data ]
+threads[373987]: samples=17, wakes=7, transferred=1796008, compressed=243982
+threads[373989]: samples=18, wakes=8, transferred=1781648, compressed=241248
+threads[373990]: samples=16, wakes=8, transferred=1806648, compressed=241730
+threads[373991]: samples=17, wakes=8, transferred=1782848, compressed=243100
+failed to write feature HYBRID_TOPOLOGY
+failed to write feature HYBRID_CPU_PMU_CAPS
+[ perf record: Captured and wrote 8,222 MB /tmp/amplxe-tmp-le34xoh/amplxe-res-373963-491952416739924/data.0/system-wide.perf, compressed (original 6,835 MB, ratio is 7,388) ]

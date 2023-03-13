@@ -1,12 +1,4 @@
 /usr/local/stow/clion-2021.3.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=/usr/bin/gcc-10 -G "CodeBlocks - Unix Makefiles" /home/le34xoh/Algorithm-Engineering-Git/Projekt
--- The CXX compiler identification is GNU 10.2.1
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/gcc-10 - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found OpenMP_CXX: -fopenmp (found version "4.5") 
--- Found OpenMP: TRUE (found version "4.5")  
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-relwithdebinfo-gcc-10

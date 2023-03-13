@@ -31,12 +31,20 @@ bool isBetterFit_VI128(const Coordinate p1, const Coordinate p2, const Coordinat
  */
 bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
-bool isBetterFit_Native (const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
+bool isBetterFit_Naive (const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
 bool isBetterFit_Parallel (const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
 bool isBetterFit_VI128_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
 bool isBetterFit_VI256_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
+
+bool isBetterFit_VI256_NoUnroll(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
+
+bool isBetterFit_VI128_NoUnroll(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
+
+bool isBetterFit_VI256_NoUnroll_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
+
+bool isBetterFit_VI128_NoUnroll_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size);
 
 #endif //PROJEKT_FITNESSHELPER_H

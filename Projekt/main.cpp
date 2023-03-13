@@ -37,7 +37,7 @@ bool isBetterFit(const Coordinate pointNew, const Coordinate pointPrev, const Co
 //    {
 //        paramsFit.setParam("_name", "Nat"); // set parameter
 //        PerfEventBlock e((int) targetShape.size(), paramsFit, true);
-    fit = isBetterFit_Native(pointNew, pointPrev, targetShape, targetSize);
+    fit = isBetterFit_Naive(pointNew, pointPrev, targetShape, targetSize);
 //    }
 //    {
 //        paramsFit.setParam("_name", "Par"); // set parameter
@@ -63,6 +63,14 @@ bool isBetterFit(const Coordinate pointNew, const Coordinate pointPrev, const Co
 //    fit = isBetterFit_VI128_Par(pointNew, pointPrev, targetShape, targetSize);
 
 //    fit = isBetterFit_VI256_Par(pointNew, pointPrev, targetShape, targetSize);
+
+//    fit = isBetterFit_VI128_NoUnroll(pointNew, pointPrev, targetShape, targetSize);
+
+//    fit = isBetterFit_VI256_NoUnroll(pointNew, pointPrev, targetShape, targetSize);
+
+//    fit = isBetterFit_VI128_NoUnroll_Par(pointNew, pointPrev, targetShape, targetSize);
+
+//    fit = isBetterFit_VI256_NoUnroll_Par(pointNew, pointPrev, targetShape, targetSize);
 
     double time = omp_get_wtime() - startFit;
 #pragma omp critical
