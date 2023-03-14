@@ -2,7 +2,6 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 # project name and language
-# setzt direkt die Sprache auf C++ und schließt damit bspw C aus
 project(Projekt LANGUAGES CXX)
 
 # fügt die Unittests hinzu
@@ -21,9 +20,6 @@ link_libraries(m)
 # Compilerflags um CPU voll auszunutzen und Vector Intrinsics zu nutzen
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native -mavx -msse2")
 
-#weitere:
-#  -fsanitize=address ... gibt nochmal deeeeeeutlich mehr Warnungen
-#  -fsanitize=undefined ... weißt auf undefiniertes Behaviour hin
 # Debuggerflags:
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall -fsanitize=address -fsanitize=undefined ")
 
@@ -38,21 +34,6 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 
-# oder:    (funktioniert beides auf clang und gcc!)
-#if(OpenMP_CXX_FOUND)
-#    link_libraries(OpenMP::OpenMP_CXX)
-#else()
-#    set(DOpenMP_CXX_FLAGS "${DOpenMP_CXX_FLAGS} -Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include")
-#    set(DOpenMP_CXX_LIB_NAMES "omp")
-#    set(DOpenMP_omp_LIBRARY "/usr/local/opt/libomp/lib/libomp.dylib")
-#endif()
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${DOpenMP_CXX_FLAGS} ")
-
-# hiermit muss OpenMP verfügbar sein
-#find_package(OpenMP REQUIRED)
-# klappt hiermit aber iwie nicht...
-#find_package(Catch2 REQUIRED)
-
 # damit er OpenMP (libomp) findet
 if(APPLE)
     include_directories(/usr/local/opt/libomp/include)
@@ -63,13 +44,12 @@ elseif(WINDOWS)
 endif()
 
 
-# für clang compiler
-add_executable(Projekt_exec main.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h PerfEvent.hpp)
+# executable
+add_executable(Projekt_exec main.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h)
 
 # executable für tests
 enable_testing()
-add_executable(Projekt_test_exec catch_main.cpp catch_tests_importHelper.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h PerfEvent.hpp
-        catch_tests_helperFunctions.cpp catch_tests_configurationHelper.cpp catch_tests_fitnessHelper.cpp)
+add_executable(Projekt_test_exec catch_main.cpp aligned_allocator.h helperFunctions.cpp helperFunctions.h datatypes.h configurationHelpers.cpp configurationHelpers.h exportHelper.cpp exportHelper.h importHelper.cpp importHelper.h fitnessHelper.cpp fitnessHelper.h
+        catch_tests_importHelper.cpp catch_tests_helperFunctions.cpp catch_tests_configurationHelper.cpp catch_tests_fitnessHelper.cpp)
 target_link_libraries(Projekt_test_exec PUBLIC catch)
-# macht das executable zu nem test
 add_test(NAME PROJEKT_TEST COMMAND Projekt_test_exec)

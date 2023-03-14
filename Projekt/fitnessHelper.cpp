@@ -65,7 +65,7 @@ __m128 * getMinValues(__m128 *distances) {
 /**
  * Ermittelt den minimalen Wert des übergebenen Vektors
  * @param v Vektor
- * @return minimaler Werte
+ * @return minimaler Wert
  */
 float getMinimalValues(__m256 v) {
     float result[8];
@@ -77,9 +77,51 @@ float getMinimalValues(__m256 v) {
     return min_a;
 }
 
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Naive Implementierung)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_Naive(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    float minDistP1 = getDistance(p1, targetShape[0]);
+    float minDistP2 = getDistance(p2, targetShape[0]);
+
+    for (int j = 1; j < size; j++) {
+        minDistP1 = min(minDistP1, getDistance(p1, targetShape[j]));
+        minDistP2 = min(minDistP2, getDistance(p2, targetShape[j]));
+    }
+    return minDistP1 < minDistP2;
+}
 
 /**
  * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Parallele Version der naiven Implementierung)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_Parallel(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    float minDistP1 = getDistance(p1, targetShape[0]);
+    float minDistP2 = getDistance(p2, targetShape[0]);
+
+#pragma omp parallel for reduction(min: minDistP1, minDistP2)
+    for (int j = 1; j < size; j++) {
+        minDistP1 = min(minDistP1, getDistance(p1, targetShape[j]));
+        minDistP2 = min(minDistP2, getDistance(p2, targetShape[j]));
+    }
+    return minDistP1 < minDistP2;
+}
+
+
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 128-Bit Vector Intrinsics)
  * @param p1  die neuen Koordinaten des Punktes
  * @param p2 die vorherigen Koordinaten des Punktes
  * @param targetShape Vektor von Koordinaten der Zielform
@@ -87,15 +129,113 @@ float getMinimalValues(__m256 v) {
  * @return true wenn minimale Distanz von p1 < p2, false sonst
  */
 bool isBetterFit_VI128(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
+     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
+    __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
+
+    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
+    vector<float> minimalDistances = {getDistance(p1, targetShape[0]), getDistance(p2, targetShape[0])};
+
+    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
+    for (int i=1; i < size; i++) {
+        /** Für Distanzberechnungen genutzter Array aus Vektoren.
+         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
+        __m128 calcTmp = _mm_setr_ps(
+                targetShape[i].x, targetShape[i].y,
+                targetShape[i].x, targetShape[i].y
+        );
+        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
+        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
+        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
+        //Abwechselnd Werte für p1 und p2
+        for (int k = 0; k < 2; k++) {
+            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
+        }
+    }
+    //vergleicht minimale Distanz von p1 mit der von  p2
+    return minimalDistances[0] < minimalDistances[1];
+}
+
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 256-Bit Vector Intrinsics)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
+     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
+    __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);
+
+    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
+    vector<float> minimalDistances = {getDistance(p1, targetShape[0]), getDistance(p2, targetShape[0])};
+
+    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
+    for (int i=1; i < size-1; i+=2) {
+        /** Für Distanzberechnungen genutzter Array aus Vektoren.
+         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
+        __m256 calcTmp = _mm256_setr_ps(
+                targetShape[i].x, targetShape[i].y,
+                targetShape[i + 1].x,targetShape[i + 1].y,
+                targetShape[i].x, targetShape[i].y,
+                targetShape[i + 1].x,targetShape[i + 1].y
+        );
+        calcTmp = _mm256_sub_ps(dataVec, calcTmp);
+        calcTmp = _mm256_mul_ps(calcTmp, calcTmp);
+        calcTmp = _mm256_hadd_ps(calcTmp, calcTmp);
+
+        //Fügt berechnete Summen in neuen Vektor-Array "distances" ein
+        // grader index -> p1, ungrader Index -> p2
+        __m128 distances = _mm_setr_ps(calcTmp[0], calcTmp[4], calcTmp[1], calcTmp[5]);
+
+        distances = _mm_sqrt_ps(distances);
+
+        //vergleicht minimale Werte pro Punkt mit minimalen Werten in "minimalDistances"
+        // grader index -> p1, ungrader Index -> p2
+        for (int k = 0; k < 4; k++) {
+            minimalDistances[k % 2] = min(minimalDistances[k % 2], distances[k]);
+        }
+    }
+
+    //falls targetShape gerade Größe hat bleibt noch ein Punkt übrig (weil Schleife bei 1 anfängt, statt 0)
+    if(size % 2 == 0) {
+        __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
+        __m128 calcTmp = _mm_setr_ps(
+                targetShape[size-1].x, targetShape[size-1].y,
+                targetShape[size-1].x, targetShape[size-1].y
+        );
+        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
+        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
+        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
+        //Abwechselnd Werte für p1 und p2
+        for (int k = 0; k < 2; k++) {
+            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
+        }
+    }
+    //vergleicht minimale Distanz von p1 mit der von  p2
+    return minimalDistances[0] < minimalDistances[1];
+}
+
+
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 128-Bit Vector Intrinsics und Loop Unrolling)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_VI128_Lu(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je speichert.
      * Erst x und y von kommt p1, dann von p2. */
     __m128 dataVec = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
 
-    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
     /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
-    vector<float> minimalDistances = {minDistP1, minDistP2};
+    vector<float> minimalDistances = {getDistance(p1, targetShape[0]), getDistance(p2, targetShape[0])};
 
     //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
     //Um sich instruction-level Parallelismus zunutze zu machen, wird loop Unrolling mit k=8 gemacht
@@ -111,7 +251,7 @@ bool isBetterFit_VI128(const Coordinate p1, const Coordinate p2, const Coordinat
             calcTmp[k] = _mm_setr_ps(
                     targetShape[i + k].x, targetShape[i + k].y,
                     targetShape[i + k].x, targetShape[i + k].y
-                    );
+            );
         }
 #pragma omp simd
         //Subtrahiert Werte aus "calcTmp" von p1 und p2 Koordinaten
@@ -155,7 +295,8 @@ bool isBetterFit_VI128(const Coordinate p1, const Coordinate p2, const Coordinat
             minimalDistances[k % 2] = min(minimalDistances[k % 2], _mm_cvtss_f32(distances[k]));
         }
     }
-    //remainder loop
+
+    //remainder loop (mit dem __unroll-Pragma gab es Fehler, daher unrolling per Hand)
     __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
     for (; i < size; i++) {
         /** Für Distanzberechnungen genutzter Array aus Vektoren.
@@ -179,22 +320,20 @@ bool isBetterFit_VI128(const Coordinate p1, const Coordinate p2, const Coordinat
 
 /**
  * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 256-Bit Vector Intrinsics und Loop Unrolling)
  * @param p1  die neuen Koordinaten des Punktes
  * @param p2 die vorherigen Koordinaten des Punktes
  * @param targetShape Vektor von Koordinaten der Zielform
  * @param size Größe von `targetShape`
  * @return true wenn minimale Distanz von p1 < p2, false sonst
  */
-bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+bool isBetterFit_VI256_Lu(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
      * Index 0 bis 4 sind p1, 5 bis 8 p2. */
     __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);
 
-    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
     /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
-    vector<float> minimalDistances = {minDistP1, minDistP2};
+    vector<float> minimalDistances = {getDistance(p1, targetShape[0]), getDistance(p2, targetShape[0])};
 
     //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
     //Um sich instruction-level Parallelismus zunutze zu machen, wird loop Unrolling mit k=8 gemacht
@@ -206,7 +345,7 @@ bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinat
         /** Für Distanzberechnungen genutzter Array aus Vektoren.
          *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
         __m256 calcTmp[8] = {};
-        
+
 #pragma omp simd aligned(targetShape : 64)
         //speichert Koordinaten in "calcTmp"
         for (int k = 0; k < 8 * 2; k += 2) {
@@ -215,7 +354,7 @@ bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinat
                     targetShape[i + k + 1].x,targetShape[i + k + 1].y,
                     targetShape[i + k].x, targetShape[i + k].y,
                     targetShape[i + k + 1].x,targetShape[i + k + 1].y
-                    );
+            );
         }
 #pragma omp simd
         //Subtrahiert Werte aus "calcTmp" von p1 und p2 Koordinaten
@@ -243,11 +382,11 @@ bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinat
             distances[index] = _mm256_setr_ps(
                     calcTmp[k][0], calcTmp[k+1][0], calcTmp[k+2][0], calcTmp[k+3][0],
                     calcTmp[k][1], calcTmp[k+1][1], calcTmp[k+2][1], calcTmp[k+3][1]
-                    );
+            );
             distances[index+1] = _mm256_setr_ps(
                     calcTmp[k][4], calcTmp[k+1][4],calcTmp[k+2][4], calcTmp[k+3][4],
                     calcTmp[k][5], calcTmp[k+1][5], calcTmp[k+2][5], calcTmp[k+3][5]
-                    );
+            );
             index += 2;
         }
 #pragma omp simd
@@ -271,7 +410,7 @@ bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinat
         }
     }
 
-    //remainder loop
+    //remainder loop (mit dem __unroll-Pragma gab es Fehler, daher unrolling per Hand)
     __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
     for (; i < size; i++) {
         /** Für Distanzberechnungen genutzter Array aus Vektoren.
@@ -279,7 +418,7 @@ bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinat
         __m128 calcTmp = _mm_setr_ps(
                 targetShape[i].x, targetShape[i].y,
                 targetShape[i].x, targetShape[i].y
-                );
+        );
         calcTmp = _mm_sub_ps(dataVec128, calcTmp);
         calcTmp = _mm_mul_ps(calcTmp, calcTmp);
         calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
@@ -294,31 +433,136 @@ bool isBetterFit_VI256(const Coordinate p1, const Coordinate p2, const Coordinat
 }
 
 
-bool isBetterFit_Naive(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
-
-    for (int j = 1; j < size; j++) {
-        minDistP1 = min(minDistP1, getDistance(p1, targetShape[j]));
-        minDistP2 = min(minDistP2, getDistance(p2, targetShape[j]));
-    }
-    return minDistP1 < minDistP2;
-}
-
-
-bool isBetterFit_Parallel(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
-
-#pragma omp parallel for reduction(min: minDistP1, minDistP2)
-    for (int j = 1; j < size; j++) {
-        minDistP1 = min(minDistP1, getDistance(p1, targetShape[j]));
-        minDistP2 = min(minDistP2, getDistance(p2, targetShape[j]));
-    }
-    return minDistP1 < minDistP2;
-}
-
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 128-Bit Vector Intrinsics und Parallelisierung)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
 bool isBetterFit_VI128_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
+     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
+    __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
+
+    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
+    float minDistP1 = getDistance(p1, targetShape[0]);
+    float minDistP2 = getDistance(p2, targetShape[0]);
+    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
+    vector<float> minimalDistances = {minDistP1, minDistP2};
+
+    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
+#pragma omp parallel for reduction(min: minDistP1, minDistP2)
+    for (int i=1; i < size; i++) {
+        /** Für Distanzberechnungen genutzter Array aus Vektoren.
+         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
+        __m128 calcTmp = _mm_setr_ps(
+                targetShape[i].x, targetShape[i].y,
+                targetShape[i].x, targetShape[i].y
+        );
+        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
+        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
+        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
+        //Abwechselnd Werte für p1 und p2
+        for (int k = 0; k < 2; k++) {
+            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
+        }
+        minDistP1 = minimalDistances[0];
+        minDistP2 = minimalDistances[1];
+    }
+
+    //vergleicht minimale Distanz von p1 mit der von  p2
+    return minDistP1 < minDistP2;
+}
+
+
+
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 256-Bit Vector Intrinsics und Parallelisierung)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_VI256_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
+     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
+    __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);
+
+    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
+    float minDistP1 = getDistance(p1, targetShape[0]);
+    float minDistP2 = getDistance(p2, targetShape[0]);
+    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
+    vector<float> minimalDistances = {minDistP1, minDistP2};
+
+    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
+#pragma omp parallel for reduction(min: minDistP1, minDistP2)
+    for (int i=1; i < size-1; i+=2) {
+        /** Für Distanzberechnungen genutzter Array aus Vektoren.
+         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
+        __m256 calcTmp = _mm256_setr_ps(
+                targetShape[i].x, targetShape[i].y,
+                targetShape[i + 1].x,targetShape[i + 1].y,
+                targetShape[i].x, targetShape[i].y,
+                targetShape[i + 1].x,targetShape[i + 1].y
+        );
+        calcTmp = _mm256_sub_ps(dataVec, calcTmp);
+        calcTmp = _mm256_mul_ps(calcTmp, calcTmp);
+        calcTmp = _mm256_hadd_ps(calcTmp, calcTmp);
+
+        //Fügt berechnete Summen in neuen Vektor-Array "distances" ein
+        // grader index -> p1, ungrader Index -> p2
+        __m128 distances = _mm_setr_ps(calcTmp[0], calcTmp[4], calcTmp[1], calcTmp[5]);
+
+        distances = _mm_sqrt_ps(distances);
+
+        //vergleicht minimale Werte pro Vektor mit minimalen Werten in "minimalDistances"
+        // grader index -> p1, ungrader Index -> p2
+        for (int k = 0; k < 4; k++) {
+            minimalDistances[k % 2] = min(minimalDistances[k % 2], distances[k]);
+        }
+        minDistP1 = minimalDistances[0];
+        minDistP2 = minimalDistances[1];
+    }
+
+    //falls targetShape gerade Größe hat bleibt noch ein Punkt übrig (weil Schleife bei 1 anfängt, statt 0)
+    if(size % 2 == 0) {
+        __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
+        /** Für Distanzberechnungen genutzter Array aus Vektoren.
+         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
+        __m128 calcTmp = _mm_setr_ps(
+                targetShape[size-1].x, targetShape[size-1].y,
+                targetShape[size-1].x, targetShape[size-1].y
+        );
+        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
+        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
+        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
+        //Abwechselnd Werte für p1 und p2
+        for (int k = 0; k < 2; k++) {
+            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
+        }
+        minDistP1 = minimalDistances[0];
+        minDistP2 = minimalDistances[1];
+    }
+
+    //vergleicht minimale Distanz von p1 mit der von  p2
+    return minDistP1 < minDistP2;
+}
+
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 128-Bit Vector Intrinsics, Loop Unrolling und Parallelisierung)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_VI128_LuPar(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je speichert.
      * Erst x und y von kommt p1, dann von p2. */
     __m128 dataVec = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
@@ -389,7 +633,8 @@ bool isBetterFit_VI128_Par(const Coordinate p1, const Coordinate p2, const Coord
         minDistP1 = minimalDistances[0];
         minDistP2 = minimalDistances[1];
     }
-    //-1 because the loop starts at index 1 not 0
+
+    //size-1 weil die Schleife bei Index 1, statt 0 startet
     int remainder = (size-1) % 8;
     __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
     //remainder loop
@@ -413,10 +658,19 @@ bool isBetterFit_VI128_Par(const Coordinate p1, const Coordinate p2, const Coord
     }
 
     //vergleicht minimale Distanz von p1 mit der von  p2
-    return minimalDistances[0] < minimalDistances[1];
+    return minDistP1 < minDistP2;
 }
 
-bool isBetterFit_VI256_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
+/**
+ * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
+ * (Implementierung mit 256-Bit Vector Intrinsics, Loop Unrolling und Parallelisierung)
+ * @param p1  die neuen Koordinaten des Punktes
+ * @param p2 die vorherigen Koordinaten des Punktes
+ * @param targetShape Vektor von Koordinaten der Zielform
+ * @param size Größe von `targetShape`
+ * @return true wenn minimale Distanz von p1 < p2, false sonst
+ */
+bool isBetterFit_VI256_LuPar(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
     /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
      * Index 0 bis 4 sind p1, 5 bis 8 p2. */
     __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);
@@ -504,8 +758,9 @@ bool isBetterFit_VI256_Par(const Coordinate p1, const Coordinate p2, const Coord
         minDistP2 = minimalDistances[1];
     }
 
-    //-1 because the loop starts at index 1 not 0
+    //size-1 weil die Schleife bei Index 1, statt 0 startet
     int remainder = (size-1) % 16;
+
     __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
     //remainder loop
 #pragma omp parallel for reduction(min: minDistP1, minDistP2)
@@ -528,266 +783,5 @@ bool isBetterFit_VI256_Par(const Coordinate p1, const Coordinate p2, const Coord
     }
 
     //vergleicht minimale Distanz von p1 mit der von  p2
-    return minimalDistances[0] < minimalDistances[1];
-}
-
-/**
- * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
- * @param p1  die neuen Koordinaten des Punktes
- * @param p2 die vorherigen Koordinaten des Punktes
- * @param targetShape Vektor von Koordinaten der Zielform
- * @param size Größe von `targetShape`
- * @return true wenn minimale Distanz von p1 < p2, false sonst
- */
-bool isBetterFit_VI128_NoUnroll(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
-    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
-     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
-    __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
-
-    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
-    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
-    vector<float> minimalDistances = {minDistP1, minDistP2};
-
-    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
-    //Um sich instruction-level Parallelismus zunutze zu machen, wird loop Unrolling mit k=8 gemacht
-    //Jeder Vektor kann die Koordinaten zu 4 Punkten speichern.
-    //Da wir gleichzeitig die Distanzen zu zwei verschiedenen Punkten berechnen wollen,
-    // werden pro Vektor zwei mal zwei Punkte aus targetShape gespeichert (daher Inkrementierung mit 8*2 = 16)
-    for (int i=1; i < size; i++) {
-        /** Für Distanzberechnungen genutzter Array aus Vektoren.
-         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
-        __m128 calcTmp = _mm_setr_ps(
-                targetShape[i].x, targetShape[i].y,
-                targetShape[i].x, targetShape[i].y
-        );
-        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
-        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
-        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
-        //Abwechselnd Werte für p1 und p2
-        for (int k = 0; k < 2; k++) {
-            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
-        }
-    }
-
-    //vergleicht minimale Distanz von p1 mit der von  p2
-    return minimalDistances[0] < minimalDistances[1];
-}
-
-
-/**
- * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
- * @param p1  die neuen Koordinaten des Punktes
- * @param p2 die vorherigen Koordinaten des Punktes
- * @param targetShape Vektor von Koordinaten der Zielform
- * @param size Größe von `targetShape`
- * @return true wenn minimale Distanz von p1 < p2, false sonst
- */
-bool isBetterFit_VI256_NoUnroll(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
-    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
-     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
-    __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);
-
-    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
-    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
-    vector<float> minimalDistances = {minDistP1, minDistP2};
-
-    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
-    //Um sich instruction-level Parallelismus zunutze zu machen, wird loop Unrolling mit k=8 gemacht
-    //Jeder Vektor kann die Koordinaten zu 4 Punkten speichern.
-    //Da wir gleichzeitig die Distanzen zu zwei verschiedenen Punkten berechnen wollen,
-    // werden pro Vektor zwei mal zwei Punkte aus targetShape gespeichert (daher Inkrementierung mit 8*2 = 16)
-    for (int i=1; i < size-1; i+=2) {
-        /** Für Distanzberechnungen genutzter Array aus Vektoren.
-         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
-        __m256 calcTmp = _mm256_setr_ps(
-                targetShape[i].x, targetShape[i].y,
-                targetShape[i + 1].x,targetShape[i + 1].y,
-                targetShape[i].x, targetShape[i].y,
-                targetShape[i + 1].x,targetShape[i + 1].y
-        );
-        //Subtrahiert Werte aus "calcTmp" von p1 und p2 Koordinaten
-        calcTmp = _mm256_sub_ps(dataVec, calcTmp);
-        //quadriert die Werte
-        calcTmp = _mm256_mul_ps(calcTmp, calcTmp);
-        //Addiert je die beiden Werte die zum selben Punkt gehörten zusammen
-        calcTmp = _mm256_hadd_ps(calcTmp, calcTmp);
-
-        /**Für die nächsten Schritte verwendeter Array zum Speichern der Zwischenergebnisse.*/
-
-        //Fügt berechnete Summen in neuen Vektor-Array "distances" ein
-        //Da es jetzt nur noch einen Wert pro Koordinate gibt, werden zwei Vektoren aus "calcTmp" in einen Vektor in "distances" gespeichert
-        // grader index -> p1, ungrader Index -> p2
-        __m128 distances = _mm_setr_ps(calcTmp[0], calcTmp[4], calcTmp[1], calcTmp[5]);
-        //Berechnet Wurzel aller Werte
-        distances = _mm_sqrt_ps(distances);
-
-        /** Speichert die minimalen Werte pro Vektor in "distances"*/
-
-        //vergleicht minimale Werte pro Vektor mit minimalen Werten in "minimalDistances"
-        // grader index -> p1, ungrader Index -> p2
-        for (int k = 0; k < 4; k++) {
-            minimalDistances[k % 2] = min(minimalDistances[k % 2], distances[k]);
-        }
-    }
-
-    //falls targetShape gerade Größe hat bleibt noch ein Punkt übrig
-    if(size % 2 == 0) {
-        __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
-        /** Für Distanzberechnungen genutzter Array aus Vektoren.
-         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
-        __m128 calcTmp = _mm_setr_ps(
-                targetShape[size-1].x, targetShape[size-1].y,
-                targetShape[size-1].x, targetShape[size-1].y
-        );
-        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
-        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
-        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
-        //Abwechselnd Werte für p1 und p2
-        for (int k = 0; k < 2; k++) {
-            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
-        }
-    }
-
-    //vergleicht minimale Distanz von p1 mit der von  p2
-    return minimalDistances[0] < minimalDistances[1];
-}
-
-
-/**
- * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
- * @param p1  die neuen Koordinaten des Punktes
- * @param p2 die vorherigen Koordinaten des Punktes
- * @param targetShape Vektor von Koordinaten der Zielform
- * @param size Größe von `targetShape`
- * @return true wenn minimale Distanz von p1 < p2, false sonst
- */
-bool isBetterFit_VI128_NoUnroll_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
-    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
-     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
-    __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
-
-    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
-    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
-    vector<float> minimalDistances = {minDistP1, minDistP2};
-
-    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
-    //Um sich instruction-level Parallelismus zunutze zu machen, wird loop Unrolling mit k=8 gemacht
-    //Jeder Vektor kann die Koordinaten zu 4 Punkten speichern.
-    //Da wir gleichzeitig die Distanzen zu zwei verschiedenen Punkten berechnen wollen,
-    // werden pro Vektor zwei mal zwei Punkte aus targetShape gespeichert (daher Inkrementierung mit 8*2 = 16)
-#pragma omp parallel for reduction(min: minDistP1, minDistP2)
-    for (int i=1; i < size; i++) {
-        /** Für Distanzberechnungen genutzter Array aus Vektoren.
-         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
-        __m128 calcTmp = _mm_setr_ps(
-                targetShape[i].x, targetShape[i].y,
-                targetShape[i].x, targetShape[i].y
-        );
-        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
-        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
-        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
-        //Abwechselnd Werte für p1 und p2
-        for (int k = 0; k < 2; k++) {
-            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
-        }
-        minDistP1 = minimalDistances[0];
-        minDistP2 = minimalDistances[1];
-    }
-
-    //vergleicht minimale Distanz von p1 mit der von  p2
     return minDistP1 < minDistP2;
 }
-
-
-
-/**
- * Vergleicht die minimale Distanz der beiden übergebenen Punkte zur Zielform.
- * @param p1  die neuen Koordinaten des Punktes
- * @param p2 die vorherigen Koordinaten des Punktes
- * @param targetShape Vektor von Koordinaten der Zielform
- * @param size Größe von `targetShape`
- * @return true wenn minimale Distanz von p1 < p2, false sonst
- */
-bool isBetterFit_VI256_NoUnroll_Par(const Coordinate p1, const Coordinate p2, const Coordinate *__restrict__ targetShape, const int size){
-    /**Vektor, der die x- und y-Koordinaten von p1 und p2 je 2x speichert.
-     * Index 0 bis 4 sind p1, 5 bis 8 p2. */
-    __m256 dataVec = _mm256_setr_ps(p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y);
-
-    //berechnet für beide Punkte die Distanz zum ersten Punkt der Zielform als Startwert
-    float minDistP1 = getDistance(p1, targetShape[0]);
-    float minDistP2 = getDistance(p2, targetShape[0]);
-    /** Die berechneten minimalen Distanzen. Index 0 ist p1, Index 1 p2 */
-    vector<float> minimalDistances = {minDistP1, minDistP2};
-
-    //Geht alle Punkte der Zielfom durch und berechnet die Distanzen zu p1 und p2
-    //Um sich instruction-level Parallelismus zunutze zu machen, wird loop Unrolling mit k=8 gemacht
-    //Jeder Vektor kann die Koordinaten zu 4 Punkten speichern.
-    //Da wir gleichzeitig die Distanzen zu zwei verschiedenen Punkten berechnen wollen,
-    // werden pro Vektor zwei mal zwei Punkte aus targetShape gespeichert (daher Inkrementierung mit 8*2 = 16)
-#pragma omp parallel for reduction(min: minDistP1, minDistP2)
-    for (int i=1; i < size-1; i+=2) {
-        /** Für Distanzberechnungen genutzter Array aus Vektoren.
-         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
-        __m256 calcTmp = _mm256_setr_ps(
-                targetShape[i].x, targetShape[i].y,
-                targetShape[i + 1].x,targetShape[i + 1].y,
-                targetShape[i].x, targetShape[i].y,
-                targetShape[i + 1].x,targetShape[i + 1].y
-        );
-        //Subtrahiert Werte aus "calcTmp" von p1 und p2 Koordinaten
-        calcTmp = _mm256_sub_ps(dataVec, calcTmp);
-        //quadriert die Werte
-        calcTmp = _mm256_mul_ps(calcTmp, calcTmp);
-        //Addiert je die beiden Werte die zum selben Punkt gehörten zusammen
-        calcTmp = _mm256_hadd_ps(calcTmp, calcTmp);
-
-        /**Für die nächsten Schritte verwendeter Array zum Speichern der Zwischenergebnisse.*/
-
-        //Fügt berechnete Summen in neuen Vektor-Array "distances" ein
-        //Da es jetzt nur noch einen Wert pro Koordinate gibt, werden zwei Vektoren aus "calcTmp" in einen Vektor in "distances" gespeichert
-        // grader index -> p1, ungrader Index -> p2
-        __m128 distances = _mm_setr_ps(calcTmp[0], calcTmp[4], calcTmp[1], calcTmp[5]);
-        //Berechnet Wurzel aller Werte
-        distances = _mm_sqrt_ps(distances);
-
-        /** Speichert die minimalen Werte pro Vektor in "distances"*/
-
-        //vergleicht minimale Werte pro Vektor mit minimalen Werten in "minimalDistances"
-        // grader index -> p1, ungrader Index -> p2
-        for (int k = 0; k < 4; k++) {
-            minimalDistances[k % 2] = min(minimalDistances[k % 2], distances[k]);
-        }
-        minDistP1 = minimalDistances[0];
-        minDistP2 = minimalDistances[1];
-    }
-
-    //falls targetShape gerade Größe hat bleibt noch ein Punkt übrig
-    if(size % 2 == 0) {
-        __m128 dataVec128 = _mm_setr_ps(p1.x, p1.y, p2.x, p2.y);
-        /** Für Distanzberechnungen genutzter Array aus Vektoren.
-         *  Speichert erst die Zielkoordinaten und danach alle Zwischenergebnisse. */
-        __m128 calcTmp = _mm_setr_ps(
-                targetShape[size-1].x, targetShape[size-1].y,
-                targetShape[size-1].x, targetShape[size-1].y
-        );
-        calcTmp = _mm_sub_ps(dataVec128, calcTmp);
-        calcTmp = _mm_mul_ps(calcTmp, calcTmp);
-        calcTmp = _mm_hadd_ps(calcTmp, calcTmp);
-        //Abwechselnd Werte für p1 und p2
-        for (int k = 0; k < 2; k++) {
-            minimalDistances[k] = min(minimalDistances[k],  sqrt(calcTmp[k]));
-        }
-        minDistP1 = minimalDistances[0];
-        minDistP2 = minimalDistances[1];
-    }
-
-    //vergleicht minimale Distanz von p1 mit der von  p2
-    return minDistP1 < minDistP2;
-}
-

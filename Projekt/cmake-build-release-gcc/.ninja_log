@@ -1,18 +1,9 @@
 # ninja log v5
-3	1593	1678645550566675151	CMakeFiles/Projekt_exec.dir/importHelper.cpp.o	e0025ae2fb20b515
-2	975	1678645649045234912	CMakeFiles/Projekt_exec.dir/main.cpp.o	96a7e4b1c50545ef
-3	1629	1678645550603105567	CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o	bf5badce5bd7eb22
-3	1226	1678645550200013760	CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o	e6f0ca1a55f99cc4
-2	988	1678645549959378069	CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o	2f745010f9b2046
-975	1031	1678645649101280346	Projekt_exec	bca4ee787eb3e527
-1	140	1678645752381850330	build.ninja	31752696faed698d
-2	845	1678645549816598795	CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o	992287a2c4b6742
-2	1288	1678645818978934927	CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o	b8428706a80a5a1a
-3	1781	1678645819471108200	CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o	f69dd0afe623da46
-4	2436	1678645820127879300	CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o	fc478ad42caed1a7
-2	2785	1678645820475295617	CMakeFiles/Projekt_exec.dir/main.cpp.o	d29731b917a9140f
-7	3092	1678645820784806512	CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o	55a57ea3187f74c8
 5	3102	1678645820794980873	CMakeFiles/Projekt_exec.dir/importHelper.cpp.o	a8a104fef6c47ed0
-3102	3147	1678645820840105061	Projekt_exec	3981bcc4f03d38f6
-3	1475	1678647862856738096	CMakeFiles/Projekt_exec.dir/main.cpp.o	d29731b917a9140f
-1475	1560	1678647862946228309	Projekt_exec	3981bcc4f03d38f6
+2	1574	1678826081679383973	CMakeFiles/Projekt_exec.dir/main.cpp.o	d29731b917a9140f
+11	1656	1678822100109337945	CMakeFiles/Projekt_exec.dir/fitnessHelper.cpp.o	55a57ea3187f74c8
+4	2436	1678645820127879300	CMakeFiles/Projekt_exec.dir/exportHelper.cpp.o	fc478ad42caed1a7
+3	1781	1678645819471108200	CMakeFiles/Projekt_exec.dir/configurationHelpers.cpp.o	f69dd0afe623da46
+1574	1620	1678826081726076961	Projekt_exec	3981bcc4f03d38f6
+1	140	1678835139847672293	build.ninja	31752696faed698d
+2	1288	1678645818978934927	CMakeFiles/Projekt_exec.dir/helperFunctions.cpp.o	b8428706a80a5a1a

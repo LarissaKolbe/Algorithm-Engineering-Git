@@ -1,6 +1,0 @@
-n
-./data/input/big/xCube.ppm
-n
-./data/shapes/big/bunnies.ppm
---
-y

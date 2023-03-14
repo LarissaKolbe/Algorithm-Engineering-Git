@@ -9,7 +9,7 @@ using namespace std;
 #define PROJEKT_DATATYPES_H
 
 /**
- * Speichert die x- und y-Koordinaten eines Punktes
+ * Speichert die x- und y-Koordinaten eines Punktes als Floats
  */
 struct Coordinate {
     float x;

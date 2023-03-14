@@ -45,7 +45,7 @@ Configurations changeConfigurations(Configurations conf) {
     while(true) {
         cout << endl << "Bitte gib die Nummer der Konfiguration an, die du ändern möchtest, "
             "oder schreibe eine andere Zahl, um zum Programm zurückzukehren." << endl <<
-            "Mit 0 (Null) kannst du dir die Überesicht erneut anzeigen lassen." << endl <<
+            "Mit 0 (Null) kannst du dir die Übersicht erneut anzeigen lassen." << endl <<
             "Nummer:  ";
         int input;
         cin >> input;

@@ -1,4 +1,0 @@
-/usr/local/stow/clion-2021.3.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/usr/bin/gcc-10 -G "CodeBlocks - Unix Makefiles" /home/le34xoh/Algorithm-Engineering-Git/Projekt
--- Configuring done
--- Generating done
--- Build files have been written to: /home/le34xoh/Algorithm-Engineering-Git/Projekt/cmake-build-release-gcc-10
